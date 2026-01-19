@@ -1,6 +1,6 @@
 ---
 name: doc-editing
-description: Use when editing documentation or long-form prose where consistency, clarity, and accuracy matter. Goal: produce clean publishable text without tone drift, structural churn, or meta commentary.
+description: 'Use when editing documentation or long-form prose where consistency, clarity, and accuracy matter. Goal: produce clean publishable text without tone drift, structural churn, or meta commentary.'
 metadata:
   short-description: Edit docs
 ---

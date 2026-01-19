@@ -1,6 +1,6 @@
 ---
 name: structure-boundaries
-description: Use when navigation is costly or module boundaries feel blurry (messy directories, inconsistent naming, or cross-boundary imports). Goal: make architecture and dependency direction readable from the tree and imports, with minimal churn.
+description: 'Use when navigation is costly or module boundaries feel blurry due to messy directories, inconsistent naming, or cross-boundary imports. Goal: make architecture and dependency direction readable from the tree and imports, with minimal churn.'
 metadata:
   short-description: Clear boundaries
 ---

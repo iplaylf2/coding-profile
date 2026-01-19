@@ -1,6 +1,6 @@
 ---
 name: single-file-topdown-ordering
-description: Use when a single file is difficult to understand top-down because the public surface is buried or definitions appear before the behavior they support. Goal: restore a clear reading flow without changing semantics.
+description: 'Use when a single file is difficult to understand top-down because the public surface is buried or definitions appear before the behavior they support. Goal: restore a clear reading flow without changing semantics.'
 metadata:
   short-description: Read top-down
 ---

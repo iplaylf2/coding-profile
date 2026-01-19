@@ -1,6 +1,6 @@
 ---
 name: comments-as-last-resort
-description: Use when comments are growing faster than clarity: many “what” comments, frequent drift, or code that needs explanation to be understood. Goal: encode intent in names and structure, and keep only high-value text (contracts, why, gotchas).
+description: 'Use when comments are growing faster than clarity: many “what” comments, frequent drift, or code that needs explanation to be understood. Goal: encode intent in names and structure, and keep only high-value text such as contracts, why, and gotchas.'
 metadata:
   short-description: Fewer, better comments
 ---
