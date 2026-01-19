@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/iplaylf2/content-hub/master/packages/content-hub/src/contentctl/schema/content-hub.schema.json
+
+origin: ./agent
+defaults:
+  include:
+    - skills/**
+  exclude:
+    - "**/.*/**"
+workspaces:
+  codex: ${HOME}/.codex
+  claude: ${HOME}/.claude
