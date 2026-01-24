@@ -1,47 +1,45 @@
 ---
 name: skill-editor
-description: Use when drafting or revising an agent skill spec in an environment that already has a general skill creator. Apply user-specific preferences to tighten triggers, reduce redundancy, keep scope safe, and keep the spec compact and consistent.
-metadata:
-  short-description: Refine skill specs
+description: Use when asked to draft, revise, or review an agent skill specification to make it trigger correctly from frontmatter and read as a compact, non-redundant, internally consistent execution guide.
 ---
-
 
 # Skill Editor
 
-Refine an agent skill specification by applying user-specific preferences on top of an existing skill-creation workflow. Improve trigger precision, internal consistency, and compactness without expanding scope.
+## Layers
 
-## Activation
+A skill spec has two layers with different load timing and responsibilities:
 
-Use this skill only when the task is to write, revise, or review an agent skill spec.
+- **Frontmatter** is read early and steers discovery and routing.
+- **Body** is read later and steers task execution.
 
-## Metadata First
+Layer contract:
 
-* Put trigger conditions and the goal in the header metadata.
-* Do not restate the trigger in the body.
-* Keep the body focused on execution rules and constraints.
+- Trigger wording belongs to frontmatter.
+- Execution guidance belongs to the body.
+- The two layers must not overlap.
 
-## Scope Control
+## Authoring Rules
 
-* Default to localized edits unless a full rewrite is explicitly requested.
-* Avoid adding new features, categories, or policies not implied by the user’s request.
-* If information is missing, make safe progress and ask only the smallest clarification needed to avoid incorrect constraints.
+### Frontmatter
 
-## Redundancy Control
+- Write for correct routing. Use user-intent phrasing, common request wording, and the intended task family.
+- Prefer specific triggers over broad capability claims that would overlap with other skills.
+- Ensure frontmatter is sufficient for routing without reading the body.
 
-* Remove repeated statements across sections.
-* Replace explanatory prose with concise definitions when possible.
-* Keep examples minimal and only when they clarify an otherwise ambiguous rule.
+### Body
 
-## Neutral Examples
+- Write the body as rules, constraints, and checklists.
+- Establish a minimal framework first, then fill it with content. Optimize for navigability and extensibility, not exhaustiveness.
+- Remove restatement and narrative. Merge overlapping sections; keep each rule single-sourced.
+- Use the smallest neutral example only to resolve ambiguity; do not introduce conventions through examples.
 
-* Use generic examples that do not imply a specific organization, product, or domain.
-* Examples should demonstrate the rule, not introduce new conventions.
+## Review Checklist
 
-## Consistency Checks
+Before finalizing, confirm:
 
-Before finalizing a spec, ensure:
-
-* Metadata and body have distinct roles and do not duplicate content.
-* Terms are used consistently and defined once.
-* Rules do not conflict; when tradeoffs exist, the priority is explicit.
-* Output expectations are clear and bounded.
+- **Routing**: Frontmatter alone is sufficient to decide when to use the skill.
+- **Structure**: The body has a minimal framework that supports navigation and extension.
+- **Redundancy**: Each rule appears once; sections are non-overlapping.
+- **Terminology**: Terms are defined once and used consistently.
+- **Conflicts**: Where tradeoffs exist, priority is explicit.
+- **Verifiability**: Requirements are clear enough to check.
