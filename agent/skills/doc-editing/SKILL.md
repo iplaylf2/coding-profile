@@ -26,7 +26,7 @@ A document can contain two kinds of description.
 A document can be organized using two structural forms.
 
 * **Dict structure**
-  Named modules that divide the document by responsibility. Each responsibility has a stable home, so readers know where to find and place information.
+  Named modules that divide the document by responsibility. Each responsibility has a stable home.
 
 * **List structure**
   A set of items grouped under one framing because they serve the same responsibility in the document.
