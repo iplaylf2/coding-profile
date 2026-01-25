@@ -1,75 +1,117 @@
 ---
 name: declaration-contract-design
-description: 'Use when designing or refactoring declaration contracts for callables, data shapes, or generic/type parameters using a Name+Shape view (named vs positional) so meaning stays explicit and positional order stays stable.'
-metadata:
-  short-description: Named vs positional
+description: Use when the user asks to design or refactor a declaration contract, such as a function signature, type shape, schema, or generic parameter list, and wants guidance on grouping, named vs positional elements, and stable ordering.
 ---
 
 # Declaration Contract Design
 
-## 1) Name and shape
+Design or refactor declaration contracts using a Name plus Shape view so meaning stays explicit and the shape remains stable at use sites.
 
-A declaration is read through **Name + Shape**.
+## Response Contract
 
-* **Name**: the semantic label (what it does / what it represents).
-* **Shape**: the declared dependencies or composition as an **addressable structure**—either **grouped into named concepts** (named shape) or **arranged by position** (positional shape).
+Return the revised declaration contract.
 
-### Shape forms
+## Skill Model
 
-* **Named shape**: elements are addressed by name (fields, named members, named arguments).
-* **Positional shape**: elements are addressed by position (positional parameters, tuples).
+Definitions used to reason about declaration shape decisions.
 
----
+### Grouping
 
-## 2) Principles
+Grouping is how a declaration organizes elements into conceptual blocks. A shape reflects the grouping decisions that were made.
 
-### 2.1 Semantics-first
+### Addressing Modes
 
-* Name should state the meaning.
-* Shape should expose the dependencies/composition that meaning requires.
+A declaration’s shape is addressed in one of two modes.
 
-### 2.2 Named grouping must be modeled
+* **Named shape**
+  Elements are addressed by name.
 
-Introduce a named grouping only when it forms a **semantically modeled, nameable concept**.
+* **Positional shape**
+  Elements are addressed by position.
 
-### 2.3 Positional stability gradient
+## Standards
 
-When a declaration uses **positional shape**, order elements by:
+Each standard is defined once here and referenced elsewhere by its ID.
 
-1. **Anchor**: identifies the primary subject (target/id/path/key). Most stable.
-2. **Core**: required information defining the primary variation of meaning.
-3. **Policy**: optional strategy/tuning/edge behavior.
-4. **Observability**: tracing/logging/diagnostics/metrics.
+* **name.meaning — Name states meaning**
+  Choose names that communicate domain meaning rather than implementation detail.
 
-Order: `Anchor → Core → Policy → Observability`.
+* **contract.core.explicit — Core meaning is explicit**
+  Keep meaning-defining elements explicit in the declaration shape. Do not hide them inside unmodeled containers or convenience wrappers.
 
----
+### Grouping
 
-## 3) Apply by declaration kind
+* **grouping.modeled_only — Grouping is a modeled concept**
+  Introduce a group only when the group itself is a nameable concept with a stable semantic boundary.
 
-### 3.1 Data-shape declarations (types, interfaces, data classes)
+* **grouping.no_catch_all — No catch-all groups**
+  Do not use groups whose purpose is only to absorb leftovers or unrelated concerns.
 
-* Model fields into nameable concepts; avoid generic “extra/misc/config” groupings that accumulate unrelated concerns.
-* Make required vs optional fields explicit in the declared shape (not by convention).
+### Positional shape
 
-### 3.2 Callable declarations (functions, methods, constructors)
+* **positional.role.anchor — Anchor role**
+  Identifies the primary subject, such as a target, id, path, key.
 
-* Use a small positional prefix for stable meaning-defining dependencies when positional addressing benefits call sites.
-* Use named/optional mechanisms primarily for **Policy/Observability** when available.
-* If you introduce an “options/config” grouping, it must be a modeled, nameable concept; otherwise keep dependencies explicit.
-* Keep meaning-defining dependencies legible at call sites (avoid hiding them inside unmodeled containers).
+* **positional.role.core — Core role**
+  Required information that defines the primary semantic variation.
 
-### 3.3 Parameterized declarations (generics / type parameters)
+* **positional.role.policy — Policy role**
+  Optional strategy and tuning that changes behavior without changing the subject.
 
-* Order by semantic priority: meaning-defining parameters first; constraint/defaulted parameters later; defaults at the end.
-* Name parameters to reflect their role when it improves readability at use sites.
-* Prefer inference where reasonable; require explicit parameters mainly to reduce ambiguity.
+* **positional.role.observability — Observability role**
+  Diagnostics and tracing concerns.
 
----
+* **positional.order.gradient — Order follows stability gradient**
+  In positional shape, order elements by role: Anchor, Core, Policy, Observability.
 
-## 4) Checklist
+* **positional.prefix.stable — Stable prefix discipline**
+  Treat Anchor and Core as a stable prefix. After publication, do not reorder the stable prefix. Only append new positional elements at the tail.
 
-* **Name+Shape**: is the declaration readable as name plus an intentional shape?
-* **Named grouping**: do named groupings form nameable concepts (not convenience containers)?
-* **Positional order**: if positional shape is used, does order follow `Anchor → Core → Policy → Observability`?
-* **Volatility placement**: are Policy/Observability concerns kept out of the stable core and placed at the tail (positional or named/optional as applicable)?
+### Callable declarations
+
+* **callable.split — Split by role**
+  When a callable uses both modes and the language supports named arguments, keep Anchor and Core in the positional segment and express Policy and Observability through named mechanisms.
+
+* **callable.options.modeled — Options are modeled**
+  If a callable introduces an options or config argument, it must be a modeled concept under `grouping.modeled_only` and must not become a catch-all under `grouping.no_catch_all`.
+
+### Parameterized declarations
+
+* **generics.semantic_order — Order by semantic priority**
+  Order generic or type parameters by meaning: meaning-defining parameters first, constrained or defaulted parameters later, defaults at the end.
+
+### Cross-cutting
+
+* **conflicts.priority — Priority rule**
+  When standards trade off, apply this priority order:
+
+  1. `contract.core.explicit`
+  2. `grouping.modeled_only`, `grouping.no_catch_all`
+  3. `positional.order.gradient`, `positional.prefix.stable`
+  4. Kind-specific standards for the declaration kind
+  5. `name.meaning`
+
+## Workflow
+
+1. Identify the declaration kind and the meaning the contract must communicate. Apply `name.meaning` and `contract.core.explicit`.
+2. Decide grouping boundaries if any. Apply `grouping.modeled_only` and `grouping.no_catch_all`.
+3. Choose addressing mode for the shape or for shape segments.
+4. If any segment is positional, assign roles and order by the stability gradient. Apply `positional.role.*`, `positional.order.gradient`, `positional.prefix.stable`.
+5. Apply kind-specific standards.
+
+   * Data-shape: no additional family beyond the base standards already applied.
+   * Callable: apply `callable.*`.
+   * Parameterized: apply `generics.*`.
+6. Run acceptance checks.
+
+## Acceptance Criteria
+
+A revision is complete only if all checks pass.
+
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**:
+
+  * Data-shape: `name.meaning`, `contract.core.explicit`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
+  * Callable: `name.meaning`, `contract.core.explicit`, `callable.*`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
+  * Parameterized: `contract.core.explicit`, `generics.*`, plus `positional.*` when positional shape is used.
+  * Tradeoffs resolved by `conflicts.priority`.
