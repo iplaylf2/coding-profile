@@ -1,45 +1,68 @@
 ---
 name: skill-editor
-description: Use when asked to draft, revise, or review an agent skill specification to make it trigger correctly from frontmatter and read as a compact, non-redundant, internally consistent execution guide.
+description: Use when asked to draft, revise, or review an agent skill specification so frontmatter alone routes correctly and the body is a compact, non-redundant, internally consistent execution guide.
 ---
 
 # Skill Editor
 
-## Layers
+Draft, revise, or review an agent skill specification to improve routing precision and execution usability.
 
-A skill spec has two layers with different load timing and responsibilities:
+## Response Contract
 
-- **Frontmatter** is read early and steers discovery and routing.
-- **Body** is read later and steers task execution.
+Return the revised skill specification, including both frontmatter and body.
 
-Layer contract:
+## Skill Model
 
-- Trigger wording belongs to frontmatter.
-- Execution guidance belongs to the body.
-- The two layers must not overlap.
+Definitions used to reason about skill specifications and edits.
 
-## Authoring Rules
+### Semantic Layers
 
-### Frontmatter
+A skill specification has two semantic layers.
 
-- Write for correct routing. Use user-intent phrasing, common request wording, and the intended task family.
-- Prefer specific triggers over broad capability claims that would overlap with other skills.
-- Ensure frontmatter is sufficient for routing without reading the body.
+* **Frontmatter**
+  Routing description. It expresses when the skill should be selected.
 
-### Body
+* **Body**
+  Execution description. It expresses how to perform the task once selected.
 
-- Write the body as rules, constraints, and checklists.
-- Establish a minimal framework first, then fill it with content. Optimize for navigability and extensibility, not exhaustiveness.
-- Remove restatement and narrative. Merge overlapping sections; keep each rule single-sourced.
-- Use the smallest neutral example only to resolve ambiguity; do not introduce conventions through examples.
+## Editing Standards
 
-## Review Checklist
+Apply these standards throughout the edit. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-Before finalizing, confirm:
+* **layers.no_overlap — Separate routing and execution**
+  Keep routing description in frontmatter and execution description in the body. Do not duplicate the same guidance across layers.
 
-- **Routing**: Frontmatter alone is sufficient to decide when to use the skill.
-- **Structure**: The body has a minimal framework that supports navigation and extension.
-- **Redundancy**: Each rule appears once; sections are non-overlapping.
-- **Terminology**: Terms are defined once and used consistently.
-- **Conflicts**: Where tradeoffs exist, priority is explicit.
-- **Verifiability**: Requirements are clear enough to check.
+* **routing.alone — Frontmatter routes alone**
+  Frontmatter must be sufficient for correct selection without reading the body. Use user-intent phrasing and common request language for the intended task family.
+
+* **routing.boundary — Constrain routing**
+  Frontmatter must not claim general capabilities beyond the intended task family. Remove wording that would cause overreach or overlap with nearby skills.
+
+* **body.responsibilities — Organize the body by responsibility**
+  Structure the body into responsibility-based sections so each rule has a stable home and boundaries are clear.
+
+* **rules.single_source — Single-source rules and definitions**
+  Each rule and definition appears once. Merge overlaps, remove restatement, and avoid parallel formulations.
+
+* **conflicts.priority — Make tradeoffs explicit**
+  Where constraints trade off, state an explicit priority rule that resolves the conflict.
+
+* **examples.minimal — Examples only for disambiguation**
+  Use examples only to resolve ambiguity. Keep them minimal and neutral, and do not introduce conventions through examples.
+
+## Workflow
+
+1. Rewrite frontmatter so it routes correctly on its own. Apply `routing.alone`, `routing.boundary`.
+2. Restructure the body into responsibility-based sections and relocate content into its responsible home. Apply `body.responsibilities`.
+3. Remove layer overlap by moving routing language out of the body and moving execution guidance out of frontmatter. Apply `layers.no_overlap`.
+4. De-duplicate and consolidate rules and definitions until each appears once. Apply `rules.single_source`.
+5. Add priority rules where tradeoffs exist. Apply `conflicts.priority`.
+6. Add or trim examples strictly to resolve ambiguity. Apply `examples.minimal`.
+7. Run acceptance checks.
+
+## Acceptance Criteria
+
+A revision is complete only if all checks pass.
+
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**: `layers.no_overlap`, `routing.alone`, `routing.boundary`, `body.responsibilities`, `rules.single_source`, `conflicts.priority`, `examples.minimal`.
