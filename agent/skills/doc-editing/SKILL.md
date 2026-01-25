@@ -1,11 +1,16 @@
 ---
 name: doc-editing
-description: Use when the user asks to edit, polish, or rewrite documentation or long-form prose to improve clarity, terminology stability, and structural quality, aiming for publishable text without tone drift or unnecessary structural churn.
+description: Use when the user asks to edit, polish, or rewrite documentation or long-form prose to improve clarity and structural quality, aiming for publishable text without tone drift or unnecessary structural churn.
 ---
 
 # Doc Editing
 
-Edit documentation and long-form prose to be clear, precise, and easy to scan. Return the revised document only, not commentary about the edit.
+Edit documentation and long-form prose to be clear, precise, and easy to scan.
+
+## Response Contract
+
+* Return the revised document only.
+* Do not include commentary, rationale, or an edit log unless the user explicitly asks.
 
 ## Document Model
 
@@ -16,70 +21,58 @@ Definitions used to reason about documents and edits.
 A document can contain two kinds of description.
 
 * **Meta description**
-  Text that constrains how the document should be written or edited, such as audience, scope, tone, format expectations, and must-not-change constraints.
+  Constraints on how the document should be written or edited, such as audience, scope, tone, formatting expectations, and must-not-change constraints.
 
 * **Content description**
-  Text that belongs in the document as subject matter. Anything the user explicitly requests to be included in the document is content.
+  Subject matter that belongs in the document, including anything the user explicitly requests to be included as part of the document.
 
 ### Structure Forms
 
 A document can be organized using two structural forms.
 
-* **Dict structure**
-  Named modules that divide the document by responsibility. Each responsibility has a stable home.
+* **Module structure**
+  The document is divided into modules by responsibility. Each responsibility has a stable home.
 
-* **List structure**
-  A set of items grouped under one framing because they serve the same responsibility in the document.
+* **Enumeration structure**
+  Within one responsibility, items are listed as peers under a single framing.
 
 ## Editing Standards
 
-Apply these standards throughout the edit.
+Apply these standards throughout the edit. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-1. **Keep semantic layers distinct**
-   Keep meta description separate from content description unless it is explicitly part of the subject matter.
+* **layers.distinct — Keep layers distinct**
+  Keep meta description distinct from content description unless meta-level material is explicitly part of the subject matter. If the user explicitly requests that meta-level material be included in the document as content, treat it as content.
 
-2. **Model responsibilities as dict**
-   Use dict structure to assign each major responsibility a stable home.
+* **meaning.preserve — Preserve meaning**
+  Preserve the document’s meaning, claims, and intent while improving clarity and structure.
 
-3. **Name sections by responsibility**
-   Name headings by responsibility, and rename only to improve structure or comprehension.
+* **facts.no_new — No new facts**
+  Do not introduce new factual content, new claims, or new conclusions that are not present in the source text or explicitly provided by the user.
 
-4. **Use lists within one responsibility**
-   Use lists only to enumerate within one responsibility, with items similar in length and information density.
+* **structure.modules — Stable responsibility modules**
+  Use module structure to assign each major responsibility a stable home. Keep module boundaries clear and headings responsibility-oriented. Place meta-level material that is included as content into a deliberate, clearly bounded module.
 
-5. **Prefer definitions over enumerations**
-   Explain concepts with definitions and criteria, and use enumerations only to apply them.
+* **structure.enumerations — Peer enumerations only**
+  Use enumeration structure only to list peers within one responsibility. If a list mixes responsibilities, restructure it into module structure.
 
-6. **Remove redundancy by responsibility**
-   Remove cross-module repetition by giving each concept or rule one responsible home.
-
-7. **Balance proportions and optimize globally**
-   Edit with the whole document in view, keeping emphasis proportional to importance.
-
-8. **Preserve format conventions**
-   Improve readability within the existing formatting system and local conventions.
+* **meta.constraints — Enforce meta constraints**
+  Treat meta description constraints as hard constraints. When a potential improvement would violate a meta constraint, prefer preserving the constraint and choose the least-invasive alternative that still improves clarity.
 
 ## Workflow
 
 Use a repeatable editing pass.
 
-1. Identify the document’s subject, required content, and any meta description constraints.
-2. Establish or repair a dict structure for major responsibilities, and align headings to responsibilities.
-3. Normalize lists by responsibility, and move shared prerequisites to the responsible module.
-4. Edit prose for clarity and precision while preserving meaning, terminology, and tone.
-5. Replace explanatory enumerations with definitions.
-6. Remove overlap by relocating each concept or rule to its responsible home.
-7. Rebalance modules and lists to match responsibility and importance.
-8. Do a whole-document pass to align terminology, emphasis, and structure.
+1. Identify the document’s subject and extract meta description constraints. Apply `layers.distinct` and `meta.constraints`.
+2. Confirm what must be preserved and what additions, if any, the user explicitly requested. Apply `meaning.preserve` and `facts.no_new`.
+3. Establish or repair module structure for major responsibilities, align headings to responsibilities, and relocate material to its responsible module. Apply `structure.modules`.
+4. Normalize enumerations within each module; convert mixed-responsibility lists into module structure. Apply `structure.enumerations` and `structure.modules`.
+5. Edit prose for clarity and precision without changing intent or adding facts. Apply `meaning.preserve` and `facts.no_new`.
+6. Do a final pass for internal consistency and constraint compliance.
+7. Run acceptance checks.
 
 ## Acceptance Criteria
 
-Confirm the result meets these checks before returning.
+A revision is complete only if all checks pass.
 
-* The response contains the revised document only.
-* Semantic layers are kept distinct, and any meta-level material included as content is placed deliberately.
-* Major responsibilities are organized into named modules with clear boundaries.
-* Lists are used only to enumerate within one responsibility, and list items are similar in length and information density.
-* Concepts and rules are explained primarily through definitions with usable boundaries and criteria.
-* Redundancy across modules is removed by giving each concept or rule a responsible home.
-* Proportions are balanced across modules and lists, and format conventions are preserved.
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**: `layers.distinct`, `meaning.preserve`, `facts.no_new`, `structure.modules`, `structure.enumerations`, `meta.constraints`.
