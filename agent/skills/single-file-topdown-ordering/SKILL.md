@@ -1,54 +1,67 @@
 ---
 name: single-file-topdown-ordering
-description: 'Use when a single file is difficult to understand top-down because the public surface is buried or definitions appear before the behavior they support. Goal: restore a clear reading flow without changing semantics.'
-metadata:
-  short-description: Read top-down
+description: Use when asked to reorder blocks within a single file so the public surface reads top-down, while preserving behavior and language semantics.
 ---
 
-# Code Ordering
+# Single-File Top-Down Ordering
 
-Restore a top-down narrative inside a single file: start from the public surface, then unfold supporting details.
+Reorder blocks inside one file to make the public surface readable first, then unfold supporting details.
 
-## Core Rule
+## Response Contract
 
-Blocks that depend on other blocks appear earlier. Their dependencies appear later.
+Return the revised file contents with **only block reordering**.
 
-Only reorder when language semantics remain correct.
+## Ordering Model
 
-## Block Scope
+### Block Scope
 
-Blocks are structural units such as exported/public declarations, classes, functions/methods, and relevant type definitions.
-Imports and module-level conventions stay untouched.
+A **block** is a structural declaration unit, such as a public or exported declaration, class, function or method, and relevant type declarations.
 
-## Dependency Detection
+### Dependency-After
 
-For a block, collect dependencies in this order:
+Dependency-after is a readability ordering: when one block depends on another block in the same file, place the depended-on block later so supporting definitions appear after the behavior that uses them.
 
-1. Signature dependencies: types and interfaces referenced by the declaration.
-2. Body dependencies: symbols required by the implementation, ordered by semantic execution and control flow.
+## Standards
 
-## Ordering Process
+Apply these standards throughout the edit. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-Treat the file as breadth-first expansion from public entry blocks.
+* **safety.semantics_preserve — Preserve semantics**
+  Reorder only when language semantics remain correct.
 
-1. Collect exported/public entry blocks.
-2. Sort entry blocks by dependency-after: if an entry block depends on another entry block, place the dependent first. If no ordering is implied, keep original order.
-3. Repeat the following layer step until no new blocks are discovered:
+* **ordering.public_first — Public surface first**
+  Place public-facing blocks earlier in the file.
 
-   * Scan every block in the current layer and collect dependencies using Dependency Detection.
-   * Remove blocks already placed and anything out of scope.
-   * The remaining blocks become the next layer, preserving first-encounter order across the scan.
-   * Append the next layer after the current layer.
+* **ordering.dependency_after — Dependency-after**
+  For same-file blocks: if A depends on B, place A before B when a valid order exists.
 
-## Cycles
+* **cycles.group — Cycles as a group**
+  If blocks form a dependency cycle, treat the cycle as a single group for placement.
 
-Cycles are common. Keep best-effort ordering and treat a cycle as a single group during layering.
+* **conflicts.priority — Priority rule**
+  `safety.semantics_preserve` overrides all other standards. When multiple orders are valid, prefer `ordering.public_first`, then `ordering.dependency_after`.
 
-Warn only when the cycle prevents a stable, semantics-preserving top-down order. Otherwise, do not warn.
+## Workflow
 
-## Review Checklist
+1. Move public-facing blocks earlier. Apply `ordering.public_first`.
+2. Order public-facing blocks:
 
-* Public surface appears before supporting details.
-* A block appears before the blocks it depends on whenever a valid order exists.
-* Signature dependencies are introduced before body dependencies for the same dependent.
-* The result reads top-down without changing behavior.
+   * If one depends on another, place the dependent earlier. Apply `ordering.dependency_after`.
+   * Otherwise keep original relative order.
+3. Layer supporting blocks until no new blocks are found:
+
+   * Scan the current layer in order and collect same-file block dependencies in this order:
+
+     1. signature and type-position references
+     2. implementation and body references
+   * Exclude blocks already placed and anything out of scope.
+   * The newly discovered blocks form the next layer in first-encounter order across the scan.
+   * If the next layer contains cycles, treat each cycle as a group and keep original relative order within the group. Apply `cycles.group`.
+   * Append the next layer after the current layer and repeat.
+4. Validate safety and revert any move that would violate semantics. Apply `safety.semantics_preserve`.
+
+## Acceptance Criteria
+
+A revision is complete only if all checks pass.
+
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**: `safety.semantics_preserve`, `ordering.public_first`, `ordering.dependency_after`, `cycles.group`, `conflicts.priority`.
