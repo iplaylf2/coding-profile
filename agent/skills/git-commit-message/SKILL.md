@@ -1,55 +1,60 @@
 ---
 name: git-commit-message
-description: Generate semantic commit messages in English. Use when the user asks for a commit message or semantic commit guidance. Prefer the user’s stated change intent and context, and keep the message consistent with the actual change.
-metadata:
-  short-description: Semantic commit messages
+description: Use when the user asks for a git commit message or semantic commit guidance. Produce one semantic commit message that prioritizes stated intent and effect and stays consistent with the described change.
 ---
 
 # Git Commit Message
 
 Generate one semantic commit message that captures the change at the right level: intent and effect first, details second.
 
-## Output
+## Response Contract
 
-Provide:
+Output one semantic commit message.
 
-* One semantic commit message in English.
-* Alternatives only if the user asks for options.
+## Message Model
 
-## Format
+### Default format
 
-Default to `<type>(<scope>): <summary>`.
-If `scope` is unclear, omit it or ask one quick clarification.
+`<type>(<scope>): <summary>`
 
-Examples:
+Omit `(scope)` when it does not add signal.
 
-* `docs(cli): simplify installation section`
-* `fix(parser): handle empty input`
+### Components
+
+* **Type**: the change class.
+* **Scope**: the primary area changed, when it improves precision.
+* **Summary**: a short statement of intent and effect.
+
+## Standards
+
+Apply these standards throughout the suggestion. Each standard is single-sourced here and referenced elsewhere by its ID.
+
+* **format.default — Default format**
+  Use the default format and omit scope when it is unclear or low-signal.
+
+* **type.minimal — Minimal accurate type**
+  Choose the smallest type that fits the change: `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `perf`.
+
+* **scope.signal — Scope adds signal**
+  Use a narrow, stable scope that names the main area changed. Avoid repeating obvious repo or product context.
+
+* **summary.intent_effect — Intent and effect first**
+  Prefer the user’s stated intent and the observable effect of the change over mechanical descriptions of edits.
+
+* **signal.dense — Dense and non-redundant**
+  Keep `type`, `scope`, and `summary` complementary. Avoid overlap and embellishment.
 
 ## Workflow
 
-1. Build a change summary from context.
+1. Extract the user’s stated intent, the change’s effect, and the primary area.
+2. Select type. Apply `type.minimal`.
+3. Select scope only if it adds precision. Apply `scope.signal`, `format.default`.
+4. Write a concise summary focused on intent and effect. Apply `summary.intent_effect`, `signal.dense`.
+5. Emit the final message per the Response Contract.
 
-   * Prefer the user’s stated purpose, constraints, and affected area.
-   * Treat code edits as evidence of the change, not the full story.
-2. Validate against the actual change.
+## Acceptance Criteria
 
-   * Use staged changes when available; otherwise use the user’s described edits.
-   * If the stated intent conflicts with the change, ask a brief clarification.
-3. Choose `type` and `scope`.
+A revision is complete only if all checks pass.
 
-   * Pick the smallest accurate `type`.
-   * Choose a narrow, stable `scope` that names the primary area changed.
-4. Write the summary.
-
-   * Present tense, factual, information-dense.
-   * Prefer explicit intent and effect when available.
-   * If no intent is provided, describe the change at a semantic level without inventing reasons.
-
-## Heuristics
-
-* Optimize for information density. Avoid embellishment.
-* Keep `type`, `scope`, and `summary` complementary. Avoid overlap.
-* Choose a scope that adds signal. Do not repeat obvious repo or product names.
-* Prefer semantic outcomes over mechanical descriptions of edits.
-* Do not infer intent when it is not stated. Ask one brief question only when required for correct `type`, `scope`, or intent.
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**: `format.default`, `type.minimal`, `scope.signal`, `summary.intent_effect`, `signal.dense`.
