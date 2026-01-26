@@ -9,7 +9,8 @@ Design or refactor declaration contracts using a Name plus Shape view so meaning
 
 ## Response Contract
 
-Return the revised declaration contract.
+- Deliverable: return the revised declaration contract.
+- Chat output: no additional output beyond the deliverable.
 
 ## Skill Model
 
@@ -23,66 +24,66 @@ Grouping is how a declaration organizes elements into conceptual blocks. A shape
 
 A declaration’s shape is addressed in one of two modes.
 
-* **Named shape**
+- **Named shape**
   Elements are addressed by name.
 
-* **Positional shape**
+- **Positional shape**
   Elements are addressed by position.
 
 ## Standards
 
 Each standard is defined once here and referenced elsewhere by its ID.
 
-* **name.meaning — Name states meaning**
+- **name.meaning — Name states meaning**
   Choose names that communicate domain meaning rather than implementation detail.
 
-* **contract.core.explicit — Core meaning is explicit**
+- **contract.core.explicit — Core meaning is explicit**
   Keep meaning-defining elements explicit in the declaration shape. Do not hide them inside unmodeled containers or convenience wrappers.
 
 ### Grouping
 
-* **grouping.modeled_only — Grouping is a modeled concept**
+- **grouping.modeled_only — Grouping is a modeled concept**
   Introduce a group only when the group itself is a nameable concept with a stable semantic boundary.
 
-* **grouping.no_catch_all — No catch-all groups**
+- **grouping.no_catch_all — No catch-all groups**
   Do not use groups whose purpose is only to absorb leftovers or unrelated concerns.
 
 ### Positional shape
 
-* **positional.role.anchor — Anchor role**
+- **positional.role.anchor — Anchor role**
   Identifies the primary subject, such as a target, id, path, key.
 
-* **positional.role.core — Core role**
+- **positional.role.core — Core role**
   Required information that defines the primary semantic variation.
 
-* **positional.role.policy — Policy role**
+- **positional.role.policy — Policy role**
   Optional strategy and tuning that changes behavior without changing the subject.
 
-* **positional.role.observability — Observability role**
+- **positional.role.observability — Observability role**
   Diagnostics and tracing concerns.
 
-* **positional.order.gradient — Order follows stability gradient**
+- **positional.order.gradient — Order follows stability gradient**
   In positional shape, order elements by role: Anchor, Core, Policy, Observability.
 
-* **positional.prefix.stable — Stable prefix discipline**
+- **positional.prefix.stable — Stable prefix discipline**
   Treat Anchor and Core as a stable prefix. After publication, do not reorder the stable prefix. Only append new positional elements at the tail.
 
 ### Callable declarations
 
-* **callable.split — Split by role**
+- **callable.split — Split by role**
   When a callable uses both modes and the language supports named arguments, keep Anchor and Core in the positional segment and express Policy and Observability through named mechanisms.
 
-* **callable.options.modeled — Options are modeled**
+- **callable.options.modeled — Options are modeled**
   If a callable introduces an options or config argument, it must be a modeled concept under `grouping.modeled_only` and must not become a catch-all under `grouping.no_catch_all`.
 
 ### Parameterized declarations
 
-* **generics.semantic_order — Order by semantic priority**
+- **generics.semantic_order — Order by semantic priority**
   Order generic or type parameters by meaning: meaning-defining parameters first, constrained or defaulted parameters later, defaults at the end.
 
 ### Cross-cutting
 
-* **conflicts.priority — Priority rule**
+- **conflicts.priority — Priority rule**
   When standards trade off, apply this priority order:
 
   1. `contract.core.explicit`
@@ -99,19 +100,19 @@ Each standard is defined once here and referenced elsewhere by its ID.
 4. If any segment is positional, assign roles and order by the stability gradient. Apply `positional.role.*`, `positional.order.gradient`, `positional.prefix.stable`.
 5. Apply kind-specific standards.
 
-   * Data-shape: no additional family beyond the base standards already applied.
-   * Callable: apply `callable.*`.
-   * Parameterized: apply `generics.*`.
+   - Data-shape: no additional family beyond the base standards already applied.
+   - Callable: apply `callable.*`.
+   - Parameterized: apply `generics.*`.
 6. Run acceptance checks.
 
 ## Acceptance Criteria
 
 A revision is complete only if all checks pass.
 
-* **Response**: Output satisfies the Response Contract.
-* **Standards satisfied**:
+- **Response**: Output satisfies the Response Contract.
+- **Standards satisfied**:
 
-  * Data-shape: `name.meaning`, `contract.core.explicit`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
-  * Callable: `name.meaning`, `contract.core.explicit`, `callable.*`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
-  * Parameterized: `contract.core.explicit`, `generics.*`, plus `positional.*` when positional shape is used.
-  * Tradeoffs resolved by `conflicts.priority`.
+  - Data-shape: `name.meaning`, `contract.core.explicit`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
+  - Callable: `name.meaning`, `contract.core.explicit`, `callable.*`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
+  - Parameterized: `contract.core.explicit`, `generics.*`, plus `positional.*` when positional shape is used.
+  - Tradeoffs resolved by `conflicts.priority`.

@@ -7,7 +7,8 @@ description: Use when the user asks how to write code comments, where to place t
 
 ## Response Contract
 
-Return the revised result with final comment text and placement. If comment changes require code refactoring to remove narration or to align comments to their attachment site, include the minimal refactor in the result.
+- Deliverable: return the updated code with the final comment text and placement.
+- Chat output: no additional output beyond the deliverable.
 
 ## Skill Model
 
@@ -15,53 +16,53 @@ This model classifies what can be commented. It does not imply quality.
 
 ### Comment Attachment Sites
 
-* **Surface**
+- **Surface**
   Public entry points and externally visible surfaces.
 
-* **Data**
+- **Data**
   Data shapes and schemas.
 
-* **Rule**
+- **Rule**
   Rule-bearing logic and decision points.
 
-* **External**
+- **External**
   External coupling and external constraints.
 
 ## Standards
 
 Each standard is defined once here and referenced elsewhere by its ID.
 
-* **site.assign — Assign a site**
+- **site.assign — Assign a site**
   Every comment must be assignable to exactly one attachment site: Surface, Data, Rule, or External.
 
-* **site.focus.surface — Surface focus**
+- **site.focus.surface — Surface focus**
   Surface comments cover externally visible meaning and caller-facing constraints.
 
-* **site.focus.data — Data focus**
+- **site.focus.data — Data focus**
   Data comments cover representation meaning and structural constraints.
 
-* **site.focus.rule — Rule focus**
+- **site.focus.rule — Rule focus**
   Rule comments cover rule intent and rule boundaries.
 
-* **site.focus.external — External focus**
+- **site.focus.external — External focus**
   External comments cover external assumptions and external constraints.
 
-* **site.closest — Place at the closest site**
+- **site.closest — Place at the closest site**
   Place the comment at the closest location where a reader needs it for the assigned site and focus.
 
-* **comment.no_narration — No narration**
+- **comment.no_narration — No narration**
   Remove comments that restate adjacent code or narrate straightforward steps.
 
-* **comment.nonoverlap — No overlap**
+- **comment.nonoverlap — No overlap**
   Avoid multiple comments that cover the same point. If one note spans multiple sites, split it so each comment has one site and one focus.
 
-* **comment.precise — Precise and scoped**
+- **comment.precise — Precise and scoped**
   Use specific terms and explicit conditions. Keep scope bounded to what the assigned site and focus need.
 
-* **comment.stable — Prefer stable content**
+- **comment.stable — Prefer stable content**
   Prefer describing intent, constraints, and externally relevant meaning over volatile implementation detail.
 
-* **conflicts.priority — Priority rule**
+- **conflicts.priority — Priority rule**
   When standards conflict, apply this priority order:
 
   1. `comment.no_narration`
@@ -86,5 +87,5 @@ Each standard is defined once here and referenced elsewhere by its ID.
 
 A revision is complete only if all checks pass.
 
-* **Response**: Output satisfies the Response Contract.
-* **Standards satisfied**: `site.assign`, `site.focus.*`, `site.closest`, `comment.no_narration`, `comment.nonoverlap`, `comment.precise`, `comment.stable`, `conflicts.priority`.
+- **Response**: Output satisfies the Response Contract.
+- **Standards satisfied**: `site.assign`, `site.focus.*`, `site.closest`, `comment.no_narration`, `comment.nonoverlap`, `comment.precise`, `comment.stable`, `conflicts.priority`.

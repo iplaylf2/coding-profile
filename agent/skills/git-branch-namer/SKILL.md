@@ -9,10 +9,8 @@ Suggest a git branch name that encodes type, scope, and intent with high informa
 
 ## Response Contract
 
-Provide:
-
-* One recommended branch name.
-* One sentence explaining the chosen type, scope, and intent.
+- One recommended branch name.
+- One sentence explaining the chosen type, scope, and intent.
 
 ## Naming Model
 
@@ -22,27 +20,27 @@ Use `<type>/<scope>/<intent>` unless the user specifies another convention.
 
 ### Components
 
-* **Type**: the change class.
-* **Scope**: the primary area being changed.
-* **Intent**: a concise action phrase describing the work.
+- **Type**: the change class.
+- **Scope**: the primary area being changed.
+- **Intent**: a concise action phrase describing the work.
 
 ## Standards
 
 Apply these standards throughout the suggestion. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-* **pattern.follow — Follow the user’s convention**
+- **pattern.follow — Follow the user’s convention**
   If the user provides a naming convention, follow it. Otherwise use the default pattern.
 
-* **type.minimal — Minimal accurate type**
+- **type.minimal — Minimal accurate type**
   Choose the smallest type that fits the change: `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `perf`.
 
-* **scope.primary — Primary scope**
+- **scope.primary — Primary scope**
   Choose a scope that names the main module, product area, or capability being changed.
 
-* **intent.form — Intent form**
+- **intent.form — Intent form**
   Intent must be verb-first kebab-case.
 
-* **signal.dense — Dense and non-redundant**
+- **signal.dense — Dense and non-redundant**
   Avoid repeating scope terms in intent unless it adds clarity. Do not encode obvious repo context.
 
 ## Workflow
@@ -57,5 +55,5 @@ Apply these standards throughout the suggestion. Each standard is single-sourced
 
 A revision is complete only if all checks pass.
 
-* **Response**: Output satisfies the Response Contract.
-* **Standards satisfied**: `pattern.follow`, `type.minimal`, `scope.primary`, `intent.form`, `signal.dense`.
+- **Response**: Output satisfies the Response Contract.
+- **Standards satisfied**: `pattern.follow`, `type.minimal`, `scope.primary`, `intent.form`, `signal.dense`.

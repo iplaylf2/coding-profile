@@ -9,7 +9,8 @@ Restructure a project so responsibilities and dependency direction are readable 
 
 ## Response Contract
 
-Apply minimal, structure-relevant changes that make responsibilities clear and boundary crossing easy to see.
+- Deliverable: apply minimal, structure-relevant changes.
+- Chat output: no additional output beyond the deliverable.
 
 ## Structure Model
 
@@ -29,28 +30,28 @@ Children are distinct responsibilities within a fixed set.
 
 Apply these standards throughout the edit. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-* **levels.one_meaning — One meaning per level**
+- **levels.one_meaning — One meaning per level**
   Each directory level is either a Collection or Roles level. Do not mix meanings at the same level.
 
-* **shape.flat — Prefer shallow structure**
+- **shape.flat — Prefer shallow structure**
   Add a subdirectory only when it reflects a real grouping or a clear sub-responsibility.
 
-* **naming.context — Context-aware naming**
+- **naming.context — Context-aware naming**
   Names should express the responsibility of the item without repeating what the parent already implies. Avoid catch-all buckets unless their responsibility is explicit and stable.
 
-* **imports.crossing_visible — Make boundary crossing visible**
+- **imports.crossing_visible — Make boundary crossing visible**
   Import forms must make boundary crossing easy to detect. Avoid upward relative imports that traverse out of the current subtree (for example `..`) because they hide crossings. Use an import form that makes the crossed boundary explicit.
 
-* **deps.direction_readable — Dependency direction is readable**
+- **deps.direction_readable — Dependency direction is readable**
   The structure and imports should collectively imply a consistent dependency direction. Treat reverse or cyclic cross-boundary dependencies as boundary violations to address.
 
-* **shared.kit — Boundary-scoped shared code**
+- **shared.kit — Boundary-scoped shared code**
   Use `…kit` to hold shared support code within a specific boundary. `…kit` is not a new domain; it is support code for that boundary.
 
-* **shared.utils — Domain-free utilities**
+- **shared.utils — Domain-free utilities**
   Use `utils` only for domain-free primitives: no domain terminology and no dependencies on domain or layer code. If code carries domain meaning or belongs to a boundary, place it in that boundary (or its `…kit`) instead.
 
-* **conflicts.priority — Priority rule**
+- **conflicts.priority — Priority rule**
   Preserve `levels.one_meaning` and `imports.crossing_visible` first. Next preserve `deps.direction_readable`. When multiple solutions satisfy these, choose the one with the smallest structural disruption.
 
 ## Workflow
@@ -67,5 +68,5 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 
 A revision is complete only if all checks pass.
 
-* **Response**: Output satisfies the Response Contract.
-* **Standards satisfied**: `levels.one_meaning`, `shape.flat`, `naming.context`, `imports.crossing_visible`, `deps.direction_readable`, `shared.kit`, `shared.utils`, `conflicts.priority`.
+- **Response**: Output satisfies the Response Contract.
+- **Standards satisfied**: `levels.one_meaning`, `shape.flat`, `naming.context`, `imports.crossing_visible`, `deps.direction_readable`, `shared.kit`, `shared.utils`, `conflicts.priority`.

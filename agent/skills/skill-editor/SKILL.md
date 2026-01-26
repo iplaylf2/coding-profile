@@ -9,7 +9,8 @@ Draft, revise, or review an agent skill specification to improve routing precisi
 
 ## Response Contract
 
-Return the revised skill specification, including both frontmatter and body.
+- Deliverable: return the revised skill specification.
+- Chat output: no additional output beyond the deliverable.
 
 ## Skill Model
 
@@ -19,35 +20,35 @@ Definitions used to reason about skill specifications and edits.
 
 A skill specification has two semantic layers.
 
-* **Frontmatter**
+- **Frontmatter**
   Routing description. It expresses when the skill should be selected.
 
-* **Body**
+- **Body**
   Execution description. It expresses how to perform the task once selected.
 
 ## Editing Standards
 
 Apply these standards throughout the edit. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-* **layers.no_overlap — Separate routing and execution**
+- **layers.no_overlap — Separate routing and execution**
   Keep routing description in frontmatter and execution description in the body. Do not duplicate the same guidance across layers.
 
-* **routing.alone — Frontmatter routes alone**
+- **routing.alone — Frontmatter routes alone**
   Frontmatter must be sufficient for correct selection without reading the body. Use user-intent phrasing and common request language for the intended task family.
 
-* **routing.boundary — Constrain routing**
+- **routing.boundary — Constrain routing**
   Frontmatter must not claim general capabilities beyond the intended task family. Remove wording that would cause overreach or overlap with nearby skills.
 
-* **body.responsibilities — Organize the body by responsibility**
+- **body.responsibilities — Organize the body by responsibility**
   Structure the body into responsibility-based sections so each rule has a stable home and boundaries are clear.
 
-* **rules.single_source — Single-source rules and definitions**
+- **rules.single_source — Single-source rules and definitions**
   Each rule and definition appears once. Merge overlaps, remove restatement, and avoid parallel formulations.
 
-* **conflicts.priority — Make tradeoffs explicit**
+- **conflicts.priority — Make tradeoffs explicit**
   Where constraints trade off, state an explicit priority rule that resolves the conflict.
 
-* **examples.minimal — Examples only for disambiguation**
+- **examples.minimal — Examples only for disambiguation**
   Use examples only to resolve ambiguity. Keep them minimal and neutral, and do not introduce conventions through examples.
 
 ## Workflow
@@ -64,5 +65,5 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 
 A revision is complete only if all checks pass.
 
-* **Response**: Output satisfies the Response Contract.
-* **Standards satisfied**: `layers.no_overlap`, `routing.alone`, `routing.boundary`, `body.responsibilities`, `rules.single_source`, `conflicts.priority`, `examples.minimal`.
+- **Response**: Output satisfies the Response Contract.
+- **Standards satisfied**: `layers.no_overlap`, `routing.alone`, `routing.boundary`, `body.responsibilities`, `rules.single_source`, `conflicts.priority`, `examples.minimal`.
