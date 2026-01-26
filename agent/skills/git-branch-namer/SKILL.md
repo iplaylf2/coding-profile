@@ -1,65 +1,61 @@
 ---
 name: git-branch-namer
-description: Use only when the user explicitly asks for a git branch name. Output one strong recommendation in a consistent pattern, with minimal, high-signal rationale.
-metadata:
-  short-description: Name git branches
+description: Use only when the user explicitly asks for a git branch name or branch naming suggestion. Output one strong recommendation in a consistent pattern, with minimal rationale.
 ---
 
 # Git Branch Namer
 
-Suggest a git branch name that encodes type, scope, and intent with minimal redundancy.
+Suggest a git branch name that encodes type, scope, and intent with high information density and minimal redundancy.
 
-## Output
+## Response Contract
 
 Provide:
 
 * One recommended branch name.
 * One sentence explaining the chosen type, scope, and intent.
-* 2–4 alternatives only if the user asks for options.
 
-## Default Pattern
+## Naming Model
+
+### Default pattern
 
 Use `<type>/<scope>/<intent>` unless the user specifies another convention.
 
-## Type
+### Components
 
-Choose the smallest accurate change class:
+* **Type**: the change class.
+* **Scope**: the primary area being changed.
+* **Intent**: a concise action phrase describing the work.
 
-`feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `perf`.
+## Standards
 
-## Scope
+Apply these standards throughout the suggestion. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-Name the primary area being changed.
+* **pattern.follow — Follow the user’s convention**
+  If the user provides a naming convention, follow it. Otherwise use the default pattern.
 
-Guidelines:
+* **type.minimal — Minimal accurate type**
+  Choose the smallest type that fits the change: `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `perf`.
 
-* Prefer stable product, module, or capability scopes when the change is broadly reusable.
-* Use interface or integration scopes only when the work is confined to that boundary.
-* If multiple areas are touched, pick the dominant one or the user’s stated goal.
+* **scope.primary — Primary scope**
+  Choose a scope that names the main module, product area, or capability being changed.
 
-Examples:
+* **intent.form — Intent form**
+  Intent must be verb-first kebab-case.
 
-* Product, module, capability: `scheduler`, `auth`, `billing`, `search`
-* Interface or integration when accurate: `cli`, `rest`, `sdk`, `webhook`
+* **signal.dense — Dense and non-redundant**
+  Avoid repeating scope terms in intent unless it adds clarity. Do not encode obvious repo context.
 
-## Intent
+## Workflow
 
-Use a concise verb-first kebab-case phrase. Avoid repeating scope words unless it adds clarity.
+1. Determine the pattern from the user’s convention or the default. Apply `pattern.follow`.
+2. Select type. Apply `type.minimal`.
+3. Select scope. Apply `scope.primary`.
+4. Write intent. Apply `intent.form`, `signal.dense`.
+5. Output per Response Contract.
 
-Good:
+## Acceptance Criteria
 
-* `feat/auth/rotate-keys`
-* `fix/search/dedupe-results`
+A revision is complete only if all checks pass.
 
-Avoid:
-
-* `feat/auth/auth-rotate-keys`
-* `fix/search/search-dedupe-results`
-
-## Heuristics
-
-* Optimize for information density. Do not repeat obvious repo context.
-* Make type, scope, and intent complementary rather than redundant.
-* Do not overfit scope to a single interface if the capability is broader.
-* If the user specifies a preferred pattern, follow it and briefly note tradeoffs when relevant.
-* Ask one short clarification only when type or scope cannot be inferred safely.
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**: `pattern.follow`, `type.minimal`, `scope.primary`, `intent.form`, `signal.dense`.
