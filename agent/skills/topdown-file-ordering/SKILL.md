@@ -1,5 +1,5 @@
 ---
-name: single-file-topdown-ordering
+name: topdown-file-ordering
 description: Use when asked to reorder blocks within a single file so the public surface reads top-down, while preserving behavior and language semantics.
 ---
 
