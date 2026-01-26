@@ -1,101 +1,71 @@
 ---
 name: structure-boundaries
-description: 'Use when navigation is costly or module boundaries feel blurry due to messy directories, inconsistent naming, or cross-boundary imports. Goal: make architecture and dependency direction readable from the tree and imports, with minimal churn.'
-metadata:
-  short-description: Clear boundaries
+description: Use when asked to restructure a project because navigation is costly, responsibilities are hard to infer from the tree, or boundary crossing is obscured by inconsistent naming and imports.
 ---
 
-# Structure & Boundaries
+# Structure Boundaries
 
-A good project layout makes intent obvious: where code belongs, what it does, and which parts depend on which.
+Restructure a project so responsibilities and dependency direction are readable from the directory tree and boundary-crossing imports, with minimal structural disruption.
 
-## Core Principle
+## Response Contract
 
-**Structure should reflect responsibility and boundaries.**
-Directories and imports should let a reader infer the architecture without opening many files.
+Apply minimal, structure-relevant changes that make responsibilities clear and boundary crossing easy to see.
 
-## Directory Organization
+## Structure Model
 
-### List vs Dict
+### Directory meaning
 
-Use one of these meanings per directory level.
+Each directory level should communicate exactly one meaning.
 
-**List pattern**: children are interchangeable items of the same kind.
-Use plural or category-like parent names.
+#### Collection
 
-```
-operations/
-  articles/
-  comments/
-  users/
-```
+Children are interchangeable items of the same kind.
 
-Test: can you add another sibling without changing what the parent means?
+#### Roles
 
-**Dict pattern**: children are distinct roles (fixed set of responsibilities).
+Children are distinct responsibilities within a fixed set.
 
-```
-project/
-  operations/   # business logic
-  services/     # integrations / IO
-  utils/        # domain-free primitives
-```
+## Standards
 
-Test: does each child have a unique, non-interchangeable purpose?
+Apply these standards throughout the edit. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-Avoid mixing both meanings at the same level.
+* **levels.one_meaning — One meaning per level**
+  Each directory level is either a Collection or Roles level. Do not mix meanings at the same level.
 
-### Flat when possible
+* **shape.flat — Prefer shallow structure**
+  Add a subdirectory only when it reflects a real grouping or a clear sub-responsibility.
 
-Prefer shallow trees. Add a subdirectory only when a real grouping exists (many files, or clear sub-roles).
+* **naming.context — Context-aware naming**
+  Names should express the responsibility of the item without repeating what the parent already implies. Avoid catch-all buckets unless their responsibility is explicit and stable.
 
-## Naming
+* **imports.crossing_visible — Make boundary crossing visible**
+  Import forms must make boundary crossing easy to detect. Avoid upward relative imports that traverse out of the current subtree (for example `..`) because they hide crossings. Use an import form that makes the crossed boundary explicit.
 
-### Names assume directory context
+* **deps.direction_readable — Dependency direction is readable**
+  The structure and imports should collectively imply a consistent dependency direction. Treat reverse or cyclic cross-boundary dependencies as boundary violations to address.
 
-File names should describe *what it is*, not repeat the directory’s meaning.
+* **shared.kit — Boundary-scoped shared code**
+  Use `…kit` to hold shared support code within a specific boundary. `…kit` is not a new domain; it is support code for that boundary.
 
-```
-operations/articles/
-  publish.py
-  validate.py
-```
+* **shared.utils — Domain-free utilities**
+  Use `utils` only for domain-free primitives: no domain terminology and no dependencies on domain or layer code. If code carries domain meaning or belongs to a boundary, place it in that boundary (or its `…kit`) instead.
 
-Avoid vague buckets (`misc`, `helpers`, `manager`) unless the responsibility is truly precise.
+* **conflicts.priority — Priority rule**
+  Preserve `levels.one_meaning` and `imports.crossing_visible` first. Next preserve `deps.direction_readable`. When multiple solutions satisfy these, choose the one with the smallest structural disruption.
 
-### Shared code conventions
+## Workflow
 
-- `…kit` suffix: shared code for a specific layer or domain boundary.
-  - Use when code is reused across siblings within that boundary.
-  - Meaning: “tooling/support code for X”, not a new domain.
-- `utils/`: domain-free utilities only.
-  - No business terms, no project-layer dependencies.
-  - If something belongs to a domain or layer, prefer placing it in that domain/layer (or its `…kit`) instead of `utils`.
+1. Inspect the tree and imports to identify blurred responsibilities and hidden boundary crossings.
+2. Classify each directory level as Collection or Roles; restructure or rename to remove ambiguity. Apply `levels.one_meaning`.
+3. Flatten over-nesting and introduce subdirectories only when they represent a real grouping or stable sub-responsibility. Apply `shape.flat`.
+4. Fix naming so responsibilities are explicit given directory context, and buckets are eliminated or made precise. Apply `naming.context`.
+5. Adjust import conventions so boundary crossings are obvious, then address violations of dependency direction. Apply `imports.crossing_visible`, `deps.direction_readable`.
+6. Place shared code into the correct boundary (`…kit`) or domain-free `utils` as appropriate. Apply `shared.kit`, `shared.utils`.
+7. Make the smallest set of moves/renames/import updates that satisfies the standards. Apply `conflicts.priority`.
 
-## Imports as Boundary Signals
+## Acceptance Criteria
 
-Imports should make relationships obvious:
+A revision is complete only if all checks pass.
 
-- **Within a boundary** (same directory/subtree): use the local convention (often relative or shortest local path).
-- **Across boundaries** (parent/sibling/other layers/domains): use explicit absolute paths to make crossing visible.
-- Avoid “upward” relative imports that hide boundary crossing.
-
-A healthy codebase tends to have a clear dependency direction (e.g., higher-level logic depends on lower-level utilities/integrations, not the reverse). Flag boundary violations.
-
-## Review Process
-
-1. Identify the project’s main boundary axes (layer, domain). Keep one primary axis per directory level.
-2. Classify each directory level as List or Dict; rename/restructure to remove ambiguity.
-3. Flatten over-nesting; create subdirectories only for real grouping.
-4. Fix naming to be context-aware and non-redundant.
-5. Align imports so boundary crossings are visible and dependency direction is consistent.
-6. Propose a minimal-change plan: smallest set of moves/renames that improves readability.
-
-## Review Checklist
-
-- Each directory level has a single meaning: List or Dict.
-- The tree makes responsibilities and boundaries obvious.
-- Names are concise given directory context.
-- The hierarchy is flat unless grouping is justified.
-- Imports make boundary crossings and dependency direction easy to see.
-- `utils/` stays domain-free; shared code lives in the right `…kit` boundary when applicable.
+* **Response**: Output satisfies the Response Contract.
+* **Standards satisfied**: `levels.one_meaning`, `shape.flat`, `naming.context`, `imports.crossing_visible`, `deps.direction_readable`, `shared.kit`, `shared.utils`, `conflicts.priority`.
