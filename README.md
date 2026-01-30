@@ -12,20 +12,22 @@ Sync the CLI tooling and dependencies:
 uv sync
 ````
 
-Deploy this profile to all configured workspaces:
+Deploy the agent profile to all configured workspaces:
 
 ```bash
+cd profile/agent
 uv run contentctl deploy --all-workspaces
 ```
 
 Adopt updates from a workspace back into this repo (example: `codex`):
 
 ```bash
+cd profile/agent
 uv run contentctl adopt codex
 ```
 
 ## Configure
 
-`content-hub.yaml` defines how `contentctl` applies this profile (workspaces, rules, mappings). If you want to reuse the workflow, start by editing that file.
+`profile/agent/content-hub.yaml` defines how `contentctl` applies this profile (workspaces, rules, mappings). If you want to reuse the workflow, start by editing that file.
 
 Manual copying is also fine if you don’t want the tooling.
