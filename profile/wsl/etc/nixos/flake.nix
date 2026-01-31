@@ -1,9 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.11";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -17,44 +17,31 @@
     }:
     let
       params = import ./params.nix;
-      inherit (params) system hostName userName;
 
-      stateVersion = "25.11";
-
-      hmBaseModules = [
-        { home.stateVersion = stateVersion; }
-        ./home/base.nix
-      ];
-      hmExtraModules = [ ./home/extra.nix ];
-
-      osModules = [
-        nixos-wsl.nixosModules.default
-        { system.stateVersion = stateVersion; }
-        ./configuration.nix
-      ];
-
-      extraSpecialArgs = { inherit (params) userName; };
-
-      hmAsNixosModule = [
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${userName}.imports = hmBaseModules;
-          home-manager.extraSpecialArgs = extraSpecialArgs;
-        }
-      ];
+      inherit (params)
+        system
+        hostname
+        username
+        stateVersion
+        ;
     in
     {
-      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit (params) userName; };
-        modules = osModules ++ hmAsNixosModule;
-      };
+        specialArgs = { inherit (params) username; };
+        modules = [
+          nixos-wsl.nixosModules.default
+          { system.stateVersion = stateVersion; }
+          ./configuration.nix
 
-      homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration {
-        inherit extraSpecialArgs;
-        modules = hmBaseModules ++ hmExtraModules;
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.${username} = ./home.nix;
+          }
+        ];
       };
     };
 }

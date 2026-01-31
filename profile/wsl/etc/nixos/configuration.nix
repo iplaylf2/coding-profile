@@ -1,6 +1,6 @@
 {
   pkgs,
-  userName,
+  username,
   ...
 }:
 
@@ -15,6 +15,6 @@
   ];
 
   wsl.enable = true;
-  wsl.defaultUser = userName;
+  wsl.defaultUser = username;
   wsl.docker-desktop.enable = true;
 }

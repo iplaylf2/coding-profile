@@ -1,21 +1,29 @@
 {
   config,
   pkgs,
-  userName,
   ...
 }:
 
 let
-  wsl2-ssh-agent = pkgs.callPackage ./wsl2-ssh-agent.nix { };
+  params = import ./params.nix;
+
+  inherit (params)
+    username
+    stateVersion
+    ;
+
+  wsl2-ssh-agent = pkgs.callPackage ./pkgs/wsl2-ssh-agent.nix { };
 
   sockDir = "${config.home.homeDirectory}/run/host-services";
   sockPath = "${sockDir}/ssh-auth.sock";
 in
 {
-  programs.home-manager.enable = true;
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
-  home.username = userName;
-  home.homeDirectory = "/home/${userName}";
+  home.stateVersion = stateVersion;
+
+  programs.home-manager.enable = true;
 
   home.packages = [
     wsl2-ssh-agent
