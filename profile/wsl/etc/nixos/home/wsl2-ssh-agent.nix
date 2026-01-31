@@ -10,11 +10,11 @@ stdenvNoCC.mkDerivation rec {
       artifacts = {
         "x86_64-linux" = {
           url = "https://github.com/mame/wsl2-ssh-agent/releases/download/${version}/wsl2-ssh-agent";
-          sha256 = "sha256-281c64f6079598de1a455292d533f3ae21837980a3d3012074bc14ad695325d8";
+          sha256 = "sha256-KBxk9geVmN4aRVKS1TPzriGDeYCj0wEgdLwUrWlTJdg=";
         };
         "aarch64-linux" = {
           url = "https://github.com/mame/wsl2-ssh-agent/releases/download/${version}/wsl2-ssh-agent-arm64";
-          sha256 = "sha256-e9cb0347a72ca68a511e48779080b80a22af1bf670e5a52c9f35f95951ce5221";
+          sha256 = "sha256-6csDR6cspopRHkh3kIC4CiKvG/Zw5aUsnzX5WVHOUiE=";
         };
       };
 
