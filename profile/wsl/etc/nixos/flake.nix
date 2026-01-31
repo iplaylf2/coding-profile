@@ -10,7 +10,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nixos-wsl,
       home-manager,
@@ -39,7 +38,7 @@
 
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit (params) userName; };
+        specialArgs = { inherit (params) userName proxy; };
         modules = osModules ++ hmAsNixosModule;
       };
     in
