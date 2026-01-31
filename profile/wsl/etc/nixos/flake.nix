@@ -19,11 +19,17 @@
       params = import ./params.nix;
       inherit (params) system hostName userName;
 
-      hmBaseModules = [ ./home/base.nix ];
+      stateVersion = "25.11";
+
+      hmBaseModules = [
+        { home.stateVersion = stateVersion; }
+        ./home/base.nix
+      ];
       hmExtraModules = [ ./home/extra.nix ];
 
       osModules = [
         nixos-wsl.nixosModules.default
+        { system.stateVersion = stateVersion; }
         ./configuration.nix
       ];
 
