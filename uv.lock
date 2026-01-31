@@ -13,15 +13,15 @@ wheels = [
 
 [[package]]
 name = "content-hub"
-version = "0.1.0"
+version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jsonschema" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/78/19/53988d8d4c7f953aa0695cd20ace339ea5b725793c9ceb5b6cb095df4334/content_hub-0.1.0.tar.gz", hash = "sha256:c7572589973ed885051f4c8b28d051aee35de4ee541cc2955090e9022d20f503", size = 25379, upload-time = "2026-01-18T11:55:10.991Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/65/26/834455072d96fc88c9fbeaa2eb3f5b418740e9733b517c0940d2e304fb4d/content_hub-0.2.0.tar.gz", hash = "sha256:ceaa79d130bf2e10665ad50e0433075fe04579e29bc79159ee749a28dad1085b", size = 25919, upload-time = "2026-01-31T13:59:21.241Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/2f/ca788a91aa2a9028b559871a3dc4134f44f1cfaa9079ffd33121eb986971/content_hub-0.1.0-py3-none-any.whl", hash = "sha256:5ef746effb59cb550be317ef7b5a4999beeb657c7aedc627c3bb45be2ba13140", size = 20025, upload-time = "2026-01-18T11:55:09.499Z" },
+    { url = "https://files.pythonhosted.org/packages/27/32/9e44d3ab42a0f2bcc4478475091585107c40df29a827c8849da90947650b/content_hub-0.2.0-py3-none-any.whl", hash = "sha256:ba15ae27e0ded1d9f19d463d2029f00f21df03e8d81fa590fc617a8663b380f0", size = 20320, upload-time = "2026-01-31T13:59:20.122Z" },
 ]
 
 [[package]]
@@ -136,4 +136,4 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "content-hub", specifier = ">=0.1" }]
+requires-dist = [{ name = "content-hub", specifier = ">=0.2" }]

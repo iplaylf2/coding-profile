@@ -1,6 +1,5 @@
 {
   userName,
-  proxy,
   ...
 }:
 
@@ -14,20 +13,3 @@
   wsl.defaultUser = userName;
   wsl.docker-desktop.enable = true;
 }
-// (
-  if proxy == null then
-    { }
-  else
-    let
-      address = proxy.address;
-      httpUrl = "http://${address}";
-      socksUrl = "socks5://${address}";
-    in
-    {
-      systemd.services.nix-daemon.environment = {
-        http_proxy = httpUrl;
-        https_proxy = httpUrl;
-        all_proxy = socksUrl;
-      };
-    }
-)

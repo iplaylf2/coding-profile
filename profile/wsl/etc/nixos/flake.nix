@@ -48,7 +48,7 @@
     {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit (params) userName proxy; };
+        specialArgs = { inherit (params) userName; };
         modules = osModules ++ hmAsNixosModule;
       };
 
