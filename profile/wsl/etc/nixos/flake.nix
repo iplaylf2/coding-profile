@@ -33,27 +33,27 @@
         ./configuration.nix
       ];
 
+      extraSpecialArgs = { inherit (params) userName; };
+
       hmAsNixosModule = [
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${userName}.imports = hmBaseModules;
+          home-manager.extraSpecialArgs = extraSpecialArgs;
         }
       ];
-
-      nixos = nixpkgs.lib.nixosSystem {
+    in
+    {
+      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit (params) userName proxy; };
         modules = osModules ++ hmAsNixosModule;
       };
-    in
-    {
-      nixosConfigurations.${hostName} = nixos;
 
       homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixos.pkgs;
-        extraSpecialArgs = { inherit (params) userName; };
+        inherit extraSpecialArgs;
         modules = hmBaseModules ++ hmExtraModules;
       };
     };
