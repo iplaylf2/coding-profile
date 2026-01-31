@@ -1,17 +1,12 @@
 {
   config,
   pkgs,
+  username,
+  stateVersion,
   ...
 }:
 
 let
-  params = import ./params.nix;
-
-  inherit (params)
-    username
-    stateVersion
-    ;
-
   wsl2-ssh-agent = pkgs.callPackage ./pkgs/wsl2-ssh-agent.nix { };
 
   sockDir = "${config.home.homeDirectory}/run/host-services";

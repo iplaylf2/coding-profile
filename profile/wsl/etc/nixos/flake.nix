@@ -16,22 +16,22 @@
       ...
     }:
     let
+      stateVersion = "25.11";
+
       params = import ./params.nix;
 
       inherit (params)
         system
         hostname
         username
-        stateVersion
         ;
     in
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit (params) username; };
+        specialArgs = { inherit username stateVersion; };
         modules = [
           nixos-wsl.nixosModules.default
-          { system.stateVersion = stateVersion; }
           ./configuration.nix
 
           home-manager.nixosModules.home-manager
@@ -40,6 +40,10 @@
             home-manager.useUserPackages = true;
 
             home-manager.users.${username} = ./home.nix;
+
+            home-manager.extraSpecialArgs = {
+              inherit username stateVersion;
+            };
           }
         ];
       };
