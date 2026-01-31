@@ -26,7 +26,7 @@ in
     export SSH_AUTH_SOCK="${sockPath}"
   '';
 
-  systemd.user.startServices = "sd-switch";
+  systemd.user.startServices = "suggest";
 
   systemd.user.services.wsl-ssh-agent = {
     Unit = {
