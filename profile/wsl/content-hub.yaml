@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/iplaylf2/content-hub/master/packages/content-hub/src/contentctl/schema/content-hub.schema.json
+
+origin: etc
+defaults:
+  include:
+    - nixos/**
+workspaces:
+  root: /etc
