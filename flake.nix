@@ -18,11 +18,13 @@
         let
           pkgs = import nixpkgs { inherit system; };
         in
-        pkgs.mkShell {
-          buildInputs = with pkgs; [
-            python314
-            uv
-          ];
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              python314
+              uv
+            ];
+          };
         }
       );
     };
