@@ -7,7 +7,5 @@ origin:
 defaults:
   include:
     - etc/nixos/**
-  exclude:
-    - etc/nixos/flake.lock
 workspaces:
   root: /
