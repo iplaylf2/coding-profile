@@ -1,8 +1,6 @@
 # Coding Profile
 
-A personal, repeatable **coding setup kit**: the defaults, conventions, and small assets I like to carry across machines and workspaces.
-
-This repo is intentionally opinionated and **not meant to be universal**. Treat it as my “coding profile” source of truth—useful as-is for me, and adaptable for others if you’re willing to reshape it.
+Personal coding setup: defaults, conventions, and configuration assets that sync across machines and workspaces.
 
 ## Setup
 
@@ -21,14 +19,14 @@ cd profile/agent
 uv run contentctl deploy --all-workspaces
 ```
 
-Adopt updates back into this repo (example: `codex`):
+Adopt changes back into this repo (example: `codex`):
 
 ```bash
 cd profile/agent
 uv run contentctl adopt codex
 ```
 
-`profile/agent/content-hub.yaml` defines how `contentctl` applies this profile (workspaces, rules, mappings). Reuse by editing this file.
+`profile/agent/content-hub.yaml` defines how `contentctl` applies this profile .
 
 ## Notes
 

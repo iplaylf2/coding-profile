@@ -4,6 +4,7 @@ origin:
   path: .
   exclude:
     - content-hub.yaml
+    - README.md
 defaults:
   include:
     - etc/nixos/**
