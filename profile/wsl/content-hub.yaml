@@ -1,11 +1,12 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/iplaylf2/content-hub/master/packages/content-hub/src/contentctl/schema/content-hub.schema.json
 
-origin: ./agent
+origin:
+  path: .
+  exclude:
+    - content-hub.yaml
+    - README.md
 defaults:
   include:
-    - skills/**
-  exclude:
-    - "**/.*/**"
+    - etc/nixos/**
 workspaces:
-  codex: ${HOME}/.codex
-  claude: ${HOME}/.claude
+  root: /
