@@ -17,7 +17,7 @@ sudo "$(command -v uv)" run contentctl deploy root -p etc
 Apply NixOS changes:
 
 ```bash
-sudo nixos-rebuild switch --flake /etc/nixos
+sudo nixos-rebuild switch --flake /etc/nixos#nixos-wsl
 ```
 
 Adopt changes from system:
