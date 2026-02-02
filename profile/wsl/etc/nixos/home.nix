@@ -22,6 +22,8 @@ in
     wsl2-ssh-agent
   ];
 
+  programs.bash.enable = true;
+
   home.sessionVariables = {
     SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/${sockPath}";
   };
