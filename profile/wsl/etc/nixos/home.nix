@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   stateVersion,
@@ -7,8 +6,9 @@
 }:
 
 let
-  sockDir = "${config.xdg.runtimeDir}/run/host-services";
-  sockPath = "${sockDir}/ssh-auth.sock";
+  sockDir = "host-services";
+  sockName = "ssh-auth.sock";
+  sockPath = "${sockDir}/${sockName}";
 in
 {
   home.username = username;
@@ -23,7 +23,7 @@ in
   ];
 
   home.sessionVariables = {
-    SSH_AUTH_SOCK = sockPath;
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/${sockPath}";
   };
 
   systemd.user.startServices = "suggest";
@@ -36,9 +36,10 @@ in
     Service = {
       Type = "simple";
 
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p -m 700 ${sockDir}";
+      RuntimeDirectory = sockDir;
+      RuntimeDirectoryMode = "0700";
 
-      ExecStart = "${pkgs.wsl2-ssh-agent}/bin/wsl2-ssh-agent --foreground --socket=${sockPath}";
+      ExecStart = "${pkgs.wsl2-ssh-agent}/bin/wsl2-ssh-agent --foreground --socket=%t/${sockPath}";
 
       Restart = "on-failure";
       RestartSec = 2;
