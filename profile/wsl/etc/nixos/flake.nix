@@ -16,11 +16,10 @@
       ...
     }:
     let
-      stateVersion = "25.11";
-
       params = import ./params.nix;
 
       inherit (params)
+        stateVersion
         system
         hostname
         username

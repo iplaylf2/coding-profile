@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   stateVersion,
@@ -7,10 +6,9 @@
 }:
 
 let
-  wsl2-ssh-agent = pkgs.callPackage ./pkgs/wsl2-ssh-agent.nix { };
-
-  sockDir = "${config.home.homeDirectory}/run/host-services";
-  sockPath = "${sockDir}/ssh-auth.sock";
+  sockDir = "host-services";
+  sockName = "ssh-auth.sock";
+  sockPath = "${sockDir}/${sockName}";
 in
 {
   home.username = username;
@@ -20,14 +18,15 @@ in
 
   programs.home-manager.enable = true;
 
-  home.packages = [
+  home.packages = with pkgs; [
     wsl2-ssh-agent
   ];
 
   programs.bash.enable = true;
-  programs.bash.initExtra = ''
-    export SSH_AUTH_SOCK="${sockPath}"
-  '';
+
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/${sockPath}";
+  };
 
   systemd.user.startServices = "suggest";
 
@@ -39,9 +38,10 @@ in
     Service = {
       Type = "simple";
 
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${sockDir}";
+      RuntimeDirectory = sockDir;
+      RuntimeDirectoryMode = "0700";
 
-      ExecStart = "${wsl2-ssh-agent}/bin/wsl2-ssh-agent --foreground --socket=${sockPath}";
+      ExecStart = "${pkgs.wsl2-ssh-agent}/bin/wsl2-ssh-agent --foreground --socket=%t/${sockPath}";
 
       Restart = "on-failure";
       RestartSec = 2;
