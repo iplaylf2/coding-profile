@@ -1,6 +1,6 @@
 ---
 name: git-commit-message
-description: Use when the user asks for a git commit message or semantic commit guidance. Produce one semantic commit message that prioritizes stated intent and effect and stays consistent with the described change.
+description: "Use only when the user explicitly asks for a git commit message or semantic commit guidance. Goal: commit messages are semantic and communicate the change intent and effect clearly."
 ---
 
 # Git Commit Message

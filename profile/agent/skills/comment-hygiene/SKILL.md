@@ -1,6 +1,6 @@
 ---
 name: comment-hygiene
-description: Use when the user asks how to write code comments, where to place them, or wants to review, reduce, rewrite, or relocate existing code comments.
+description: "Use when comment quality, placement, or density affects code readability and maintainability. Goal: comments improve readability by staying necessary, precise, and correctly attached to nearby code."
 ---
 
 # Comment Hygiene

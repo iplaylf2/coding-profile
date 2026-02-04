@@ -1,6 +1,6 @@
 ---
 name: doc-editing
-description: Use when the user asks to edit, polish, or rewrite documentation or long-form prose to improve clarity and structural quality, aiming for publishable text without tone drift or unnecessary structural churn.
+description: "Use when documentation or long-form prose needs structural or clarity-focused revision without intent drift. Goal: documentation is clear, structurally coherent, and faithful to the original intent and scope."
 ---
 
 # Doc Editing

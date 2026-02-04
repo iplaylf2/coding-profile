@@ -1,6 +1,6 @@
 ---
 name: declaration-contract-design
-description: Use when the user asks to design or refactor a declaration contract, such as a function signature, type shape, schema, or generic parameter list, and wants guidance on grouping, named vs positional elements, and stable ordering.
+description: "Use when declaration contracts need design or refactoring decisions across signatures, type shapes, schemas, or generic parameters. Goal: declaration contracts are explicit, coherent, and stable at use sites."
 ---
 
 # Declaration Contract Design

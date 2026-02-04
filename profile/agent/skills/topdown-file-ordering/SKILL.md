@@ -1,6 +1,6 @@
 ---
 name: topdown-file-ordering
-description: Use when asked to reorder blocks within a single file so the public surface reads top-down, while preserving behavior and language semantics.
+description: "Use when block order in a single file obscures the public surface or disrupts top-down comprehension. Goal: file structure exposes the public surface first and supporting details in a clear top-down flow without behavior change."
 ---
 
 # Single-File Top-Down Ordering

@@ -1,6 +1,6 @@
 ---
 name: partiality-governance
-description: 'Use when asked to add robustness or refactor code around optional values, error handling, defaults, fallbacks, or fail-fast decisions. Goal: make partiality explicit, keep core logic clean, and avoid silent semantics changes.'
+description: "Use when optional values, fallbacks, defaults, or failure paths materially influence behavior and need explicit governance. Goal: optionality and failure semantics are explicit, and non-happy paths remain deliberate."
 ---
 
 # Partiality Governance

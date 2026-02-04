@@ -1,6 +1,6 @@
 ---
 name: git-branch-namer
-description: Use only when the user explicitly asks for a git branch name or branch naming suggestion. Output one strong recommendation in a consistent pattern, with minimal rationale.
+description: "Use only when the user explicitly asks for a git branch name or naming suggestion. Goal: branch names are convention-aligned and communicate type, scope, and intent at a glance."
 ---
 
 # Git Branch Namer

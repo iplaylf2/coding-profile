@@ -1,6 +1,6 @@
 ---
 name: skill-editor
-description: Use when asked to draft, revise, or review an agent skill specification so frontmatter alone routes correctly and the body is a compact, non-redundant, internally consistent execution guide.
+description: "Use when a skill specification needs drafting, revision, or review to improve routing precision and execution coherence. Goal: skill specifications are routable from frontmatter and internally coherent without redundant guidance."
 ---
 
 # Skill Editor

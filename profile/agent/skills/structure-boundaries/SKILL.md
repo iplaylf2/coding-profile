@@ -1,6 +1,6 @@
 ---
 name: structure-boundaries
-description: Use when asked to restructure a project because navigation is costly, responsibilities are hard to infer from the tree, or boundary crossing is obscured by inconsistent naming and imports.
+description: "Use when project structure makes ownership or dependency boundaries hard to infer and navigation cost is high. Goal: project structure makes responsibilities and dependency boundaries legible with minimal disruption."
 ---
 
 # Structure Boundaries
