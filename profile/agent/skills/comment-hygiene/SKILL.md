@@ -62,16 +62,6 @@ Each standard is defined once here and referenced elsewhere by its ID.
 - **comment.stable — Prefer stable content**
   Prefer describing intent, constraints, and externally relevant meaning over volatile implementation detail.
 
-- **conflicts.priority — Priority rule**
-  When standards conflict, apply this priority order:
-
-  1. `comment.no_narration`
-  2. `site.assign` and `site.focus.*`
-  3. `comment.nonoverlap`
-  4. `site.closest`
-  5. `comment.precise`
-  6. `comment.stable`
-
 ## Workflow
 
 1. Enumerate existing comments and planned comments.
@@ -88,4 +78,4 @@ Each standard is defined once here and referenced elsewhere by its ID.
 A revision is complete only if all checks pass.
 
 - **Response**: Output satisfies the Response Contract.
-- **Standards satisfied**: `site.assign`, `site.focus.*`, `site.closest`, `comment.no_narration`, `comment.nonoverlap`, `comment.precise`, `comment.stable`, `conflicts.priority`.
+- **Standards satisfied**: `site.assign`, `site.focus.*`, `site.closest`, `comment.no_narration`, `comment.nonoverlap`, `comment.precise`, `comment.stable`.

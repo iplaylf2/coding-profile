@@ -38,9 +38,6 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 - **cycles.group — Cycles as a group**
   If blocks form a dependency cycle, treat the cycle as a single group for placement.
 
-- **conflicts.priority — Priority rule**
-  `safety.semantics_preserve` overrides all other standards. When multiple orders are valid, prefer `ordering.public_first`, then `ordering.dependency_after`.
-
 ## Workflow
 
 1. Move public-facing blocks earlier. Apply `ordering.public_first`.
@@ -65,4 +62,4 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 A revision is complete only if all checks pass.
 
 - **Response**: Output satisfies the Response Contract.
-- **Standards satisfied**: `safety.semantics_preserve`, `ordering.public_first`, `ordering.dependency_after`, `cycles.group`, `conflicts.priority`.
+- **Standards satisfied**: `safety.semantics_preserve`, `ordering.public_first`, `ordering.dependency_after`, `cycles.group`.

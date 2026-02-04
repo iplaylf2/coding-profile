@@ -78,19 +78,8 @@ Each standard is defined once here and referenced elsewhere by its ID.
 
 ### Parameterized declarations
 
-- **generics.semantic_order — Order by semantic priority**
-  Order generic or type parameters by meaning: meaning-defining parameters first, constrained or defaulted parameters later, defaults at the end.
-
-### Cross-cutting
-
-- **conflicts.priority — Priority rule**
-  When standards trade off, apply this priority order:
-
-  1. `contract.core.explicit`
-  2. `grouping.modeled_only`, `grouping.no_catch_all`
-  3. `positional.order.gradient`, `positional.prefix.stable`
-  4. Kind-specific standards for the declaration kind
-  5. `name.meaning`
+- **generics.semantic_order — Order by semantic progression**
+  Order generic or type parameters by semantic progression: meaning-defining parameters first, constrained parameters later, and defaulted parameters at the end.
 
 ## Workflow
 
@@ -115,4 +104,3 @@ A revision is complete only if all checks pass.
   - Data-shape: `name.meaning`, `contract.core.explicit`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
   - Callable: `name.meaning`, `contract.core.explicit`, `callable.*`, plus `grouping.*` when grouping is introduced, and `positional.*` when positional shape is used.
   - Parameterized: `contract.core.explicit`, `generics.*`, plus `positional.*` when positional shape is used.
-  - Tradeoffs resolved by `conflicts.priority`.

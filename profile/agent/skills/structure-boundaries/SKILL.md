@@ -51,9 +51,6 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 - **shared.utils — Domain-free utilities**
   Use `utils` only for domain-free primitives: no domain terminology and no dependencies on domain or layer code. If code carries domain meaning or belongs to a boundary, place it in that boundary (or its `…kit`) instead.
 
-- **conflicts.priority — Priority rule**
-  Preserve `levels.one_meaning` and `imports.crossing_visible` first. Next preserve `deps.direction_readable`. When multiple solutions satisfy these, choose the one with the smallest structural disruption.
-
 ## Workflow
 
 1. Inspect the tree and imports to identify blurred responsibilities and hidden boundary crossings.
@@ -62,11 +59,11 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 4. Fix naming so responsibilities are explicit given directory context, and buckets are eliminated or made precise. Apply `naming.context`.
 5. Adjust import conventions so boundary crossings are obvious, then address violations of dependency direction. Apply `imports.crossing_visible`, `deps.direction_readable`.
 6. Place shared code into the correct boundary (`…kit`) or domain-free `utils` as appropriate. Apply `shared.kit`, `shared.utils`.
-7. Make the smallest set of moves/renames/import updates that satisfies the standards. Apply `conflicts.priority`.
+7. Make the smallest set of moves/renames/import updates that satisfies the standards.
 
 ## Acceptance Criteria
 
 A revision is complete only if all checks pass.
 
 - **Response**: Output satisfies the Response Contract.
-- **Standards satisfied**: `levels.one_meaning`, `shape.flat`, `naming.context`, `imports.crossing_visible`, `deps.direction_readable`, `shared.kit`, `shared.utils`, `conflicts.priority`.
+- **Standards satisfied**: `levels.one_meaning`, `shape.flat`, `naming.context`, `imports.crossing_visible`, `deps.direction_readable`, `shared.kit`, `shared.utils`.

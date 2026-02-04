@@ -45,9 +45,6 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 - **rules.single_source — Single-source rules and definitions**
   Each rule and definition appears once. Merge overlaps, remove restatement, and avoid parallel formulations.
 
-- **conflicts.priority — Make tradeoffs explicit**
-  Where constraints trade off, state an explicit priority rule that resolves the conflict.
-
 - **examples.minimal — Examples only for disambiguation**
   Use examples only to resolve ambiguity. Keep them minimal and neutral, and do not introduce conventions through examples.
 
@@ -57,13 +54,12 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 2. Restructure the body into responsibility-based sections and relocate content into its responsible home. Apply `body.responsibilities`.
 3. Remove layer overlap by moving routing language out of the body and moving execution guidance out of frontmatter. Apply `layers.no_overlap`.
 4. De-duplicate and consolidate rules and definitions until each appears once. Apply `rules.single_source`.
-5. Add priority rules where tradeoffs exist. Apply `conflicts.priority`.
-6. Add or trim examples strictly to resolve ambiguity. Apply `examples.minimal`.
-7. Run acceptance checks.
+5. Add or trim examples strictly to resolve ambiguity. Apply `examples.minimal`.
+6. Run acceptance checks.
 
 ## Acceptance Criteria
 
 A revision is complete only if all checks pass.
 
 - **Response**: Output satisfies the Response Contract.
-- **Standards satisfied**: `layers.no_overlap`, `routing.alone`, `routing.boundary`, `body.responsibilities`, `rules.single_source`, `conflicts.priority`, `examples.minimal`.
+- **Standards satisfied**: `layers.no_overlap`, `routing.alone`, `routing.boundary`, `body.responsibilities`, `rules.single_source`, `examples.minimal`.
