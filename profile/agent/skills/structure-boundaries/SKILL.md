@@ -1,15 +1,15 @@
 ---
 name: structure-boundaries
-description: "Use when project structure makes ownership or dependency boundaries hard to infer and navigation cost is high. Goal: project structure makes responsibilities and dependency boundaries legible with minimal disruption."
+description: "Use when project structure makes ownership or dependency boundaries hard to infer and navigation cost is high. Goal: project structure makes responsibilities and dependency boundaries legible."
 ---
 
 # Structure Boundaries
 
-Restructure a project so responsibilities and dependency direction are readable from the directory tree and boundary-crossing imports, with minimal structural disruption.
+Restructure a project so responsibilities and dependency direction are readable from the directory tree and boundary-crossing imports.
 
 ## Response Contract
 
-- Deliverable: apply minimal, structure-relevant changes.
+- Deliverable: the revised project structure plus any necessary consistency updates implied by the structural changes.
 - Chat output: no additional output beyond the deliverable.
 
 ## Structure Model
@@ -40,7 +40,7 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
   Names should express the responsibility of the item without repeating what the parent already implies. Avoid catch-all buckets unless their responsibility is explicit and stable.
 
 - **imports.crossing_visible — Make boundary crossing visible**
-  Import forms must make boundary crossing easy to detect. Avoid upward relative imports that traverse out of the current subtree (for example `..`) because they hide crossings. Use an import form that makes the crossed boundary explicit.
+  Import forms must make boundary crossing easy to detect. Avoid upward relative imports that traverse out of the current subtree, for example `..`, because they hide crossings. Use an import form that makes the crossed boundary explicit.
 
 - **deps.direction_readable — Dependency direction is readable**
   The structure and imports should collectively imply a consistent dependency direction. Treat reverse or cyclic cross-boundary dependencies as boundary violations to address.
@@ -49,7 +49,7 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
   Use `…kit` to hold shared support code within a specific boundary. `…kit` is not a new domain; it is support code for that boundary.
 
 - **shared.utils — Domain-free utilities**
-  Use `utils` only for domain-free primitives: no domain terminology and no dependencies on domain or layer code. If code carries domain meaning or belongs to a boundary, place it in that boundary (or its `…kit`) instead.
+  Use `utils` only for domain-free primitives: no domain terminology and no dependencies on domain or layer code. If code carries domain meaning or belongs to a boundary, place it in that boundary or its `…kit`.
 
 ## Workflow
 
@@ -59,7 +59,7 @@ Apply these standards throughout the edit. Each standard is single-sourced here 
 4. Fix naming so responsibilities are explicit given directory context, and buckets are eliminated or made precise. Apply `naming.context`.
 5. Adjust import conventions so boundary crossings are obvious, then address violations of dependency direction. Apply `imports.crossing_visible`, `deps.direction_readable`.
 6. Place shared code into the correct boundary (`…kit`) or domain-free `utils` as appropriate. Apply `shared.kit`, `shared.utils`.
-7. Make the smallest set of moves/renames/import updates that satisfies the standards.
+7. Apply the moves, renames, and import updates needed to satisfy the standards.
 
 ## Acceptance Criteria
 
