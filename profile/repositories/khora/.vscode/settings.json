@@ -1,0 +1,17 @@
+{
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "editor.formatOnSave": true,
+  "oxc.lint.run": "onSave",
+  "oxc.path.oxfmt": ".tools/oxfmt",
+  "oxc.path.oxlint": ".tools/oxlint",
+  "search.exclude": {
+    "**/.pnp.*": true,
+    "**/.yarn": true
+  },
+  "typescript.experimental.useTsgo": true
+}
