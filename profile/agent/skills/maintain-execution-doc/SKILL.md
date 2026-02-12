@@ -5,7 +5,7 @@ description: "Use when the user asks to create or update a project’s Execution
 
 # Maintain Execution Doc
 
-Create or update a snapshot **Execution Doc** so it reflects the current iteration state during coding.
+Create or update a snapshot **Execution Doc** that reflects the current iteration state.
 
 ## Response Contract
 
@@ -24,23 +24,19 @@ It is rewritten as work evolves.
 
 A **Phase** labels the dominant objective of the current work.
 
-When multiple objectives are present, choose the phase that best matches the current dominant constraint.
+When multiple objectives are present, choose the phase that matches the current dominant objective.
 
 * **Build — Make it work**
-  Implement the core behavior so the main functional path exists end-to-end in code.
-  Typical constraint is implementation completeness and basic interface shape.
+  Implement the core behavior so the main path is wired through the code, stabilizing the basic interface shape.
 
 * **Prove — Make it correct**
-  Reduce uncertainty about behavior correctness through verification and fixes.
-  Typical constraint is correctness confidence and reproducibility.
+  Increase correctness confidence and reproducibility through verification and fixes.
 
 * **Operate — Make it operational**
-  Make the change run across real system boundaries, including integration and environment execution.
-  Typical constraint is end-to-end interoperability and readiness for a test environment.
+  Make the change run across system and runtime boundaries through integration and test-environment execution.
 
 * **Ship — Make it shippable**
-  Converge to merge and delivery readiness with minimal remaining risk.
-  Typical constraint is review readiness and delivery closure.
+  Converge to merge and delivery readiness by closing deliverable artifacts and user-facing content.
 
 ## Editing Standards
 
@@ -58,9 +54,9 @@ Apply these standards throughout the update. Each standard is single-sourced her
 ## Workflow
 
 1. Rewrite the Execution Doc as a current snapshot of the iteration state.
-2. Ensure the doc names all phases, marks the current Phase, and keeps detail concentrated on the current phase. Apply `phase.locality`.
-3. Update key current-state claims and attach supporting evidence pointers. Apply `reality.evidence`.
-4. Update deltas relative to the design baseline and remove obsolete items. Apply `design.delta`.
+2. Update the Phase selection and keep detail concentrated on the current phase. Apply `phase.locality`.
+3. Update key current-state claims and attach evidence pointers to key assertions. Apply `reality.evidence`.
+4. Update deltas relative to the design baseline and remove obsolete deltas. Apply `design.delta`.
 5. Run acceptance checks.
 
 ## Acceptance Criteria
