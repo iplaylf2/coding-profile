@@ -9,7 +9,7 @@ Create or update a snapshot **Execution Doc** so it reflects the current iterati
 
 ## Response Contract
 
-* Deliverable: return the updated Execution Doc.
+* Deliverable: apply the edits to the target document.
 * Chat output: no additional output beyond the deliverable.
 
 ## Execution Doc Model
@@ -22,32 +22,32 @@ It is rewritten as work evolves.
 
 ### Phase
 
-A **Phase** is a label for the dominant objective of the current work.
+A **Phase** labels the dominant objective of the current work.
 
 When multiple objectives are present, choose the phase that best matches the current dominant constraint.
 
 * **Build — Make it work**
-  Dominant objective is to implement the core behavior and make the main functional path exist end-to-end in code.
+  Implement the core behavior so the main functional path exists end-to-end in code.
   Typical constraint is implementation completeness and basic interface shape.
 
 * **Prove — Make it correct**
-  Dominant objective is to reduce uncertainty about behavior correctness through verification and fixes.
+  Reduce uncertainty about behavior correctness through verification and fixes.
   Typical constraint is correctness confidence and reproducibility.
 
 * **Operate — Make it operational**
-  Dominant objective is to make the change run across real system boundaries, including integration and environment execution.
-  Typical constraint is end-to-end interoperability and operational readiness for a test environment.
+  Make the change run across real system boundaries, including integration and environment execution.
+  Typical constraint is end-to-end interoperability and readiness for a test environment.
 
 * **Ship — Make it shippable**
-  Dominant objective is to converge to merge and delivery readiness with minimal remaining risk.
+  Converge to merge and delivery readiness with minimal remaining risk.
   Typical constraint is review readiness and delivery closure.
 
 ## Editing Standards
 
 Apply these standards throughout the update. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-* **phase.locality — Stay within the current phase**
-  Keep the Execution Doc focused on the current phase. Avoid detailing execution steps for later phases.
+* **phase.locality — Keep phase map, detail current phase**
+  The Execution Doc must include the full phase map covering Build, Prove, Operate, and Ship, and clearly indicate the current Phase. Detail work only for the current phase. Keep later phases as brief placeholders and avoid future-phase execution steps.
 
 * **reality.evidence — Anchor key claims**
   Treat the Execution Doc as a statement of current reality. When asserting key completion or readiness claims, include a verifiable pointer to the supporting artifact. If no artifact is available, label the claim as unverified.
@@ -57,9 +57,9 @@ Apply these standards throughout the update. Each standard is single-sourced her
 
 ## Workflow
 
-1. Create a new Execution Doc or rewrite the existing one as a snapshot of the current iteration state.
-2. Set the current Phase and update content so it reflects the dominant objective. Apply `phase.locality`.
-3. Update current-state claims and attach evidence to key assertions. Apply `reality.evidence`.
+1. Rewrite the Execution Doc as a current snapshot of the iteration state.
+2. Ensure the doc includes the full phase map and mark the current Phase; update the current phase content. Apply `phase.locality`.
+3. Update key current-state claims and attach evidence to key assertions. Apply `reality.evidence`.
 4. Update deltas relative to the design baseline and remove obsolete items. Apply `design.delta`.
 5. Run acceptance checks.
 
