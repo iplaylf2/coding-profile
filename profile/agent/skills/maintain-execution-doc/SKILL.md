@@ -46,11 +46,11 @@ When multiple objectives are present, choose the phase that best matches the cur
 
 Apply these standards throughout the update. Each standard is single-sourced here and referenced elsewhere by its ID.
 
-* **phase.locality — Keep phase map, detail current phase**
-  The Execution Doc must include the full phase map covering Build, Prove, Operate, and Ship, and clearly indicate the current Phase. Detail work only for the current phase. Keep later phases as brief placeholders and avoid future-phase execution steps.
+* **phase.locality — Current phase in focus**
+  The Execution Doc names Build, Prove, Operate, and Ship and clearly indicates the current Phase. Concrete status and actions are written for the current phase. Other phases may be mentioned briefly as direction or intent, without detailed execution steps.
 
 * **reality.evidence — Anchor key claims**
-  Treat the Execution Doc as a statement of current reality. When asserting key completion or readiness claims, include a verifiable pointer to the supporting artifact. If no artifact is available, label the claim as unverified.
+  Treat the Execution Doc as a statement of current reality. Key completion or readiness claims are backed by a verifiable pointer to the supporting artifact.
 
 * **design.delta — Record deltas from design**
   Do not restate the design baseline. Record only changes relative to it, including deviations, new constraints, and newly discovered facts, and indicate their impact.
@@ -58,8 +58,8 @@ Apply these standards throughout the update. Each standard is single-sourced her
 ## Workflow
 
 1. Rewrite the Execution Doc as a current snapshot of the iteration state.
-2. Ensure the doc includes the full phase map and mark the current Phase; update the current phase content. Apply `phase.locality`.
-3. Update key current-state claims and attach evidence to key assertions. Apply `reality.evidence`.
+2. Ensure the doc names all phases, marks the current Phase, and keeps detail concentrated on the current phase. Apply `phase.locality`.
+3. Update key current-state claims and attach supporting evidence pointers. Apply `reality.evidence`.
 4. Update deltas relative to the design baseline and remove obsolete items. Apply `design.delta`.
 5. Run acceptance checks.
 
