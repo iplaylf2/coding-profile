@@ -8,7 +8,6 @@ defaults:
   include:
     - .tools/**
     - .vscode/**
-    - .yarn/sdks/integrations.yml
   exclude:
     - "**/.gitignore"
 workspaces:
