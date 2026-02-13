@@ -1,4 +1,7 @@
 {
+    "editor.codeActionsOnSave": {
+        "source.sort.json": "explicit"
+    },
     "editor.formatOnSave": true,
     "nix.enableLanguageServer": true,
     "nix.serverPath": "nixd",
