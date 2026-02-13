@@ -9,7 +9,7 @@ Govern missing values and failures so semantics stay explicit, core logic stays 
 
 ## Response Contract
 
-- Deliverable: apply the partiality strategy to the target artifact.
+- Deliverable: apply the requested changes to the target artifact.
 - Chat output: no additional output beyond the deliverable.
 
 ## Partiality Model

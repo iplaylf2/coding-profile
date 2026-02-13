@@ -9,8 +9,8 @@ Suggest a git branch name that encodes type, scope, and intent with high informa
 
 ## Response Contract
 
-- One recommended branch name.
-- One sentence explaining the chosen type, scope, and intent.
+- Deliverable: no artifact changes.
+- Chat output: provide one recommended branch name and one sentence explaining the chosen type, scope, and intent.
 
 ## Naming Model
 

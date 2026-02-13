@@ -9,8 +9,8 @@ Edit documentation and long-form prose to be clear, precise, and easy to scan.
 
 ## Response Contract
 
-- Deliverable: apply the edits to the target document.
-- Chat output: Do not restate the document content in the chat.
+- Deliverable: apply the requested changes to the target artifact.
+- Chat output: no additional output beyond the deliverable.
 
 ## Document Model
 

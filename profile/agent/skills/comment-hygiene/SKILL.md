@@ -7,7 +7,7 @@ description: "Use when comment quality, placement, or density affects code reada
 
 ## Response Contract
 
-- Deliverable: return the updated code with the final comment text and placement.
+- Deliverable: apply the requested changes to the target artifact.
 - Chat output: no additional output beyond the deliverable.
 
 ## Skill Model

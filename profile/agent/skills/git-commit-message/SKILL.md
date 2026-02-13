@@ -9,8 +9,8 @@ Generate one semantic commit message that captures the change at the right level
 
 ## Response Contract
 
-- One recommended commit message.
-- One sentence explaining the chosen type, scope, and summary.
+- Deliverable: no artifact changes.
+- Chat output: provide one recommended commit message and one sentence explaining the chosen type, scope, and summary.
 
 ## Message Model
 

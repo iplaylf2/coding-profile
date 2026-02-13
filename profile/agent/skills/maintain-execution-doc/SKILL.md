@@ -9,8 +9,8 @@ Create or update a snapshot **Execution Doc** that reflects the current iteratio
 
 ## Response Contract
 
-* Deliverable: apply the edits to the target document.
-* Chat output: no additional output beyond the deliverable.
+- Deliverable: apply the requested changes to the target artifact.
+- Chat output: no additional output beyond the deliverable.
 
 ## Execution Doc Model
 

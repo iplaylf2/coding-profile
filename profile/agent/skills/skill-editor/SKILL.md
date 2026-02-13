@@ -9,7 +9,7 @@ Draft, revise, or review an agent skill specification to improve routing precisi
 
 ## Response Contract
 
-- Deliverable: return the revised skill specification.
+- Deliverable: apply the requested changes to the target artifact.
 - Chat output: no additional output beyond the deliverable.
 
 ## Skill Model

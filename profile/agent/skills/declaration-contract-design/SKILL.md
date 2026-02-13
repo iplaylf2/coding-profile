@@ -9,7 +9,7 @@ Design or refactor declaration contracts using a Name plus Shape view so meaning
 
 ## Response Contract
 
-- Deliverable: return the revised declaration contract.
+- Deliverable: apply the requested changes to the target artifact.
 - Chat output: no additional output beyond the deliverable.
 
 ## Skill Model

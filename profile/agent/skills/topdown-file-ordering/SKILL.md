@@ -9,7 +9,7 @@ Reorder blocks inside one file to make the public surface readable first, then u
 
 ## Response Contract
 
-- Deliverable: return the revised file contents with blocks reordered only.
+- Deliverable: apply the requested changes to the target artifact.
 - Chat output: no additional output beyond the deliverable.
 
 ## Ordering Model

@@ -9,7 +9,7 @@ Restructure a project so responsibilities and dependency direction are readable 
 
 ## Response Contract
 
-- Deliverable: the revised project structure plus any necessary consistency updates implied by the structural changes.
+- Deliverable: apply the requested changes to the target artifact.
 - Chat output: no additional output beyond the deliverable.
 
 ## Structure Model
