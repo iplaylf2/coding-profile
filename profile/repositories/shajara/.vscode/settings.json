@@ -1,19 +1,25 @@
 {
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
   "[json]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.sort.json": "explicit",
+    "source.sort.json": "explicit"
   },
   "editor.formatOnSave": true,
   "js/ts.tsdk.path": ".yarn/sdks/typescript/lib",
@@ -23,6 +29,6 @@
   "oxc.path.oxlint": ".tools/oxlint",
   "search.exclude": {
     "**/.pnp.*": true,
-    "**/.yarn": true,
-  },
+    "**/.yarn": true
+  }
 }

@@ -1,7 +1,9 @@
 {
   "recommendations": [
     "arcanis.vscode-zipfs",
-    "streetsidesoftware.code-spell-checker",
-    "oxc.oxc-vscode"
+    "astro-build.astro-vscode",
+    "github.vscode-github-actions",
+    "oxc.oxc-vscode",
+    "streetsidesoftware.code-spell-checker"
   ]
 }
