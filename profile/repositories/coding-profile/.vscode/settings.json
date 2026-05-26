@@ -1,17 +1,15 @@
 {
-    "editor.codeActionsOnSave": {
-        "source.sort.json": "explicit"
-    },
-    "editor.formatOnSave": true,
-    "nix.enableLanguageServer": true,
-    "nix.serverPath": "nixd",
-    "nix.serverSettings": {
-        "nixd": {
-            "formatting": {
-                "command": [
-                    "nixfmt"
-                ],
-            },
-        },
+  "editor.codeActionsOnSave": {
+    "source.sort.json": "explicit"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+  "oxc.path.oxfmt": ".dev/tools/bin/oxfmt",
+  "terminal.integrated.defaultProfile.linux": "bash-login",
+  "terminal.integrated.profiles.linux": {
+    "bash-login": {
+      "args": ["-l"],
+      "path": "bash"
     }
+  }
 }

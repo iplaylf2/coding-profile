@@ -1,10 +1,10 @@
 {
-    "recommendations": [
-        "streetsidesoftware.code-spell-checker",
-        "tamasfe.even-better-toml",
-        "davidanson.vscode-markdownlint",
-        "ms-python.python",
-        "charliermarsh.ruff",
-        "redhat.vscode-yaml"
-    ]
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "tamasfe.even-better-toml",
+    "davidanson.vscode-markdownlint",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "redhat.vscode-yaml"
+  ]
 }
