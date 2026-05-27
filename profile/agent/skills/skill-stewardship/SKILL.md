@@ -10,7 +10,7 @@ description: Use when the user asks to create, review, refactor, or optimize reu
 - Is front matter acting only as routing information?
 - Is the body acting only as execution guidance after activation?
 - Does the skill help the agent infer and satisfy user intent through questions?
-- Which sentence is only making the skill look complete rather than changing future agent behavior?
+- Which sentence is only making the skill look complete, cautious, or thorough rather than changing future agent behavior?
 
 ## Front Matter Questions
 
@@ -26,13 +26,13 @@ description: Use when the user asks to create, review, refactor, or optimize reu
 ## Body Questions
 
 - Once this skill is active, what should the agent ask itself first?
-- What context should the agent inspect before acting?
+- What context, evidence, or local convention should the agent inspect before acting?
 - What should the agent infer instead of asking the user?
 - When is user clarification genuinely required?
-- What decision rules keep the agent aligned with the user's intent?
+- What decision rules or responsibility boundaries keep the agent aligned with the user's intent?
 - How should the agent validate and report the result?
-- Which question changes the agent's behavior?
-- Which question merely restates a generic virtue such as being clear, careful, or helpful?
+- Which question or instruction changes the agent's behavior?
+- Which question or instruction merely restates a generic virtue or defensive caution?
 
 ## Question-Led Style Questions
 
@@ -40,6 +40,7 @@ description: Use when the user asks to create, review, refactor, or optimize reu
 - Can the answer be inferred from the request, files, surrounding conventions, or prior context?
 - Would the missing answer change scope, behavior, output format, or risk?
 - What choice does this question force the agent to make?
+- Is this question placed where its responsibility is clearest?
 - For a broad skill, would a paraphrased or translated request still activate it for the right semantic reason?
 
 ## Keywords And Lists Questions
@@ -55,12 +56,13 @@ description: Use when the user asks to create, review, refactor, or optimize reu
 - Does this content help decide when the skill activates?
 - Does it guide the agent's work after activation?
 - Does it preserve the question-led intent model?
+- Is it justified by user intent, local convention, external standard, repeated failure mode, or task evidence?
 - Would a future agent behave worse without it?
 - If not, why keep it?
 
 ## Handoff Questions
 
 - What activation boundary changed?
-- What body workflow was created or changed?
+- What body workflow or responsibility layer was created, changed, or clarified?
 - What was removed to keep the skill focused?
 - What validation was performed, and was it limited to static review?
