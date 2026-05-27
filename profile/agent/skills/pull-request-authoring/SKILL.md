@@ -16,7 +16,7 @@ description: "Use when the user asks to draft, refine, choose, or review a pull 
 
 - What change is being proposed? Treat the user-provided diff, branch comparison, PR patch, staged changes, unstaged changes, commit range, or prose description as the source of truth.
 - What context explains the change? Use linked issues, branch names, commit messages, review comments, or product notes as intent hints, but do not let them override the actual diff.
-- What repository language should the draft use? Inspect the README, project metadata, nearby files, and ownership boundaries only as much as needed to learn local vocabulary.
+- What repository is this? Inspect the README, project metadata, nearby files, and ownership boundaries only as much as needed to understand the product or domain, local vocabulary, and likely reviewer expectations.
 - What local PR expression already exists? When available, inspect visible templates and a small sample of recent, relevant, representative PR/MR titles or bodies to infer title grammar, body length, section names, audience assumptions, and validation detail.
 - What visible template or formatting requirement exists? Respect it when it is supplied or discoverable, but do not investigate hosting platform details merely to guess where the PR/MR will be published.
 - Which changed details are obvious from the diff view, and which consequences are not visible from file names or hunks alone?
@@ -61,5 +61,5 @@ description: "Use when the user asks to draft, refine, choose, or review a pull 
 
 - What exact title and body should the user be able to paste directly?
 - If multiple options are proposed, what emphasis or convention distinguishes each one?
-- What evidence was used: audience, PR template, recent PRs, diff, branch, issue, commits, CI, local commands, or only the user's prose?
+- What evidence was used: repository background, audience, PR template, recent PRs, diff, branch, issue, commits, CI, local commands, or only the user's prose?
 - What uncertainty remains because the change evidence, template, validation, or linked context was unavailable?

@@ -16,7 +16,7 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 - User constraints are authoritative for required format, work-item identifier placement, and command output.
 - Local branch history supplies grammar. Inspect recent local and remote branch names with `git for-each-ref refs/heads refs/remotes --sort=-committerdate --format='%(refname:short)'` when available.
 - Work evidence supplies meaning. Prefer the user's task description, issue or PR title, staged changes, unstaged changes, or target diff over the current branch name.
-- Repository context supplies vocabulary and possible scopes. Inspect README, project metadata, and nearby files only as much as needed.
+- What repository is this? Inspect the README, project metadata, nearby files, and ownership boundaries only as much as needed to understand the domain, local vocabulary, and possible branch scopes.
 - When sources disagree, use local branch convention for grammar, work evidence for meaning, and the fallback shape only where local convention is absent.
 
 ## Name Shape
@@ -39,7 +39,7 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 
 - Does the name satisfy local convention or an intentionally justified `<type>/<scope>/<subject>` or `<type>/<subject>` fallback?
 - Do `type`, `scope`, `subject`, and `ticket` each carry separate information without overlap?
-- Does the name reflect the work evidence and repository vocabulary without making unsupported claims?
+- Does the name reflect the work evidence, repository background, and repository vocabulary without making unsupported claims?
 - Does the candidate satisfy Git ref rules? Validate the exact candidate with `git check-ref-format --branch <candidate>` when recommending a command.
 - Does the candidate collide with an existing local or remote branch before recommending creation or rename?
 
@@ -47,5 +47,5 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 
 - What branch name should the user be able to use directly? Put the best candidate first.
 - If multiple names are useful, what distinct convention or emphasis makes each option different?
-- What evidence was used: local branch history, work item, diff, staged changes, unstaged changes, repository vocabulary, or only the user's prose?
+- What evidence was used: local branch history, work item, diff, staged changes, unstaged changes, repository background, repository vocabulary, or only the user's prose?
 - If a command is requested, should it be `git switch -c <name>`, `git branch -m <name>`, or another explicit operation, and was the name validated first?
