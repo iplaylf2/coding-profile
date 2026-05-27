@@ -29,10 +29,10 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 - What context, evidence, or local convention should the agent inspect before acting?
 - What should the agent infer instead of asking the user?
 - When is user clarification genuinely required?
-- What decision rules or responsibility boundaries keep the agent aligned with the user's intent?
+- What decision rules or responsibility boundaries keep auxiliary constraints serving the user's intent rather than becoming parallel responsibilities?
 - How should the agent validate and report the result?
 - Which question or instruction changes the agent's behavior?
-- Which question or instruction merely restates a generic virtue or defensive caution?
+- Which question or instruction merely restates a generic virtue, defensive caution, or unwanted behavior that may pull future agents' attention off task?
 
 ## Question-Led Style Questions
 
@@ -55,7 +55,7 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 
 - Does this content help decide when the skill activates?
 - Does it guide the agent's work after activation?
-- Does it preserve the question-led intent model?
+- Does it preserve the question-led intent model and keep the user's current center of gravity primary?
 - Is it justified by user intent, local convention, external standard, repeated failure mode, or task evidence?
 - Would a future agent behave worse without it?
 - If not, why keep it?

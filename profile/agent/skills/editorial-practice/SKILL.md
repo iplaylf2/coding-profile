@@ -22,13 +22,13 @@ description: "Use when the user asks to draft, revise, rewrite, restructure, cop
 - Does the existing structure already carry the intended meaning, or would a local edit leave patch marks?
 - Would added wording create duplication, awkward transitions, tone drift, or visible patching?
 - Should a paragraph or section be rewritten so the new intent reads as originally authored?
-- Has the user's intent changed the order, framing, emphasis, or reader path enough to require restructuring?
+- Does the user's current intent require changing the order, framing, emphasis, or reader path enough to restructure instead of patch locally?
 - Is the structure sound enough for copy editing, or would polishing sentences preserve a flawed shape?
 
 ## Cohesion Questions
 
 - Does the result read like one coherent document rather than a sequence of additions?
-- Are headings, transitions, terminology, and level of detail consistent?
+- Are headings, transitions, terminology, level of detail, and supporting concerns aligned with the document's center of gravity?
 - Did any agent-facing phrase leak into the document, such as "as requested", "this adds", or "the user wants"?
 - Are there repeated explanations, leftover caveats, or contradictions caused by incremental edits?
 - Would a broader rewrite reduce reader effort without changing the supported facts?
