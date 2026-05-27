@@ -1,0 +1,16 @@
+arcanis
+charliermarsh
+committerdate
+contentctl
+davidanson
+nixfmt
+nixos
+nixpkgs
+oneshot
+oxfmt
+oxlint
+pkgs
+tamasfe
+treefmt
+venv
+zipfs

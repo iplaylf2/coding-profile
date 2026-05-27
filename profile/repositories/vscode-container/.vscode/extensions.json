@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "ms-azuretools.vscode-containers",
+    "oxc.oxc-vscode"
+  ]
+}

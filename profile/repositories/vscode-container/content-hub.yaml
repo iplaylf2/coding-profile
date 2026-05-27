@@ -4,11 +4,10 @@ origin:
   path: .
   exclude:
     - content-hub.yaml
-    - README.md
 defaults:
   include:
-    - skills/**
+    - .vscode/**
   exclude:
-    - "**/.*/**"
+    - "**/.gitignore"
 workspaces:
-  agents: ${HOME}/.agents
+  src: ${SRC_PATH}
