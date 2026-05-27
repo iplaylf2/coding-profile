@@ -12,5 +12,3 @@ defaults:
     - "**/.*/**"
 workspaces:
   agents: ${HOME}/.agents
-  codex: ${HOME}/.codex
-  claude: ${HOME}/.claude
