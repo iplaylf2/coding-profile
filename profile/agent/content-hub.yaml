@@ -11,5 +11,6 @@ defaults:
   exclude:
     - "**/.*/**"
 workspaces:
+  agents: ${HOME}/.agents
   codex: ${HOME}/.codex
   claude: ${HOME}/.claude
