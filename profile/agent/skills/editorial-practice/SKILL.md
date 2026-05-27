@@ -1,6 +1,6 @@
 ---
 name: editorial-practice
-description: Use when the user asks to draft, revise, rewrite, restructure, copy edit, or review prose documents or documentation. Do not use for source code changes unless the task is primarily about surrounding prose.
+description: "Use when the user asks to draft, revise, rewrite, restructure, copy edit, or review prose documents or documentation. Do not use for source code changes unless the task is primarily about surrounding prose."
 ---
 
 # Editorial Practice

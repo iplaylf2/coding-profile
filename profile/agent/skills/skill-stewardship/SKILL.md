@@ -1,6 +1,6 @@
 ---
 name: skill-stewardship
-description: Use when the user asks to create, review, refactor, or optimize reusable agent skills, including activation metadata, body workflow, or question-led intent models. Do not use for ordinary prompts, one-off instructions, application code, or general writing unless the task is about reusable skill behavior.
+description: "Use when the user asks to create, review, refactor, or optimize reusable agent skills, including activation metadata, body workflow, or question-led intent models. Do not use for ordinary prompts, one-off instructions, application code, or general writing unless the task is about reusable skill behavior."
 ---
 
 # Skill Stewardship
