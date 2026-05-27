@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/iplaylf2/content-hub/master/packages/content-hub/src/contentctl/schema/content-hub.schema.json
+
+origin:
+  path: .
+  exclude:
+    - content-hub.yaml
+defaults:
+  include:
+    - .vscode/**
+  exclude:
+    - "**/.gitignore"
+workspaces:
+  src: ${SRC_PATH}

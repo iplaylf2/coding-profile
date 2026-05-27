@@ -1,26 +1,9 @@
 {
-  "[javascript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.sort.json": "explicit"
   },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
   "js/ts.tsdk.path": ".yarn/sdks/typescript/lib",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true,
@@ -30,5 +13,6 @@
   "search.exclude": {
     "**/.pnp.*": true,
     "**/.yarn": true
-  }
+  },
+  "typescript.tsdk": ".yarn/sdks/typescript/lib"
 }
