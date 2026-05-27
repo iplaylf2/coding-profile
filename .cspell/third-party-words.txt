@@ -1,5 +1,6 @@
 arcanis
 charliermarsh
+committerdate
 contentctl
 davidanson
 nixfmt
