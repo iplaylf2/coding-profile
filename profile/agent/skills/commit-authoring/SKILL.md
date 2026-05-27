@@ -1,6 +1,6 @@
 ---
 name: commit-authoring
-description: "Use when the user asks to generate, refine, choose, or review a Git commit message in `<type>(<scope>): <subject>` style or a nearby semantic/Conventional Commit style, based on a diff, staged changes, branch, pull request, or described code change. Do not use for actually creating commits unless the task is primarily about drafting the commit text."
+description: "Use when the user asks to generate, refine, choose, or review a Git commit message based on a diff, staged changes, branch, pull request, or described code change, including semantic or Conventional Commit styles. Do not use for actually creating commits unless the task is primarily about drafting the commit text."
 ---
 
 # Commit Authoring
@@ -23,9 +23,10 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 
 ## Header Shape
 
-- Default to a first line shaped as `<type>(<scope>): <subject>` unless the user explicitly requests another format or the repository consistently uses an unscoped variant.
-- Use lowercase `type`, an honest parenthesized `scope`, a colon followed by one space, and a concise `subject`.
-- Omit the scope only when no non-speculative scope exists or the repository's local style consistently omits it.
+- Use the user's requested format first; otherwise follow the repository's recent commit grammar when it is consistent enough to infer.
+- When local grammar is absent or compatible with semantic style, prefer a first line shaped as `<type>(<scope>): <subject>`.
+- Use lowercase `type`, an honest parenthesized `scope`, a colon followed by one space, and a concise `subject` when using semantic header grammar.
+- Omit the scope when no non-speculative scope exists, the repository's local style consistently omits it, or the inferred local grammar does not use scopes.
 - Keep the first line to one change summary. Put motivation, migration notes, or consequences in a body after a blank line only when the subject cannot carry them.
 
 ## Element Responsibilities
@@ -35,7 +36,7 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 - `subject` answers what changed in that scope. It should not restate the type or scope, list filenames, or describe the editing action instead of the result.
 - `body` answers why the change was made, what consequences matter, or what migration detail cannot fit in the subject. It should not compensate for a vague header.
 - When a change seems to fit multiple types, choose by effect: behavior addition is `feat`, behavior correction is `fix`, docs-only is `docs`, formatting-only is `style`, internal restructuring without behavior change is `refactor`, tests-only is `test`, and maintenance without production behavior is `chore`.
-- Match explicit user-requested language or format first; otherwise match the repository's recent commit style within the semantic header shape.
+- Match explicit user-requested language or format first; otherwise match the repository's recent commit style without forcing semantic header shape when local grammar clearly differs.
 - Keep the subject concise enough for commit history scanning, usually under 72 characters unless local style is longer.
 
 ## Context Responsibilities
@@ -48,8 +49,8 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 
 ## Review Questions
 
-- Does the first line satisfy `<type>(<scope>): <subject>` or an intentionally justified unscoped variant?
-- Do `type`, `scope`, and `subject` each carry separate information without overlap?
+- Does the first line satisfy the explicit user format, inferred local grammar, or an intentionally justified semantic fallback?
+- When using semantic header grammar, do `type`, `scope`, and `subject` each carry separate information without overlap?
 - Does the message reflect the repository background and vocabulary without making unsupported claims?
 - Did branch context inform the draft without overriding the diff?
 - Does the message cover the actual committed change rather than listing files or implementation trivia?

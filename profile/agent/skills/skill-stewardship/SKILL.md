@@ -62,7 +62,8 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 
 ## Handoff Questions
 
-- What activation boundary changed?
-- What body workflow or responsibility layer was created, changed, or clarified?
-- What was removed to keep the skill focused?
+- How should the user's intent be translated for handoff: create, review, refactor, optimize, or recommend no change?
+- What activation boundary changed, was recommended, or was confirmed unchanged?
+- What body workflow or responsibility layer was created, changed, clarified, or left intact?
+- What was removed or intentionally kept to preserve the skill's focus?
 - What validation was performed, and was it limited to static review?
