@@ -30,9 +30,11 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 - What should the agent infer instead of asking the user?
 - When is user clarification genuinely required?
 - What decision rules or responsibility boundaries keep auxiliary constraints serving the user's intent rather than becoming parallel responsibilities?
+- Is the body length and structure proportional to the number of distinct decisions the skill must guide?
 - How should the agent validate and report the result?
 - Which question or instruction changes the agent's behavior?
-- Which question or instruction merely restates a generic virtue, defensive caution, or unwanted behavior that may pull future agents' attention off task?
+- Which question or instruction merely restates a generic virtue, defensive caution, duplicated guardrail, or unwanted behavior that may pull future agents' attention off task?
+- Did repeated edits leave patch traces that should become a rewrite, merge, or deletion?
 
 ## Question-Led Style Questions
 
@@ -46,8 +48,9 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 ## Keywords And Lists Questions
 
 - Is this keyword a literal artifact name, such as a file type, command, API, tool, or product term?
-- Is this list a closed set or a fragile sequence the agent must follow?
+- Is this list a closed set, a fragile sequence the agent must follow, or an open set of examples for inference?
 - If the category is open-ended, can a category phrase replace the enumeration?
+- Does the enumeration define the skill by artifact type when the real trigger is a relationship, decision, evidence source, or user intent?
 - Would a paraphrased, translated, or implied request bypass this skill because the description depends on exact wording?
 - Would removing one item from this list change future agent behavior?
 
@@ -56,6 +59,7 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 - Does this content help decide when the skill activates?
 - Does it guide the agent's work after activation?
 - Does it preserve the question-led intent model and keep the user's current center of gravity primary?
+- Is this section preserving a necessary responsibility, or only matching the length, shape, or caution level of nearby skills?
 - Is it justified by user intent, local convention, external standard, repeated failure mode, or task evidence?
 - Would a future agent behave worse without it?
 - If not, why keep it?
