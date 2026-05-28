@@ -4,9 +4,9 @@ Source of truth for a personal coding environment: shared defaults,
 conventions, and configuration assets for machines, workspaces, and
 repositories.
 
-The repository is organized as a set of profiles. In each profile, the README
-explains intent and maintenance workflow; `content-hub.yaml` defines the exact
-sync rules.
+The maintained configuration is organized as a set of profiles. In each
+profile, the README explains intent and maintenance workflow; `content-hub.yaml`
+defines the exact sync rules.
 
 ## Profiles
 

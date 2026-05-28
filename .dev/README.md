@@ -1,6 +1,12 @@
 # Development Tooling
 
-This directory contains development helpers for repository maintenance.
+Repository-local maintenance scripts and tool entrypoints.
+
+## Purpose
+
+This directory contains helpers for checking, formatting, and running repository
+tooling without mixing those concerns into the profile directories. The Nix
+environment is defined in `.nix`.
 
 ## Environment
 
@@ -10,13 +16,19 @@ Start a shell with the repository tools available:
 nix develop path:./.nix
 ```
 
-From that shell, run maintenance scripts as needed:
+From that shell, run checks:
 
 ```bash
 .dev/scripts/check.sh
 ```
 
-For a one-off command, run the script through `nix develop -c`:
+Format files:
+
+```bash
+.dev/scripts/format.sh
+```
+
+For a one-off command, run a script through `nix develop -c`:
 
 ```bash
 nix develop path:./.nix -c .dev/scripts/check.sh
