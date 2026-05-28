@@ -1,21 +1,29 @@
 # Repositories Profile
 
-Repository-scoped workspace assets.
+Repository-scoped workspace assets for source checkouts.
 
 ## Purpose
 
-Manages repository-scoped assets through `contentctl`. Synced paths are defined by each repository's `content-hub` configuration, with `SRC_PATH` as the source workspace path.
+This profile stores workspace assets that belong to individual repositories
+instead of the machine, WSL system, or agent profile.
+
+Each child directory is one repository profile. Set `SRC_PATH` to the checkout
+that should receive or supply the synced files. Sync rules live in each child's
+`content-hub.yaml`.
 
 ## Operations
 
-Deploy:
+From `profile/repositories`, enter the profile directory for the repository you
+want to sync.
+
+Deploy assets into the target checkout:
 
 ```bash
 cd <repo>
 SRC_PATH=/src/<repo> uv run contentctl deploy src
 ```
 
-Adopt changes:
+Adopt changes from the target checkout:
 
 ```bash
 cd <repo>

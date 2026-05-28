@@ -1,21 +1,24 @@
 # Agent Profile
 
-Agent skills and configuration assets.
+Agent skills and configuration.
 
-## Philosophy
+## Purpose
 
-Configurations in this directory are generated and maintained by the agent itself, ensuring consistency in structure and style.
+This profile keeps agent-authored assets in one place so their structure,
+naming, and prose style stay consistent.
+
+Sync rules live in `content-hub.yaml`.
 
 ## Operations
 
-Deploy:
+Deploy the profile to all configured agent workspaces:
 
 ```bash
 uv run contentctl deploy --all-workspaces
 ```
 
-Adopt changes from a workspace:
+Adopt changes from the `agents` workspace:
 
 ```bash
-uv run contentctl adopt <workspace>
+uv run contentctl adopt agents
 ```
