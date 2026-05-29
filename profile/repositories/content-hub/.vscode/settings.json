@@ -3,8 +3,7 @@
     "source.fixAll": "explicit",
     "source.sort.json": "explicit"
   },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
-  "files.associations": {
-    "LICENSE": "plaintext"
-  }
+  "oxc.path.oxfmt": ".nix/tools/bin/oxfmt"
 }
