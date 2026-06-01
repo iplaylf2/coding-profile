@@ -5,7 +5,7 @@ description: "Use when the user asks to decide where or how to create, place, na
 
 # Module Structure Stewardship
 
-Treat examples and lists as investigation prompts, not closed taxonomies. Prefer the module categories, names, and dependency surfaces visible in the user's workspace. Name file kinds, extensions, frameworks, or artifact types only when they change routing, evidence, or validation.
+Treat examples and lists as investigation prompts, not closed taxonomies. Prefer the module categories, names, and dependency surfaces visible in the user's workspace. Name file kinds, extensions, frameworks, or artifact types only when they change routing, evidence, validation, or which artifact is authoritative.
 
 ## Intent Questions
 
@@ -26,6 +26,7 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 ## Evidence Questions
 
 - What evidence reveals the intended boundaries: names and paths, overview files, indexes or manifests, imports or exports, links, tests or build rules, repeated headings, or local conventions?
+- Which files are authoritative sources, and which are explanatory, generated, or derived views?
 - Which relationships are explicit, and which are inferred from location, naming, ordering, shared vocabulary, or repeated structure?
 - Which boundaries are enforced by language, packaging, build tooling, tests, or runtime behavior, and which exist only as prose or convention?
 - Is the target tree organized by feature, layer, runtime concern, reader task, ownership, chronology, or historical accumulation?
@@ -66,7 +67,8 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 
 - What should each module expose through public APIs, exports, README text, indexes, headings, examples, or entrypoints?
 - What details should remain internal instead of leaking into sibling modules, parent modules, callers, or readers?
-- Does a parent module explain enough to help users choose a child module without duplicating the child's full content?
+- Does a parent module explain enough to help users choose or update a child module without duplicating the child's full content?
+- When prose describes mutable entries, should it expose design, ownership, schema, update path, selection criteria, a generated view, or a small example instead of copying the current inventory?
 - Are two modules explaining each other in a loop instead of sharing a stable definition or dependency root?
 
 ## Judgment Questions
@@ -74,13 +76,16 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 - Is the current structure a flat collection, layered tree, feature-sliced tree, hub-and-spoke, pipeline, glossary plus leaves, plugin registry, or mixed shape?
 - Which issues materially affect comprehension, maintenance, extension, tests, builds, or user workflows?
 - Which observations are structural, and which are ordinary prose style, naming preference, or local cleanup?
+- Would the proposed structure create a shadow source of truth, stale inventory, or duplicated maintenance burden?
+- When a snapshot is necessary, what version, date, command, or evidence makes it intentionally fixed rather than stale by default?
 - What is the smallest change that improves the module relationship: leave unchanged, rename, split, merge, move, add an index, extract a shared primitive, invert a dependency, or document a boundary?
-- What risk would the proposed change introduce for references, imports, tests, published APIs, deployment, or reader expectations?
+- What risk would the proposed change introduce for references, imports, tests, published APIs, data consistency, deployment, or reader expectations?
 
 ## Handoff Questions
 
 - What module shape was found or chosen, and what evidence supports that reading?
 - Which boundaries, placement choices, growth expectations, dependencies, disclosure choices, or cycles deserve action?
 - What change is recommended or implemented, and why is it better than only making the tree look tidier?
+- What was treated as the authoritative source of mutable data, and how was duplication or stale documentation avoided?
 - What was intentionally left alone because it is local convention, harmless redundancy, obvious placement, or outside the user's scope?
 - What validation was performed: static file review, reference search, dependency inspection, tests, build checks, or only conceptual review?
