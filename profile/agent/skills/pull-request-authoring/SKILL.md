@@ -1,6 +1,6 @@
 ---
 name: pull-request-authoring
-description: "Use when the user asks to draft, refine, choose, or review a pull request or merge request title, body, summary, description, or complete PR/MR text based on a diff, branch, issue, commit list, existing draft, review context, or described code change. Do not use for code review, PR creation, or PR metadata changes unless drafting the PR text is primary."
+description: "Use when the user asks to draft, refine, choose, or review pull request or merge request text, including title, body, summary, description, or complete PR/MR content, based on a diff, branch, issue, commit list, existing draft, review context, or described code change, or when a broader PR/MR workflow needs PR/MR wording. Do not use for code review, PR creation, or PR metadata changes that do not require drafting or evaluating PR/MR text."
 ---
 
 # Pull Request Authoring

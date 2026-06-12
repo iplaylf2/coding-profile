@@ -1,6 +1,6 @@
 ---
 name: module-structure-stewardship
-description: "Use when the user asks to decide where or how to create, place, name, split, move, review, or reshape files and directories as modules in a file tree, especially when relationships between files or directories affect module boundaries, composition, dependency direction, growth shape, public/internal disclosure, or explanatory cycles. Do not use for ordinary implementation, review, or editing tasks when placement is obvious and module relationships are not the user's concern."
+description: "Use when the user asks to decide where or how to create, place, name, split, move, review, or reshape files or directories because module relationships affect boundaries, dependencies, growth, disclosure, or explanation. Do not use for ordinary implementation, review, or editing tasks when placement is obvious and module relationships are not the user's concern."
 ---
 
 # Module Structure Stewardship

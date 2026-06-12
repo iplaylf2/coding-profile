@@ -1,6 +1,6 @@
 ---
 name: branch-naming
-description: "Use when the user asks to generate, refine, choose, or review a Git branch name from repository or work-item context such as an issue, pull request, diff, staged changes, or task description. Do not use for branch operations unless the task is primarily about choosing the name."
+description: "Use when the user asks to generate, refine, choose, or review a Git branch name using repository conventions, work evidence, or task context, or when a broader branch workflow needs a branch-name decision. Do not use for branch operations that do not require choosing or evaluating a name."
 ---
 
 # Branch Naming

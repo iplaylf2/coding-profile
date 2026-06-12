@@ -1,6 +1,6 @@
 ---
 name: commit-authoring
-description: "Use when the user asks to generate, refine, choose, or review a Git commit message based on a diff, staged changes, branch, pull request, or described code change, including semantic or Conventional Commit styles. Do not use for actually creating commits unless the task is primarily about drafting the commit text."
+description: "Use when the user asks to generate, refine, choose, or review a Git commit message based on a diff, staged changes, branch, pull request, or described code change, including semantic or Conventional Commit styles, or when a broader commit workflow needs commit-message wording. Do not use for Git operations that do not require drafting or evaluating commit text."
 ---
 
 # Commit Authoring

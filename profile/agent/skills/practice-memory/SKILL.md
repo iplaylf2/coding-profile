@@ -1,6 +1,6 @@
 ---
 name: practice-memory
-description: "Use when the user asks to review or debrief a prior agent conversation to decide whether lessons, repeated corrections, missed expectations, or collaboration friction should become durable agent guidance. Do not use for ordinary task summaries, code review, or project postmortems unless the goal is to improve future agent behavior."
+description: "Use when the user asks to review or debrief a current or prior agent interaction to decide whether lessons, repeated corrections, missed expectations, or collaboration friction should become durable agent guidance. Do not use for ordinary task summaries, code review, or project postmortems unless the goal is to improve future agent behavior."
 ---
 
 # Practice Memory
