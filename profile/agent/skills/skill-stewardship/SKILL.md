@@ -48,6 +48,7 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 ## Keywords And Lists Questions
 
 - Is this keyword a literal artifact name, such as a file type, command, API, tool, or product term?
+- Would this keyword or example still change routing or behavior if the current conversation or artifact were different?
 - Is this list a closed set, a fragile sequence the agent must follow, or an open set of examples for inference?
 - If the category is open-ended, can a category phrase replace the enumeration?
 - Does the enumeration define the skill by artifact type when the real trigger is a relationship, decision, evidence source, or user intent?
