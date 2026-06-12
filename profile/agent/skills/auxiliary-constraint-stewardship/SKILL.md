@@ -7,6 +7,8 @@ description: "Use when the user asks to review, revise, refactor, or diagnose wh
 
 Treat an auxiliary constraint as any supporting condition, exception path, qualification, fallback, recovery rule, or caveat that modifies the primary path in response to a boundary, exception, tradeoff, or failure mode. Its form matters less than its relationship to the artifact's main responsibility.
 
+Do not treat defensive completeness as a default goal. When a constraint is under review, keep deletion, narrowing, moving ownership, and clarifying the primary contract available as alternatives to adding defensive coverage.
+
 Use examples and lists only as prompts for finding local evidence. Do not let them become closed taxonomies.
 
 ## Intent Questions
@@ -38,6 +40,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Is the constraint duplicating an existing guarantee, compensating for an absent contract, or masking an unresolved ownership boundary?
 - Is the source of truth authoritative, or is the constraint copied from stale knowledge, defensive habit, or earlier patching?
 - Does the constraint have observable behavior that can be tested, reviewed, or explained without relying on intention alone?
+- Does the constraint reduce, preserve, or expand the time or state window in which ambiguous or unsupported conditions can be treated as valid?
 - For code artifacts, which guards, fallbacks, nullable states, error paths, or duplicated state representations express real boundary decisions rather than incidental defensive structure?
 
 ## Value Questions
@@ -47,13 +50,14 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Does the constraint reveal a non-obvious boundary, exception, decision, or invariant, or only restate a convention the intended consumer or surrounding system should already follow?
 - Does it create surface completeness while suppressing a more important error, missing contract, unresolved decision, or ownership gap?
 - Does it let vague, stale, partial, or misleading output look successful?
+- Is a temporary or transitional path being promoted into a durable design concern without enough evidence?
 - Is the benefit proportionate to the cost?
 
 ## Revision Questions
 
 - Does the existing structure already express the right relationship between the constraint and the primary path?
 - Can the constraint be replaced by a positive responsibility, invariant, precondition, or decision boundary?
-- Can the same user value be achieved with a smaller expression of the same responsibility?
+- Can the same user value be achieved by removing, narrowing, delegating, or rewriting the constraint as a smaller expression of the same responsibility?
 - What is the smallest change that restores the right relationship without stripping legitimate protection?
 - Can an internal invariant be expressed more directly with a stronger type, single state object, narrower API, precondition, or clearer ownership boundary?
 - When keeping a constraint, can its trigger, owner, behavior, and validation be named without adding more defensive prose?
@@ -65,6 +69,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Which new supporting structures did the edit add, such as branches, helpers, paragraphs, caveats, wrappers, examples, messages, or validation paths?
 - Does each new structure carry a real boundary decision, or does it only rename an upstream fact, restate an already useful signal, or make an edge case look central?
 - Did the edit make failure, choice, or explanation more honest, or did it make a failed, unknown, or unsupported state look successful?
+- Did the edit reduce defensive surface where the primary path was already honest enough?
 - Can any supporting structure be removed, inlined, or delegated while keeping the primary path centered?
 
 ## Handoff Questions
