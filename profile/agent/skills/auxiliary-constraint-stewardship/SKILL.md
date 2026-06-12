@@ -38,6 +38,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Is the constraint duplicating an existing guarantee, compensating for an absent contract, or masking an unresolved ownership boundary?
 - Is the source of truth authoritative, or is the constraint copied from stale knowledge, defensive habit, or earlier patching?
 - Does the constraint have observable behavior that can be tested, reviewed, or explained without relying on intention alone?
+- For code artifacts, which guards, fallbacks, nullable states, error paths, or duplicated state representations express real boundary decisions rather than incidental defensive structure?
 
 ## Value Questions
 
@@ -54,6 +55,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Can the constraint be replaced by a positive responsibility, invariant, precondition, or decision boundary?
 - Can the same user value be achieved with a smaller expression of the same responsibility?
 - What is the smallest change that restores the right relationship without stripping legitimate protection?
+- Can an internal invariant be expressed more directly with a stronger type, single state object, narrower API, precondition, or clearer ownership boundary?
 - When keeping a constraint, can its trigger, owner, behavior, and validation be named without adding more defensive prose?
 - Would a broader rewrite or boundary change make the artifact read as originally designed rather than incrementally patched?
 - What legitimate constraint must remain because it protects a real boundary or documented contract?
