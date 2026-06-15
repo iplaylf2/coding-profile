@@ -39,12 +39,13 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 
 ## Context And Density Questions
 
-- Is the name mechanically splicing available words together, or does each word add discriminating information?
-- Which surrounding context already names the category and can be omitted from the candidate?
+- Does each word add discriminating information, or is the name mechanically splicing available context into a longer bundle?
+- Which enclosing or neighboring context already names the category and can be omitted from the candidate?
 - Where must the name stand alone, and what context must be restored there?
 - Is a shorter name more precise because the context carries the category, or would shortening remove the only cue that distinguishes it from a sibling?
 - Would replacing a vague modifier with a domain term increase meaning without increasing length?
 - Are adjectives, qualifiers, prefixes, or suffixes carrying real contrast, or only making the name look complete?
+- Does a long or heavily qualified name identify a stable concept, or is it compensating for unclear state or responsibility that should be simplified or modeled differently?
 
 ## Candidate Shape Questions
 

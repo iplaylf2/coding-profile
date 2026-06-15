@@ -56,7 +56,8 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 ## Revision Questions
 
 - Does the existing structure already express the right relationship between the constraint and the primary path?
-- Can the constraint be replaced by a positive responsibility, invariant, precondition, or decision boundary?
+- Can the constraint be replaced by or subordinated to a positive responsibility, invariant, precondition, or decision boundary?
+- For prose artifacts, would rewriting around the primary responsibility make negative or exception-heavy wording smaller or unnecessary?
 - Can the same user value be achieved by removing, narrowing, delegating, or rewriting the constraint as a smaller expression of the same responsibility?
 - What is the smallest change that restores the right relationship without stripping legitimate protection?
 - Can an internal invariant be expressed more directly with a stronger type, single state object, narrower API, precondition, or clearer ownership boundary?

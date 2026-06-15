@@ -60,6 +60,7 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 - When dependencies are explanatory, which modules rely on other modules for definitions, vocabulary, prerequisites, examples, constraints, or cross-references?
 - When dependencies are enforced by tooling or runtime behavior, which modules rely on other modules through imports, exports, type references, callbacks, configuration, initialization, test helpers, or generated artifacts?
 - What dependency direction does the local architecture imply, and where does the current structure violate it?
+- Do links or references cross upward out of their module with `../` paths into another module's internals? If so, is that the intended dependency direction, or should the reference move to an owning parent, use a boundary-stable target, or be removed?
 - Are cycles harmless cross-references, deliberate mutual protocols, circular explanations, circular imports, or runtime initialization hazards?
 - Would a cycle be better resolved by extracting a shared primitive, adding a parent explanation, introducing an interface, inverting control, or moving responsibility?
 
