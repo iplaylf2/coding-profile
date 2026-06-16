@@ -39,7 +39,7 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 
 ## Context And Density Questions
 
-- Does each word add discriminating information, or is the name mechanically splicing available context into a longer bundle?
+- Does each word add discriminating reader-facing meaning, or is the name mechanically splicing context or tracing the implementation route?
 - Which enclosing or neighboring context already names the category and can be omitted from the candidate?
 - Where must the name stand alone, and what context must be restored there?
 - Is a shorter name more precise because the context carries the category, or would shortening remove the only cue that distinguishes it from a sibling?
@@ -61,7 +61,7 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 
 - Does the candidate satisfy the user's explicit constraints and local naming convention?
 - Does it foreground the right domain semantic for this context?
-- Does it preserve enough distinction from nearby names without repeating context that is already obvious?
+- After changing its length, does it preserve enough distinction from nearby names without repeating context that is already obvious?
 - Does each word earn its place by adding meaning, contrast, format compliance, or discoverability?
 - Is the name understandable to the intended audience without requiring hidden implementation knowledge?
 - Does it remain honest under likely growth, reuse, persistence, or public exposure?

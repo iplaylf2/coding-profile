@@ -60,15 +60,15 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - For prose artifacts, would rewriting around the primary responsibility make negative or exception-heavy wording smaller or unnecessary?
 - Can the same user value be achieved by removing, narrowing, delegating, or rewriting the constraint as a smaller expression of the same responsibility?
 - What is the smallest change that restores the right relationship without stripping legitimate protection?
-- Can an internal invariant be expressed more directly with a stronger type, single state object, narrower API, precondition, or clearer ownership boundary?
-- When keeping a constraint, can its trigger, owner, behavior, and validation be named without adding more defensive prose?
+- Can an internal invariant or defended case be expressed through the owning model or boundary instead of carried as an auxiliary exception?
+- When keeping a constraint, can its trigger, owner, behavior, and validation be named without making prose or names narrate the defensive mechanism?
 - Would a broader rewrite or boundary change make the artifact read as originally designed rather than incrementally patched?
 - What legitimate constraint must remain because it protects a real boundary or documented contract?
 
 ## Proportionality Audit Questions
 
 - Which new supporting structures did the edit add, such as branches, helpers, paragraphs, caveats, wrappers, examples, messages, or validation paths?
-- Does each new structure carry a real boundary decision, or does it only rename an upstream fact, restate an already useful signal, or make an edge case look central?
+- Does each new structure carry a stable boundary decision, or does it substitute defensive narration or redundant restatement for one?
 - Did the edit make failure, choice, or explanation more honest, or did it make a failed, unknown, or unsupported state look successful?
 - Did the edit reduce defensive surface where the primary path was already honest enough?
 - Can any supporting structure be removed, inlined, or delegated while keeping the primary path centered?
