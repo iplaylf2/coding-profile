@@ -7,6 +7,8 @@ description: "Use when the user asks to decide where or how to create, place, na
 
 Treat examples and lists as investigation prompts, not closed taxonomies. Prefer the module categories, names, and dependency surfaces visible in the user's workspace. Name file kinds, extensions, frameworks, or artifact types only when they change routing, evidence, validation, or which artifact is authoritative.
 
+When describing module relationships, distinguish hierarchy from dependency, disclosure, and ownership. Use parent, child, ancestor, and descendant for hierarchy, reserving root and leaf for cases where the root or terminal node itself matters. Use dependency direction, disclosure, public surface, contract, and ownership boundary for relationship and exposure decisions; use upstream or downstream only when those terms already belong to the local architecture.
+
 ## Intent Questions
 
 - Is the user asking for a placement decision, a new module, a diagnosis, a restructuring plan, structural edits, or a module naming decision?
@@ -45,6 +47,7 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 - Can each file, directory, or module be understood as a coherent unit with a clear responsibility?
 - Do sibling modules live at the same level of abstraction, or do concept, policy, example, implementation, and exception handling sit side by side?
 - Can smaller modules compose into the parent module without requiring hidden context from outside the reviewed scope?
+- Is a parent, ancestor, or coordinating module depending on facts about a child or descendant that a nearer ownership boundary should own and expose through a stable surface?
 - Would a split, merge, rename, or parent overview make the boundary more honest without creating ceremony?
 
 ## Growth Questions
@@ -60,7 +63,8 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 - When dependencies are explanatory, which modules rely on other modules for definitions, vocabulary, prerequisites, examples, constraints, or cross-references?
 - When dependencies are enforced by tooling or runtime behavior, which modules rely on other modules through imports, exports, type references, callbacks, configuration, initialization, test helpers, or generated artifacts?
 - What dependency direction does the local architecture imply, and where does the current structure violate it?
-- Do links or references cross upward out of their module with `../` paths into another module's internals? If so, is that the intended dependency direction, or should the reference move to an owning parent, use a boundary-stable target, or be removed?
+- Do links or references leave their owning module with `../` paths into another module's internals? If so, is that the intended dependency direction, or should the reference move to an owning parent, use a boundary-stable target, or be removed?
+- Does a parent or ancestor module have transitive coupling to descendants, rather than depending on the owning child boundary's stable contract?
 - Are cycles harmless cross-references, deliberate mutual protocols, circular explanations, circular imports, or runtime initialization hazards?
 - Would a cycle be better resolved by extracting a shared primitive, adding a parent explanation, introducing an interface, inverting control, or moving responsibility?
 
@@ -69,15 +73,19 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 - What should each module expose through public APIs, exports, README text, indexes, headings, examples, or entrypoints?
 - What details should remain internal instead of leaking into sibling modules, parent modules, callers, or readers?
 - Does a parent module explain enough to help users choose or update a child module without duplicating the child's full content?
+- Are child and descendant modules exposing only the stable public surface needed for discovery, routing, ownership, selection, or extension?
+- Should a nearer child module own the index, manifest, overview, or public surface for its descendants instead of making the parent carry mutable descendant details?
+- Would a descendant change force updates outside its owning child boundary, and if so, should that detail belong in a child-owned contract, generated view, or selection rule?
 - When prose describes mutable entries, should it expose design, ownership, schema, update path, selection criteria, a generated view, or a small example instead of copying the current inventory?
 - Are two modules explaining each other in a loop instead of sharing a stable definition or dependency root?
 
 ## Judgment Questions
 
-- Is the current structure a flat collection, layered tree, feature-sliced tree, hub-and-spoke, pipeline, glossary plus leaves, plugin registry, or mixed shape?
+- Is the current structure a flat collection, layered tree, feature-sliced tree, hub-and-spoke, pipeline, glossary with entries, plugin registry, or mixed shape?
 - Which issues materially affect comprehension, maintenance, extension, tests, builds, or user workflows?
 - Which observations are structural, and which are ordinary prose style, naming preference, or local cleanup?
 - Would the proposed structure create a shadow source of truth, stale inventory, or duplicated maintenance burden?
+- Would the proposed structure reduce parent or ancestor dependence on descendant details, rather than relocating descendant inventory outside its owning child boundary?
 - When a snapshot is necessary, what version, date, command, or evidence makes it intentionally fixed rather than stale by default?
 - What is the smallest change that improves the module relationship: leave unchanged, rename, split, merge, move, add an index, extract a shared primitive, invert a dependency, or document a boundary?
 - What risk would the proposed change introduce for references, imports, tests, published APIs, data consistency, deployment, or reader expectations?
@@ -85,7 +93,7 @@ Treat examples and lists as investigation prompts, not closed taxonomies. Prefer
 ## Handoff Questions
 
 - What module shape was found or chosen, and what evidence supports that reading?
-- Which boundaries, placement choices, growth expectations, dependencies, disclosure choices, or cycles deserve action?
+- Which boundaries, placement choices, growth expectations, dependencies, disclosure choices, transitive coupling, or cycles deserve action?
 - What change is recommended or implemented, and why is it better than only making the tree look tidier?
 - What was treated as the authoritative source of mutable data, and how was duplication or stale documentation avoided?
 - What was intentionally left alone because it is local convention, harmless redundancy, obvious placement, or outside the user's scope?
