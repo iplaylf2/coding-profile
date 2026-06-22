@@ -5,7 +5,7 @@ description: "Use when the user asks to generate, refine, choose, or review a na
 
 # Naming Stewardship
 
-Treat naming as a decision about meaning, boundary, audience, and future use. A good name carries the minimum context needed where it will be read, searched, spoken, maintained, or used by tools; start with the shortest locally natural candidate and add words only when surrounding context cannot carry that work.
+Treat naming as a decision about meaning, boundary, audience, and future use. A good name balances information density against length by carrying the minimum context needed where it will be read, searched, spoken, maintained, or used by tools; start with the shortest locally natural candidate, prefer higher-density domain terms over extra qualifiers, and add words only when surrounding context cannot carry that work.
 
 Use examples and lists as prompts for local investigation, not as closed taxonomies. Prefer the vocabulary, contrast set, and conventions visible in the user's workspace, source material, product surface, or domain context.
 
@@ -39,11 +39,10 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 
 ## Context And Density Questions
 
-- Starting from a concise candidate, does each added word contribute reader-facing contrast, format compliance, standalone readability, or search value?
-- Which enclosing or neighboring context already names the category and can be omitted from the candidate?
-- Where must the name stand alone, and what context must be restored there?
-- Is a shorter name more precise because the context carries the category, or would shortening remove the only cue that distinguishes it from a sibling?
-- Would replacing a vague modifier with a domain term increase meaning without increasing length?
+- What information must the name carry itself, and what can surrounding context, sibling names, or the domain model carry instead?
+- Starting from the shortest locally natural candidate, does each added word increase reader-facing contrast, standalone readability, search value, or format compliance enough to justify its length?
+- Where must the name stand alone, and what context must be restored there without repeating context that is already visible nearby?
+- Would replacing a vague modifier or stack of qualifiers with a denser domain term preserve meaning while shortening the name?
 - Are adjectives, qualifiers, prefixes, or suffixes carrying real contrast, or only making the name look complete?
 - Does a long or heavily qualified name identify a stable concept, or is it compensating for unclear state or responsibility that should be simplified or modeled differently?
 
@@ -62,7 +61,7 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 - Does the candidate satisfy the user's explicit constraints and local naming convention?
 - Does it foreground the right domain semantic for this context?
 - After changing its length, does it preserve enough distinction from nearby names without repeating context that is already obvious?
-- Does each word still earn its place after accounting for surrounding context?
+- Does each word still earn its place after accounting for surrounding context, or should it be removed, replaced with a denser domain term, or moved into that context?
 - Is the name understandable to the intended audience without requiring hidden implementation knowledge?
 - Does it remain honest under likely growth, reuse, persistence, or public exposure?
 - If validation is possible, did the exact candidate pass the relevant format, collision, or contract check?
