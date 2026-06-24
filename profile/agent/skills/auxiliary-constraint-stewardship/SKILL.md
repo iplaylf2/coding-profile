@@ -9,6 +9,8 @@ Treat an auxiliary constraint as any supporting condition, exception path, quali
 
 Do not treat defensive completeness as a default goal. When a constraint is under review, first decide whether it protects a real boundary or compensates for missing ownership; preserve or clarify the former, and prefer deletion, narrowing, or moving ownership for the latter.
 
+Treat defensive wrappers around behavior owned outside this artifact as provisional unless they attach to a stable local contract. If a constraint shadows another owner, identify the owning boundary, source of truth, and drift signal before keeping it; otherwise prefer surfacing, delegating, or moving the contract over adding local acceptance, rejection, or fallback logic.
+
 Use examples and lists only as prompts for finding local evidence. Do not let them become closed taxonomies.
 
 ## Intent Questions
@@ -29,6 +31,8 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 ## Boundary Ownership Questions
 
 - What boundary naturally owns the issue, such as this artifact, its caller or reader, an adjacent system, source data, documentation, or the existing failure surface?
+- Is the constraint enforcing a local invariant, or shadowing a contract owned outside this artifact that may change independently?
+- If that owner changed behavior, should this artifact follow automatically or preserve a narrower local contract?
 - Would the existing boundary surface the issue honestly enough without a new constraint?
 - Would documenting the tradeoff serve the consumer better than changing the artifact's behavior or structure?
 - What responsibility would move into or out of this artifact if the constraint were added, removed, or rewritten?
@@ -39,6 +43,8 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Is the defended-against case reachable and likely enough to matter?
 - Is the constraint duplicating an existing guarantee, compensating for an absent contract, or masking an unresolved ownership boundary?
 - Is the source of truth authoritative, or is the constraint copied from stale knowledge, defensive habit, or earlier patching?
+- What signal, test, schema, version, or owner would reveal that the defended behavior has drifted from its source of truth?
+- If the defended-against case changes shape, would the constraint fail closed, fail open, or silently misclassify supported or unsupported states?
 - Does the constraint have observable behavior that can be tested, reviewed, or explained without relying on intention alone?
 - Does the constraint reduce, preserve, or expand the time or state window in which ambiguous or unsupported conditions can be treated as valid?
 - For code artifacts, which guards, fallbacks, nullable states, error paths, or duplicated state representations express real boundary decisions rather than incidental defensive structure?
@@ -50,6 +56,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Does the constraint reveal a non-obvious boundary, exception, decision, or invariant, or only restate a convention the intended consumer or surrounding system should already follow?
 - Does it create surface completeness while suppressing a more important error, missing contract, unresolved decision, or ownership gap?
 - Does it let vague, stale, partial, or misleading output look successful?
+- Does it reduce risk, or only replace explicit source uncertainty with a brittle local approximation?
 - Is a temporary or transitional path being promoted into a durable design concern without enough evidence?
 - Is the benefit proportionate to the cost?
 
@@ -61,6 +68,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Can the same user value be achieved by removing, narrowing, delegating, or rewriting the constraint as a smaller expression of the same responsibility?
 - What is the smallest change that restores the right relationship without stripping legitimate protection?
 - Can an internal invariant or defended case be expressed through the owning model or boundary instead of carried as an auxiliary exception?
+- Can the owning boundary, contract surface, or caller responsibility absorb the defense instead of this artifact carrying a shadow rule?
 - When keeping a constraint, can its trigger, owner, behavior, and validation be named without making prose or names narrate the defensive mechanism?
 - Would a broader rewrite or boundary change make the artifact read as originally designed rather than incrementally patched?
 - What legitimate constraint must remain because it protects a real boundary or documented contract?
@@ -69,6 +77,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 
 - Which new supporting structures did the edit add, such as branches, helpers, paragraphs, caveats, wrappers, examples, messages, or validation paths?
 - Does each new structure carry a stable boundary decision, or does it substitute defensive narration or redundant restatement for one?
+- Did the edit add a wrapper whose validity depends on source behavior that the artifact cannot observe or control?
 - Did the edit make failure, choice, or explanation more honest, or did it make a failed, unknown, or unsupported state look successful?
 - Did the edit reduce defensive surface where the primary path was already honest enough?
 - Can any supporting structure be removed, inlined, or delegated while keeping the primary path centered?
@@ -79,5 +88,6 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 - Which constraints were changed, validated, removed, or intentionally left unchanged?
 - Why is the result better than merely making the artifact shorter, stricter, more complete-looking, or more cautious?
 - Which boundary owns the remaining failure, tradeoff, or exception?
+- When a defensive wrapper remains, which owning boundary, source of truth, and drift signal justified keeping it?
 - What evidence shaped the judgment, and what was intentionally preserved?
 - What validation was performed, and what residual risk remains?
