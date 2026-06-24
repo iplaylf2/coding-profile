@@ -8,14 +8,14 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 ## Intent Questions
 
 - What PR artifact did the user ask for: title, body, complete PR/MR text, options, refinement, or review of an existing draft?
-- What expression constraint matters: local format, required references or sections, validation detail, length, language, tone, title style, or reviewer role?
+- What expression constraint matters: local format, required references or sections, validation detail, length, language, tone, title style, reviewer role, or exact terms from the user, issue, branch, or review?
 - Who is the likely reader: immediate reviewer, owning maintainer, cross-team reviewer, release-oriented reader, external contributor, or future maintainer?
 - Which missing details can be inferred from repository context, diff evidence, branch name, commits, linked issues, or the existing draft instead of asking the user?
 
 ## Evidence Questions
 
 - What change is being proposed? Treat the user-provided diff, branch comparison, PR patch, staged changes, unstaged changes, commit range, or prose description as the source of truth.
-- What context explains the change? Use linked issues, branch names, commit messages, review comments, or product notes as intent hints, but do not let them override the actual diff.
+- What context explains the change? Use linked issues, branch names, commits, reviews, or product notes as intent hints, preserving exact terms only for required labels, product or API names, user-facing copy, or local convention.
 - What repository is this? Inspect the README, project metadata, nearby files, and ownership boundaries only as much as needed to understand the product or domain, local vocabulary, and likely reviewer expectations.
 - What local PR expression already exists? When available, inspect visible templates and a small sample of recent, relevant, representative PR/MR titles or bodies to infer title grammar, body length, section names, audience assumptions, and validation detail.
 - What visible template or formatting requirement exists? Respect it when it is supplied or discoverable, but do not investigate hosting platform details merely to guess where the PR/MR will be published.
@@ -54,6 +54,7 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 - Does the title identify the change without leaking implementation trivia or overstating scope?
 - Does the body explain why the change exists, what matters for review, and how it was validated?
 - Did repository vocabulary, audience expectations, template conventions, and recent similar PRs shape the draft without adding unsupported claims or stale habits?
+- Did the draft translate source phrasing into reviewer-facing repository language grounded in change evidence, template, and local conventions?
 - Are obvious diff details omitted unless they carry consequence, risk, or reviewer guidance?
 - Would a reviewer know where to focus after reading the body?
 

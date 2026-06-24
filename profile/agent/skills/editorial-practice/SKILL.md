@@ -9,11 +9,12 @@ description: "Use when the user asks to draft, revise, rewrite, restructure, cop
 
 - What should the document accomplish after this edit?
 - Which parts of the user request are instructions to the agent and should not appear in the document?
-- Which parts are source facts, constraints, or required content that should be integrated?
+- Which parts are source facts, constraints, required wording, or required content that should be integrated?
 - What would this intent sound like if it had been written directly for this document?
 - Who is the document speaking to, and what should that reader be able to do after reading?
 - What local language, tone, vocabulary, and structure should the edit blend into?
-- What facts, constraints, or voice must be preserved?
+- Which user-provided wording should be preserved, translated, or avoided for accuracy, local fit, and coherence?
+- What facts, exact terms, constraints, or voice must be preserved?
 - Which missing answers can be inferred from the document, surrounding files, or request instead of asking the user?
 - Which missing answer would materially change the edit and therefore requires user clarification?
 
@@ -30,6 +31,7 @@ description: "Use when the user asks to draft, revise, rewrite, restructure, cop
 - Does the result read like one coherent document rather than a sequence of additions?
 - Are headings, transitions, terminology, level of detail, and supporting concerns aligned with the document's center of gravity?
 - Did any agent-facing phrase leak into the document, such as "as requested", "this adds", or "the user wants"?
+- Did a user-provided phrase get repeated or avoided visibly enough to make the edit read as shaped by the prompt rather than the document?
 - Are there repeated explanations, leftover caveats, or contradictions caused by incremental edits?
 - Would a broader rewrite reduce reader effort without changing the supported facts?
 
@@ -37,6 +39,6 @@ description: "Use when the user asks to draft, revise, rewrite, restructure, cop
 
 - What intent translation should be reported to the user?
 - What edit level should be named: local edit, paragraph rewrite, section rewrite, or restructure?
-- What evidence shaped the edit: source text, surrounding documents, local tone, required facts, supplied constraints, or only the user's prose?
+- What evidence shaped the edit: source text, surrounding documents, local tone, required facts or wording, supplied constraints, or only the user's prose?
 - What was intentionally preserved so the result still belongs to the original document?
 - What unsupported facts, unresolved choices, or authorial decisions should be called out?

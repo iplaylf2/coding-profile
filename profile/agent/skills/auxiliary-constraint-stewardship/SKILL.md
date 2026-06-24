@@ -15,7 +15,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 
 - What should the artifact help its intended consumer do?
 - What is the primary path before auxiliary constraints qualify it?
-- Which constraint is under question, and what decision, failure path, or tradeoff does it affect?
+- Which constraint is under question, and what decision, failure path, tradeoff, or wording requirement does it affect?
 - Which local facts or invariants must be preserved?
 - What value is the constraint meant to add beyond the primary path?
 - Which missing answers can be inferred from nearby evidence instead of asking the user?
@@ -35,7 +35,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 
 ## Justification Questions
 
-- What local evidence explains why the constraint exists?
+- What local evidence explains the constraint, including whether wording is a stable contract, local convention, domain term, or session example?
 - Is the defended-against case reachable and likely enough to matter?
 - Is the constraint duplicating an existing guarantee, compensating for an absent contract, or masking an unresolved ownership boundary?
 - Is the source of truth authoritative, or is the constraint copied from stale knowledge, defensive habit, or earlier patching?
@@ -56,7 +56,7 @@ Use examples and lists only as prompts for finding local evidence. Do not let th
 ## Revision Questions
 
 - Does the existing structure already express the right relationship between the constraint and the primary path?
-- Can the constraint be replaced by or subordinated to a positive responsibility, invariant, precondition, or decision boundary?
+- Can the constraint, including wording requirements, be replaced by or subordinated to a positive responsibility, invariant, precondition, audience effect, or decision boundary?
 - For prose artifacts, would rewriting around the primary responsibility make negative or exception-heavy wording smaller or unnecessary?
 - Can the same user value be achieved by removing, narrowing, delegating, or rewriting the constraint as a smaller expression of the same responsibility?
 - What is the smallest change that restores the right relationship without stripping legitimate protection?

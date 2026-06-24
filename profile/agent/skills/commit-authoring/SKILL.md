@@ -7,14 +7,14 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 
 ## Intent Questions
 
-- What output constraints did the user specify: strict `<type>(<scope>): <subject>` header, local variant, body, language, number of options, or review criteria?
+- What output constraints did the user specify: strict header, local variant, body, language, exact wording, number of options, or review criteria?
 - Which missing details can be inferred from the diff, repository context, branch, and local conventions instead of asking the user?
 
 ## Evidence Questions
 
 - What repository is this? Inspect the README, project metadata, nearby configuration, and recent commits only as much as needed to understand the domain, vocabulary, ownership boundaries, and commit style.
 - What branch is active? Read `git branch --show-current` or PR head/base refs when available. Use branch names as intent hints, not as proof of what changed.
-- What exact change is being committed? Treat the diff or supplied change description as the source of truth for the message.
+- What exact change is being committed? Treat the diff or supplied description as the source of truth, and distinguish required wording from intent to translate into repository vocabulary.
 - Which evidence source is authoritative for this request: user-provided diff, staged changes, unstaged changes, branch comparison, PR patch, or prose description?
 - Is the commit target staged? In a local repository, inspect `git status --short`; prefer `git diff --cached --stat`, `git diff --cached --name-status`, and targeted cached diffs when staged changes exist.
 - If nothing is staged, read unstaged status and diffs before drafting, and make clear that the message is based on unstaged changes.
@@ -53,6 +53,7 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 - When using semantic header grammar, do `type`, `scope`, and `subject` each carry separate information without overlap?
 - Does the message reflect the repository background and vocabulary without making unsupported claims?
 - Did branch context inform the draft without overriding the diff?
+- Did the message translate user, branch, and issue phrasing into an accurate change summary grounded in change evidence and repository vocabulary?
 - Does the message cover the actual committed change rather than listing files or implementation trivia?
 - Would a future maintainer understand why the change belongs together?
 - Are unrelated changes being hidden behind a broad verb such as "update" or "fix"?

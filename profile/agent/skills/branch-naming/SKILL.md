@@ -10,13 +10,13 @@ Treat a branch name as a coordination label: it should make the work easy to rec
 ## Intent Questions
 
 - What branch-name decision is needed, and what output shape did the user request?
-- What explicit naming constraints must shape the candidate, such as format, work-item identifiers, separators, length, language, or repository policy?
+- What explicit naming constraints must shape the candidate, such as required identifiers, exact wording, format, separators, length, language, or repository policy?
 - Which missing details can be inferred from repository conventions, work evidence, and local vocabulary instead of asking the user?
 - Which missing answer would materially change the required format, work identity, or local convention enough to require user clarification?
 
 ## Information Sources
 
-- User constraints are authoritative for required format, work-item identifier placement, output shape, and repository policy.
+- User constraints are authoritative for required format, work-item identifier placement, output shape, and repository policy. User task wording supplies intent unless exact wording or identifiers are required.
 - Local branch history supplies grammar. Inspect recent local and remote branch names with `git for-each-ref refs/heads refs/remotes --sort=-committerdate --format='%(refname:short)'` when available.
 - Work evidence supplies meaning. Prefer the user's task description and available work evidence, such as an issue or PR title, staged or unstaged changes, or a target diff, over the current branch name.
 - Repository context supplies vocabulary and possible scopes. Inspect the README, project metadata, nearby files, and ownership boundaries only as much as needed to understand the domain.
@@ -43,6 +43,7 @@ Treat a branch name as a coordination label: it should make the work easy to rec
 - Does the name satisfy local convention or an intentionally justified `<type>/<scope>/<subject>` or `<type>/<subject>` fallback?
 - Do `type`, `scope`, `subject`, and `ticket` each carry separate information without overlap?
 - Does the name reflect the work evidence, repository background, and repository vocabulary without making unsupported claims?
+- Did the slug preserve required identifiers while letting work evidence and local branch vocabulary choose the wording?
 - Does the candidate satisfy Git ref rules? Validate an exact candidate with `git check-ref-format --branch <candidate>` when a repository shell is available.
 - Does the candidate collide with an existing local or remote branch name?
 - If this is part of a broader branch workflow, can the naming recommendation stand on its own without implying an operation?

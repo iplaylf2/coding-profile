@@ -9,12 +9,15 @@ Treat naming as a decision about meaning, boundary, audience, and future use. A 
 
 Use examples and lists as prompts for local investigation, not as closed taxonomies. Prefer the vocabulary, contrast set, and conventions visible in the user's workspace, source material, product surface, or domain context.
 
+Treat user-provided words as evidence or constraints by role. Preserve exact wording when it is an explicit required term, local or domain term, exact label, or candidate that earns its place in the local contrast set; otherwise translate its semantic intent into that contrast set.
+
 ## Intent Questions
 
 - What naming help did the user ask for, and what entity or vocabulary family is being named?
 - What use must the name support for its intended audience, maintainers, search, tooling, or coordination?
 - What exposure, durability, or tooling surface determines how much context the name must carry, and where does surrounding context already carry category, ownership, or purpose?
-- What explicit naming constraints or local format rules must the candidates satisfy?
+- What explicit naming constraints, supplied terms, candidate words, or local format rules must the candidates satisfy?
+- If the user prefers or rejects a word, what meaning, contrast, audience concern, or local convention explains that preference?
 - If naming is a term choice inside a broader task, what smallest naming judgment is needed before returning control to that task?
 - Which missing details can be inferred from surrounding context, local names, domain vocabulary, adjacent artifacts, or the user's goal?
 - Which missing answer would materially change the audience, semantic emphasis, compatibility, or risk enough to require user clarification?
@@ -51,6 +54,7 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 - Match local naming shape before applying generic preference, including how much local names tend to compress or spell out context.
 - Use natural language for human-facing names and stable, tool-valid shapes for machine-facing names.
 - Prefer shared vocabulary over private invention unless the user is intentionally creating a new concept.
+- Test supplied words against the relevant contrast set and local shape before preserving, replacing, or avoiding them.
 - Use abbreviations, acronyms, numerals, and coined terms only when the intended audience already recognizes them or the surrounding system consistently uses them.
 - Keep sibling names at comparable levels of abstraction; do not mix category, mechanism, state, and exception as if they were peers.
 - Avoid generic role or filler terms, such as "manager", "helper", "data", "item", or "common", unless local convention gives them a precise role.
@@ -62,6 +66,7 @@ Use examples and lists as prompts for local investigation, not as closed taxonom
 - Does it foreground the right domain semantic for this context?
 - After changing its length, does it preserve enough distinction from nearby names without repeating context that is already obvious?
 - Does each word still earn its place after accounting for surrounding context, or should it be removed, replaced with a denser domain term, or moved into that context?
+- Did the recommendation translate user phrasing into a durable name grounded in local contrast and future use?
 - Is the name understandable to the intended audience without requiring hidden implementation knowledge?
 - Does it remain honest under likely growth, reuse, persistence, or public exposure?
 - If validation is possible, did the exact candidate pass the relevant format, collision, or contract check?
