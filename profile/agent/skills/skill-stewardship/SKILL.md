@@ -26,7 +26,7 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 ## Body Questions
 
 - Once this skill is active, what should the agent ask itself first?
-- What context, evidence, or local convention should the agent inspect before acting?
+- What context or convention changes this skill's decisions, and what is merely background?
 - What should the agent infer instead of asking the user?
 - When is user clarification genuinely required?
 - What decision rules or responsibility boundaries keep auxiliary constraints serving the user's intent rather than becoming parallel responsibilities?
@@ -48,11 +48,11 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 ## Keywords And Lists Questions
 
 - Is this keyword a literal artifact name, such as a file type, command, API, tool, or product term?
-- Would this keyword, word preference, rejection, or example still change routing or behavior if the current conversation or artifact were different?
+- Would this keyword, word preference, rejection, or example still change routing or behavior, or is it only governing vocabulary?
 - Is this list a closed set, a fragile sequence the agent must follow, or an open set of examples for inference?
 - If the category is open-ended, can a category phrase replace the enumeration?
-- Does the enumeration define the skill by artifact type when the real trigger is a relationship, decision, evidence source, or user intent?
-- Would paraphrase, translation, or implication bypass this skill because the wording is too exact, or make future agents copy or avoid a term instead of reasoning from evidence?
+- Does the enumeration define the skill by artifact type when the real trigger is a relationship, decision, information source, or user intent?
+- Would paraphrase, translation, or implication bypass this skill because the wording is too exact, or make future agents copy or avoid a term instead of reasoning from the task?
 - Would removing one item from this list change future agent behavior?
 
 ## Focus Questions
@@ -61,7 +61,8 @@ description: "Use when the user asks to create, review, refactor, or optimize re
 - Does it guide the agent's work after activation?
 - Does it preserve the question-led intent model and keep the user's current center of gravity primary?
 - Is this section preserving a necessary responsibility, or only matching the length, shape, or caution level of nearby skills?
-- Is it justified by user intent, local convention, external standard, repeated failure mode, or task evidence?
+- Is it justified by user intent, external standard, repeated failure mode, or a decision the skill must actually make?
+- Would it improve decisions while keeping the task scope bounded?
 - Would a future agent behave worse without it?
 - If not, why keep it?
 

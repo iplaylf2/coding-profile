@@ -39,6 +39,5 @@ description: "Use when the user asks to draft, revise, rewrite, restructure, cop
 
 - What intent translation should be reported to the user?
 - What edit level should be named: local edit, paragraph rewrite, section rewrite, or restructure?
-- What evidence shaped the edit: source text, surrounding documents, local tone, required facts or wording, supplied constraints, or only the user's prose?
 - What was intentionally preserved so the result still belongs to the original document?
 - What unsupported facts, unresolved choices, or authorial decisions should be called out?

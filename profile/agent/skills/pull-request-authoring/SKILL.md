@@ -10,9 +10,9 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 - What PR artifact did the user ask for: title, body, complete PR/MR text, options, refinement, or review of an existing draft?
 - What expression constraint matters: local format, required references or sections, validation detail, length, language, tone, title style, reviewer role, or exact terms from the user, issue, branch, or review?
 - Who is the likely reader: immediate reviewer, owning maintainer, cross-team reviewer, release-oriented reader, external contributor, or future maintainer?
-- Which missing details can be inferred from repository context, diff evidence, branch name, commits, linked issues, or the existing draft instead of asking the user?
+- Which missing details can be inferred from repository context, diff, branch name, commits, linked issues, or the existing draft instead of asking the user?
 
-## Evidence Questions
+## Change Source Questions
 
 - What change is being proposed? Treat the user-provided diff, branch comparison, PR patch, staged changes, unstaged changes, commit range, or prose description as the source of truth.
 - What context explains the change? Use linked issues, branch names, commits, reviews, or product notes as intent hints, preserving exact terms only for required labels, product or API names, user-facing copy, or local convention.
@@ -26,7 +26,7 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 - Make the title answer what changed and where it matters, not which files were edited.
 - Prefer the repository's PR title convention. If none is visible, use a concise imperative or noun phrase that a reviewer can scan in a PR list.
 - Include an issue or ticket identifier only when the user, branch, template, or local convention supports it.
-- Avoid vague editing verbs such as "update", "fix stuff", or "changes" unless that is the repository's explicit style.
+- Use a specific change verb or noun phrase; when repository style requires a broad verb, make the rest of the title carry review value.
 - Do not force commit-message grammar into the PR title unless local PRs consistently use it.
 
 ## Body Responsibilities
@@ -35,7 +35,7 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 - Write for the likely reviewer first and the future reader second.
 - Put the reader-facing reason early: problem, intent, user-visible behavior, operational need, or maintenance outcome.
 - Summarize the meaningful change at the level a reviewer needs to evaluate scope, risk, and correctness.
-- Call out non-obvious design choices, compatibility concerns, migrations, configuration changes, data effects, security or privacy implications, performance impact, and follow-up work when supported by evidence.
+- Call out non-obvious design choices, compatibility concerns, migrations, configuration changes, data effects, security or privacy implications, performance impact, and follow-up work only when supported by the change, linked context, or known validation.
 - Include validation that was run or should be run only when known from the user, logs, local commands, CI, or repository convention.
 - Scale detail with review risk: small obvious changes can be short; risky behavior, migration, compatibility, data, security, or operational changes need clearer context and validation.
 - Preserve required template sections when a template is visible. If no template is available, use portable Markdown with simple headings and bullets.
@@ -53,8 +53,8 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 
 - Does the title identify the change without leaking implementation trivia or overstating scope?
 - Does the body explain why the change exists, what matters for review, and how it was validated?
-- Did repository vocabulary, audience expectations, template conventions, and recent similar PRs shape the draft without adding unsupported claims or stale habits?
-- Did the draft translate source phrasing into reviewer-facing repository language grounded in change evidence, template, and local conventions?
+- Did repository vocabulary, audience expectations, template conventions, and recent similar PRs shape the draft without adding unsupported claims?
+- Did the draft translate source phrasing into reviewer-facing repository language grounded in the change source, template, and local conventions?
 - Are obvious diff details omitted unless they carry consequence, risk, or reviewer guidance?
 - Would a reviewer know where to focus after reading the body?
 
@@ -62,5 +62,4 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 
 - What exact title and body should the user be able to paste directly?
 - If multiple options are proposed, what emphasis or convention distinguishes each one?
-- What evidence was used: repository background, audience, PR template, recent PRs, diff, branch, issue, commits, CI, local commands, or only the user's prose?
-- What uncertainty remains because the change evidence, template, validation, or linked context was unavailable?
+- What uncertainty remains because the change source, template, validation, or linked context was unavailable?

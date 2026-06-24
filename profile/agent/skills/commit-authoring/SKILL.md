@@ -10,12 +10,12 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 - What output constraints did the user specify: strict header, local variant, body, language, exact wording, number of options, or review criteria?
 - Which missing details can be inferred from the diff, repository context, branch, and local conventions instead of asking the user?
 
-## Evidence Questions
+## Change Source Questions
 
 - What repository is this? Inspect the README, project metadata, nearby configuration, and recent commits only as much as needed to understand the domain, vocabulary, ownership boundaries, and commit style.
 - What branch is active? Read `git branch --show-current` or PR head/base refs when available. Use branch names as intent hints, not as proof of what changed.
 - What exact change is being committed? Treat the diff or supplied description as the source of truth, and distinguish required wording from intent to translate into repository vocabulary.
-- Which evidence source is authoritative for this request: user-provided diff, staged changes, unstaged changes, branch comparison, PR patch, or prose description?
+- Which change source controls this request: user-provided diff, staged changes, unstaged changes, branch comparison, PR patch, or prose description?
 - Is the commit target staged? In a local repository, inspect `git status --short`; prefer `git diff --cached --stat`, `git diff --cached --name-status`, and targeted cached diffs when staged changes exist.
 - If nothing is staged, read unstaged status and diffs before drafting, and make clear that the message is based on unstaged changes.
 - What local grammar already exists? Read recent subjects with `git log -n 20 --pretty=format:%s` to infer type set, scope style, subject style, language, capitalization, and body usage.
@@ -43,9 +43,9 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 
 - Repository context supplies vocabulary, valid scopes, and house style.
 - Branch context supplies intent hints and possible issue or feature context.
-- Change evidence supplies the facts the message must accurately describe.
-- Include issue references, breaking-change markers, validation notes, performance impact, or user-facing impact only when supported by change evidence, user context, or local convention.
-- When these sources disagree, prefer change evidence over branch names and prefer repository conventions over generic commit-message advice.
+- Change facts supply what the message must accurately describe.
+- Include issue references, breaking-change markers, validation notes, performance impact, or user-facing impact only when supported by change facts, user context, or local convention.
+- When these sources disagree, prefer change facts over branch names and prefer repository conventions over generic commit-message advice.
 
 ## Review Questions
 
@@ -53,7 +53,7 @@ description: "Use when the user asks to generate, refine, choose, or review a Gi
 - When using semantic header grammar, do `type`, `scope`, and `subject` each carry separate information without overlap?
 - Does the message reflect the repository background and vocabulary without making unsupported claims?
 - Did branch context inform the draft without overriding the diff?
-- Did the message translate user, branch, and issue phrasing into an accurate change summary grounded in change evidence and repository vocabulary?
+- Did the message translate user, branch, and issue phrasing into an accurate change summary grounded in change facts and repository vocabulary?
 - Does the message cover the actual committed change rather than listing files or implementation trivia?
 - Would a future maintainer understand why the change belongs together?
 - Are unrelated changes being hidden behind a broad verb such as "update" or "fix"?

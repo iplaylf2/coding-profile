@@ -7,9 +7,9 @@ description: "Use when the user asks to generate, refine, choose, or review a na
 
 Treat naming as a decision about meaning, boundary, audience, and future use. A good name balances information density against length by carrying the minimum context needed where it will be read, searched, spoken, maintained, or used by tools; start with the shortest locally natural candidate, prefer higher-density domain terms over extra qualifiers, and add words only when surrounding context cannot carry that work.
 
-Use examples and lists as prompts for local investigation, not as closed taxonomies. Prefer the vocabulary, contrast set, and conventions visible in the user's workspace, source material, product surface, or domain context.
+Use examples and lists as prompts for local investigation, not as closed taxonomies. Prefer the vocabulary, contrast set, and conventions visible in the user's workspace, source material, product surface, or domain context when they help the intended audience.
 
-Treat user-provided words as evidence or constraints by role. Preserve exact wording when it is an explicit required term, local or domain term, exact label, or candidate that earns its place in the local contrast set; otherwise translate its semantic intent into that contrast set.
+Treat user-provided words by role. Preserve exact wording when it is an explicit required term, local or domain term, exact label, or candidate that earns its place in the local contrast set; otherwise translate its semantic intent into that contrast set.
 
 ## Intent Questions
 
@@ -22,12 +22,12 @@ Treat user-provided words as evidence or constraints by role. Preserve exact wor
 - Which missing details can be inferred from surrounding context, local names, domain vocabulary, adjacent artifacts, or the user's goal?
 - Which missing answer would materially change the audience, semantic emphasis, compatibility, or risk enough to require user clarification?
 
-## Evidence Questions
+## Naming Context Questions
 
 - What nearby names or terms form the relevant contrast set?
 - What local naming shape should candidates follow?
 - What domain model or user workflow explains the thing being named?
-- Which source of truth should win when naming evidence disagrees?
+- Which source should win when naming inputs disagree?
 - Which terms are overloaded, deprecated, aspirational, implementation-leaky, or likely to mislead the intended audience?
 - What future additions are likely, and would the candidate still leave room for sibling names without forcing awkward exceptions?
 
@@ -75,6 +75,5 @@ Treat user-provided words as evidence or constraints by role. Preserve exact wor
 
 - What exact name should the user be able to use directly? Put the best candidate first.
 - If multiple options are useful, what semantic emphasis or convention distinguishes each option?
-- What evidence shaped the recommendation, and was it enough to support the chosen name?
 - What was intentionally shortened because context already carries it, and what was intentionally included because the name must stand alone?
 - What uncertainty remains because key context, validation, or neighboring names were unavailable?

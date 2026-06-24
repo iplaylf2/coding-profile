@@ -7,7 +7,7 @@ description: "Use when the user asks to review, revise, refactor, or diagnose wh
 
 Treat an auxiliary constraint as any supporting condition, exception path, qualification, fallback, recovery rule, or caveat that modifies the primary path in response to a boundary, exception, tradeoff, or failure mode. Its form matters less than its relationship to the artifact's main responsibility.
 
-Do not treat defensive completeness as a default goal. When a constraint is under review, keep deletion, narrowing, moving ownership, and clarifying the primary contract available as alternatives to adding defensive coverage.
+Do not treat defensive completeness as a default goal. When a constraint is under review, first decide whether it protects a real boundary or compensates for missing ownership; preserve or clarify the former, and prefer deletion, narrowing, or moving ownership for the latter.
 
 Use examples and lists only as prompts for finding local evidence. Do not let them become closed taxonomies.
 

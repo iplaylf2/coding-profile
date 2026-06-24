@@ -5,14 +5,14 @@ description: "Use when the user asks to decide where or how to create, place, na
 
 # Module Structure Stewardship
 
-Treat examples and lists as investigation prompts, not closed taxonomies. Prefer the module categories, names, and dependency surfaces visible in the user's workspace. Name file kinds, extensions, frameworks, or artifact types only when they change routing, evidence, validation, or which artifact is authoritative.
+Treat examples and lists as investigation prompts, not closed taxonomies. Prefer the module categories, names, and dependency surfaces visible in the user's workspace when they express ownership, dependency direction, or public surface. Name file kinds, extensions, frameworks, or artifact types only when they change routing, ownership, dependency direction, public surface, or which artifact is authoritative.
 
 When describing module relationships, distinguish hierarchy from dependency, disclosure, and ownership. Use parent, child, ancestor, and descendant for hierarchy, reserving root and leaf for cases where the root or terminal node itself matters. Use dependency direction, disclosure, public surface, contract, and ownership boundary for relationship and exposure decisions; use upstream or downstream only when those terms already belong to the local architecture.
 
 ## Intent Questions
 
 - Is the user asking for a placement decision, a new module, a diagnosis, a restructuring plan, structural edits, or a module naming decision?
-- What local unit is operating as a module in this workspace, and what evidence makes it so?
+- What local unit is operating as a module in this workspace, and what makes it so?
 - What scope did the user name, and what nearby files must be inspected to understand that scope without expanding the task unnecessarily?
 - Which missing answers can be inferred from paths, names, references, imports, tests, indexes, or a visible local convention?
 - Which missing answer would materially change the target, placement, edit scope, or risk enough to require user clarification?
@@ -25,9 +25,9 @@ When describing module relationships, distinguish hierarchy from dependency, dis
 - Would using this skill change where files live, how modules relate, or what a parent module exposes? If not, let the primary task-family govern.
 - What is the smallest structural judgment that satisfies the user without turning the task into a general architecture review?
 
-## Evidence Questions
+## Structure Signals Questions
 
-- What evidence reveals the intended boundaries: names and paths, overview files, indexes or manifests, imports or exports, links, tests or build rules, repeated headings, or visible local conventions?
+- What reveals the intended boundaries: names and paths, overview files, indexes or manifests, imports or exports, links, tests or build rules, repeated headings, or visible local conventions?
 - Which files are authoritative sources, and which are explanatory, generated, or derived views?
 - Which relationships are explicit, and which are inferred from location, naming, ordering, shared vocabulary, or repeated structure?
 - Which boundaries are enforced by language, packaging, build tooling, tests, or runtime behavior, and which exist only as prose or convention?
@@ -87,15 +87,15 @@ When describing module relationships, distinguish hierarchy from dependency, dis
 - Would the proposed structure create a shadow source of truth, stale inventory, or duplicated maintenance burden?
 - Does a cited local convention carry a stable boundary decision, or is it masking a shadow source of truth, stale inventory, or duplicated maintenance burden?
 - Would the proposed structure reduce parent or ancestor dependence on descendant details, rather than relocating descendant inventory outside its owning child boundary?
-- When a snapshot is necessary, what version, date, command, or evidence makes it intentionally fixed rather than stale by default?
+- When a snapshot is necessary, what version, date, command, or other marker makes it intentionally fixed rather than stale by default?
 - What is the smallest change that improves the module relationship: leave unchanged, rename, split, merge, move, add an index, extract a shared primitive, invert a dependency, or document a boundary?
 - What risk would the proposed change introduce for references, imports, tests, published APIs, data consistency, deployment, or reader expectations?
 
 ## Handoff Questions
 
-- What module shape was found or chosen, and what evidence supports that reading?
+- What module shape was found or chosen, and what supports that reading?
 - Which boundaries, placement choices, growth expectations, dependencies, disclosure choices, transitive coupling, or cycles deserve action?
 - What change is recommended or implemented, and why is it better than only making the tree look tidier?
 - What was treated as the authoritative source of mutable data, and how was duplication or stale documentation avoided?
-- What evidence justified leaving something alone because it was a visible local convention with no material structural cost, harmless redundancy, obvious placement, or outside the user's scope?
+- What justified leaving something alone because it was a visible local convention with no material structural cost, harmless redundancy, obvious placement, or outside the user's scope?
 - What validation was performed: static file review, reference search, dependency inspection, tests, build checks, or only conceptual review?
