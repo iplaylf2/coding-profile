@@ -5,7 +5,9 @@ description: "Use when the user asks to generate, refine, choose, or review a na
 
 # Naming Stewardship
 
-Treat naming as a decision about meaning, boundary, audience, and future use. A good name balances information density against length by carrying the minimum context needed where it will be read, searched, spoken, maintained, or used by tools; start with the shortest locally natural candidate, prefer higher-density domain terms over extra qualifiers, and add words only when surrounding context cannot carry that work.
+Treat naming as a decision about meaning, boundary, audience, and future use. Length is a recurring cost: every added word adds surface area to reading, maintenance, speech, search, and tooling. Default to the shortest locally natural candidate that preserves the necessary distinction; prefer higher-density domain terms over extra qualifiers, and add words only when surrounding context cannot carry that work.
+
+Set a length budget before expanding a name. Local, internal, or adjacent-context names should stay compressed unless local contrast, format, or real ambiguity requires more context. Public API, persisted, search-facing, cross-team, or standalone names may carry extra context; each added word must be justified by that exposure.
 
 Use examples and lists as prompts for local investigation, not as closed taxonomies. Prefer the vocabulary, contrast set, and conventions visible in the user's workspace, source material, product surface, or domain context when they help the intended audience.
 
@@ -15,7 +17,7 @@ Treat user-provided words by role. Preserve exact wording when it is an explicit
 
 - What naming help did the user ask for, and what entity or vocabulary family is being named?
 - What use must the name support for its intended audience, maintainers, search, tooling, or coordination?
-- What exposure, durability, or tooling surface determines how much context the name must carry, and where does surrounding context already carry category, ownership, or purpose?
+- What exposure, durability, or tooling surface determines the minimum context the name must carry, and where does surrounding context already carry category, ownership, or purpose?
 - What explicit naming constraints, supplied terms, candidate words, or local format rules must the candidates satisfy?
 - If the user prefers or rejects a word, what meaning, contrast, audience concern, or local convention explains that preference?
 - If naming is a term choice inside a broader task, what smallest naming judgment is needed before returning control to that task?
@@ -43,11 +45,12 @@ Treat user-provided words by role. Preserve exact wording when it is an explicit
 ## Context And Density Questions
 
 - What information must the name carry itself, and what can surrounding context, sibling names, or the domain model carry instead?
-- Starting from the shortest locally natural candidate, does each added word increase reader-facing contrast, standalone readability, search value, or format compliance enough to justify its length?
+- What is the length budget for this surface, such as local/internal, adjacent-context, public/API, persisted, search-facing, spoken, or standalone?
+- Starting from the shortest locally natural candidate, does each added word increase reader-facing contrast, standalone readability, search value, or format compliance enough to justify its ongoing cost?
 - Where must the name stand alone, and what context must be restored there without repeating context that is already visible nearby?
 - Would replacing a vague modifier or stack of qualifiers with a denser domain term preserve meaning while shortening the name?
 - Are adjectives, qualifiers, prefixes, or suffixes carrying real contrast, or only making the name look complete?
-- Does a long or heavily qualified name identify a stable concept, or is it compensating for unclear state or responsibility that should be simplified or modeled differently?
+- If a candidate needs multiple modifiers, is it identifying a stable concept, or compensating for unclear state, responsibility, or contrast that should be simplified or modeled differently?
 
 ## Candidate Shape Questions
 
@@ -56,6 +59,8 @@ Treat user-provided words by role. Preserve exact wording when it is an explicit
 - Prefer shared vocabulary over private invention unless the user is intentionally creating a new concept.
 - Test supplied words against the relevant contrast set and local shape before preserving, replacing, or avoiding them.
 - Use abbreviations, acronyms, numerals, and coined terms only when the intended audience already recognizes them or the surrounding system consistently uses them.
+- Prefer the short form when local context already supplies category or ownership, such as through the audience, file path, type, namespace, heading, sibling group, or surrounding sentence.
+- Keep a longer variant only when the name will be detached from that context or must remain clear during search, serialization, API exposure, reuse across contexts, or cross-team coordination.
 - Keep sibling names at comparable levels of abstraction; do not mix category, mechanism, state, and exception as if they were peers.
 - Avoid generic role or filler terms, such as "manager", "helper", "data", "item", or "common", unless local convention gives them a precise role.
 - For a naming system, define what each name part is responsible for and avoid making one segment repeat another segment's meaning.
@@ -66,6 +71,8 @@ Treat user-provided words by role. Preserve exact wording when it is an explicit
 - Does it foreground the right domain semantic for this context?
 - After changing its length, does it preserve enough distinction from nearby names without repeating context that is already obvious?
 - Does each word still earn its place after accounting for surrounding context, or should it be removed, replaced with a denser domain term, or moved into that context?
+- If the best candidate is longer than the shortest viable option, what specific exposure, ambiguity, collision, local convention, or format rule justifies the extra words?
+- Which words, if any, were deliberately removed because the context already supplies them?
 - Did the recommendation translate user phrasing into a durable name grounded in local contrast and future use?
 - Is the name understandable to the intended audience without requiring hidden implementation knowledge?
 - Does it remain honest under likely growth, reuse, persistence, or public exposure?
@@ -73,7 +80,7 @@ Treat user-provided words by role. Preserve exact wording when it is an explicit
 
 ## Handoff Questions
 
-- What exact name should the user be able to use directly? Put the best candidate first.
+- What exact name should the user be able to use directly? Put the shortest viable candidate first unless exposure, ambiguity, collision, convention, or format requires extra context.
 - If multiple options are useful, what semantic emphasis or convention distinguishes each option?
-- What was intentionally shortened because context already carries it, and what was intentionally included because the name must stand alone?
+- What, if anything, was intentionally shortened because context already carries it, and what was intentionally included because the name must stand alone or cross a boundary?
 - What uncertainty remains because key context, validation, or neighboring names were unavailable?
