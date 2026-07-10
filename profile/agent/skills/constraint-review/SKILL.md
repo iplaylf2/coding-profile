@@ -1,9 +1,9 @@
 ---
-name: auxiliary-constraint-stewardship
+name: constraint-review
 description: "Use when the user needs to decide or change how a supporting constraint in code or prose should serve an artifact's primary responsibility, including whether it is needed, what invariant or audience need it protects, its disposition, or its owning boundary. Do not use to implement an already-decided protection or to make a purely structural placement decision after responsibilities are settled."
 ---
 
-# Auxiliary Constraint Stewardship
+# Constraint Review
 
 ## Constraint Boundary
 

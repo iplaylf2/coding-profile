@@ -1,9 +1,9 @@
 ---
-name: skill-stewardship
+name: skill-design
 description: "Use when the user asks to design, create, review, refactor, or optimize reusable agent skills or their activation and execution behavior. Do not use for ordinary prompts, one-off instructions, application code, or general writing unless the task is about reusable skill behavior."
 ---
 
-# Skill Stewardship
+# Skill Design
 
 The requested new or existing skill target is an input supplied by the user or
 an already-established task decision. This skill designs, creates, reviews, or

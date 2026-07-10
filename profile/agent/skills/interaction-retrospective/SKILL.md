@@ -1,11 +1,11 @@
 ---
-name: practice-memory
+name: interaction-retrospective
 description: "Use when the user asks to analyze or debrief an agent interaction to decide whether a lesson should become durable guidance for future agent behavior, determine its persistence scope or destination, or ground a requested durable-guidance change in interaction evidence. Do not use for ordinary task summaries, code review, or project postmortems unless the goal is to improve future agent behavior."
 ---
 
-# Practice Memory
+# Interaction Retrospective
 
-## Memory Boundary
+## Retrospective Boundary
 
 This skill turns an interaction record into a persistence decision. It determines
 whether a durable lesson exists and, if so, the portable behavior, supported

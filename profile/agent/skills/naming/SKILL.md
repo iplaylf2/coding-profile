@@ -1,9 +1,9 @@
 ---
-name: naming-stewardship
+name: naming
 description: "Use when the user asks to generate, choose, revise, or review a name, label, identifier, or term; design or refine a naming system; or make a substantive naming decision within a broader task. Do not use when naming is merely incidental or the task only applies an exact name already fixed by an explicit requirement or governing contract."
 ---
 
-# Naming Stewardship
+# Naming
 
 ## Naming Boundary
 

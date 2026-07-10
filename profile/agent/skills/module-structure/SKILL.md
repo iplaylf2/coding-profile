@@ -1,9 +1,9 @@
 ---
-name: module-structure-stewardship
+name: module-structure
 description: "Use when the user asks to create, place, split, move, review, or reshape files, directories, or modules because ownership, dependency direction, public surface, discoverability, or credible growth affects the work, including when a broader task contains a substantive structural decision. Do not use for a name-only choice or ordinary implementation that requires no structural judgment or change."
 ---
 
-# Module Structure Stewardship
+# Module Structure
 
 ## Structural Boundary
 

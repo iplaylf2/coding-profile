@@ -1,9 +1,9 @@
 ---
-name: commit-authoring
+name: commit-message
 description: "Use when the user asks to draft, refine, choose, or review Git commit-message text, including a substantive message decision within a broader commit task. Do not use for Git commit operations that do not require drafting or evaluating the message."
 ---
 
-# Commit Authoring
+# Commit Message
 
 ## Message Boundary
 
