@@ -1,101 +1,124 @@
 ---
 name: module-structure-stewardship
-description: "Use when the user asks to decide where or how to create, place, name, split, move, review, or reshape files or directories because module relationships affect boundaries, dependencies, growth, disclosure, or explanation. Do not use for ordinary implementation, review, or editing tasks when placement is obvious and module relationships are not the user's concern."
+description: "Use when the user asks to create, place, split, move, review, or reshape files, directories, or modules because ownership, dependency direction, public surface, discoverability, or credible growth affects the work, including when a broader task contains a substantive structural decision. Do not use for a name-only choice or ordinary implementation that requires no structural judgment or change."
 ---
 
 # Module Structure Stewardship
 
-Treat examples and lists as investigation prompts, not closed taxonomies. Prefer the module categories, names, and dependency surfaces visible in the user's workspace when they express ownership, dependency direction, or public surface. Name file kinds, extensions, frameworks, or artifact types only when they change routing, ownership, dependency direction, public surface, or which artifact is authoritative.
+## Structural Boundary
 
-When describing module relationships, distinguish hierarchy from dependency, disclosure, and ownership. Use parent, child, ancestor, and descendant for hierarchy, reserving root and leaf for cases where the root or terminal node itself matters. Use dependency direction, disclosure, public surface, contract, and ownership boundary for relationship and exposure decisions; use upstream or downstream only when those terms already belong to the local architecture.
+This skill produces a complete structural decision or change within the
+requested scope: owning location, unit boundaries, dependency direction, public
+surface, and required integration points. Treat explicit user requirements and
+established decisions outside this domain as inputs; decide unresolved
+structural details from workspace evidence.
 
-## Intent Questions
+A name-only choice and a content change with no structural consequence are
+outside this skill's result. When a proposed name implies a structural claim,
+identify the ownership or relationship that the name must represent.
 
-- Is the user asking for a placement decision, a new module, a diagnosis, a restructuring plan, structural edits, or a module naming decision?
-- What local unit is operating as a module in this workspace, and what makes it so?
-- What scope did the user name, and what nearby files must be inspected to understand that scope without expanding the task unnecessarily?
-- Which missing answers can be inferred from paths, names, references, imports, tests, indexes, or a visible local convention?
-- Which missing answer would materially change the target, placement, edit scope, or risk enough to require user clarification?
+## Context Questions
 
-## Scope Questions
-
-- Is module structure the center of the request, or only a background concern for another task?
-- If another primary task is underway, what structural decision must be made before ordinary work can proceed?
-- Is another task-family skill primary, with this skill only supplying a placement, boundary, dependency, or disclosure judgment?
-- Would using this skill change where files live, how modules relate, or what a parent module exposes? If not, let the primary task-family govern.
-- What is the smallest structural judgment that satisfies the user without turning the task into a general architecture review?
-
-## Structure Signals Questions
-
-- What reveals the intended boundaries: names and paths, overview files, indexes or manifests, imports or exports, links, tests or build rules, repeated headings, or visible local conventions?
-- Which files are authoritative sources, and which are explanatory, generated, or derived views?
-- Which relationships are explicit, and which are inferred from location, naming, ordering, shared vocabulary, or repeated structure?
-- Which boundaries are enforced by language, packaging, build tooling, tests, or runtime behavior, and which exist only as prose or convention?
-- Is the target tree organized by feature, layer, runtime concern, reader task, ownership, chronology, or historical accumulation?
-- Which generated, vendored, archived, or incidental files should be excluded from the structural judgment?
+- Is the requested result a diagnosis, a structural choice, a plan, an
+  implemented change, or a review of an existing or proposed structure?
+- What concrete work, use, or future change should the structure make easier?
+- What local unit functions as a module, and which paths, imports, exports,
+  references, tests, manifests, build rules, entrypoints, or overview material
+  reveal its contract?
+- Which nearby units must be inspected because their dependencies or public
+  surfaces cross the named scope?
+- What organizing principle explains the current peers, and should the proposed
+  placement follow or deliberately revise it?
+- When explicit requirements, project policy, tool-enforced contracts, and
+  observed conventions disagree, which source governs this structural decision?
+- Which observed relationships are hierarchy, dependency, disclosure, or
+  ownership, and which are enforced rather than inferred from location or
+  convention?
+- Which requirements or prior decisions already settle part of the structure,
+  and what remains open?
+- Which missing answers can be inferred from the workspace, and which would
+  materially change the target, boundary, dependency direction, integration
+  work, or migration cost enough to require clarification?
+- Which generated, vendored, archived, or incidental files should not shape the
+  structural judgment?
 
 ## Placement Questions
 
-- When creating or moving a file or directory, what structural role will it play: peer module, child specialization, entrypoint, shared primitive, example, adapter, internal support, or a local role named by the project?
-- Which existing module should own the new content, and what responsibility would be blurred if it lived elsewhere?
-- Does the new item follow the directory's expected growth shape, or does it reveal the need for a new parent category?
-- What references, imports, exports, indexes, tests, manifests, README entries, or navigation paths must change so the module is discoverable without leaking internals?
-- Would the placement introduce a dependency cycle, circular explanation, unstable public API, or unclear ownership boundary?
+- What role will the new or moved item play in the local structure?
+- Which existing or new module naturally owns that responsibility, and what
+  would become ambiguous if it lived elsewhere?
+- What references, imports, exports, indexes, manifests, tests, entrypoints, or
+  navigation paths must change so people and tooling can find or consume it?
+- Would another location create an unnecessary shared area or force unrelated
+  consumers to know the item's internals?
 
 ## Boundary Questions
 
-- Can each file, directory, or module be understood as a coherent unit with a clear responsibility?
-- Do sibling modules live at the same level of abstraction, or do concept, policy, example, implementation, and exception handling sit side by side?
-- Can smaller modules compose into the parent module without requiring hidden context from outside the reviewed scope?
-- Is a parent, ancestor, or coordinating module depending on facts about a child or descendant that a nearer ownership boundary should own and expose through a stable surface?
-- Would a split, merge, rename, or parent overview make the boundary more honest without creating ceremony?
-
-## Growth Questions
-
-- Does this directory or module family expect horizontal growth through more siblings of the same kind?
-- Does it expect vertical growth through deeper explanation, specialization, layered implementation, or nested submodules?
-- Is the next likely addition obvious from the current structure?
-- Would adding one more peer create duplication, scattered exceptions, naming pressure, or a need for a new parent category?
-- Should the growth path be shaped by feature slices, architectural layers, reader tasks, lifecycle stages, or ownership boundaries?
+- Does each proposed unit have a coherent responsibility and a stable reason to
+  change?
+- Are peers at a compatible level of abstraction, or are concepts, policies,
+  examples, implementations, and exceptions being mixed as siblings?
+- Can each unit be understood, used, and changed through its declared contract
+  without hidden knowledge from outside its boundary?
+- Which unit owns mutable knowledge, and are its indexes, manifests, registries,
+  or overviews authoritative contracts, reliably derived views, or duplicated
+  maintenance surfaces?
 
 ## Dependency Questions
 
-- When dependencies are explanatory, which modules rely on other modules for definitions, vocabulary, prerequisites, examples, constraints, or cross-references?
-- When dependencies are enforced by tooling or runtime behavior, which modules rely on other modules through imports, exports, type references, callbacks, configuration, initialization, test helpers, or generated artifacts?
-- What dependency direction does the local architecture imply, and where does the current structure violate it?
-- Do links or references leave their owning module with `../` paths into another module's internals? If so, is that the intended dependency direction, or should the reference move to an owning parent, use a boundary-stable target, or be removed?
-- Does a parent or ancestor module have transitive coupling to descendants, rather than depending on the owning child boundary's stable contract?
-- Are cycles harmless cross-references, deliberate mutual protocols, circular explanations, circular imports, or runtime initialization hazards?
-- Would a cycle be better resolved by extracting a shared primitive, adding a parent explanation, introducing an interface, inverting control, or moving responsibility?
+- Which contracts do modules cross through code, configuration, generation,
+  tests, links, or explanation?
+- Does dependency direction follow ownership, or does one unit rely on unstable
+  knowledge of another's internals?
+- Does a parent or coordinating module depend on mutable descendant details that
+  a nearer boundary should expose through a stable contract?
+- Is a cycle a deliberate protocol or harmless reference, or does it create a
+  build, initialization, comprehension, or ownership hazard?
+- Which contract and coupling make a dependency significant beyond its path
+  spelling or directory depth?
 
 ## Disclosure Questions
 
-- What should each module expose through public APIs, exports, README text, indexes, headings, examples, or entrypoints?
-- What details should remain internal instead of leaking into sibling modules, parent modules, callers, or readers?
-- Does a parent module explain enough to help users choose or update a child module without duplicating the child's full content?
-- Are child and descendant modules exposing only the stable public surface needed for discovery, routing, ownership, selection, or extension?
-- Should a nearer child module own the index, manifest, overview, or public surface for its descendants instead of making the parent carry mutable descendant details?
-- Would a descendant change force updates outside its owning child boundary, and if so, should that detail belong in a child-owned contract, generated view, or selection rule?
-- When prose describes mutable entries, should it expose design, ownership, schema, update path, selection criteria, a generated view, or a small example instead of copying the current inventory?
-- Are two modules explaining each other in a loop instead of sharing a stable definition or dependency root?
+- What must each public surface expose for discovery, use, selection, or
+  extension, and what should remain internal?
+- Can an entrypoint or overview guide consumers without copying implementation
+  detail or a mutable inventory?
+- Would an internal change force unrelated callers, readers, or parent modules
+  to change, and what stable surface or derivation would prevent that leakage?
 
-## Judgment Questions
+## Growth Questions
 
-- Is the current structure a flat collection, layered tree, feature-sliced tree, hub-and-spoke, pipeline, glossary with entries, plugin registry, or mixed shape?
-- Which issues materially affect comprehension, maintenance, extension, tests, builds, or user workflows?
-- Which observations are structural, and which are ordinary prose style, naming preference, or local cleanup?
-- Would the proposed structure create a shadow source of truth, stale inventory, or duplicated maintenance burden?
-- Does a cited local convention carry a stable boundary decision, or is it masking a shadow source of truth, stale inventory, or duplicated maintenance burden?
-- Would the proposed structure reduce parent or ancestor dependence on descendant details, rather than relocating descendant inventory outside its owning child boundary?
-- When a snapshot is necessary, what version, date, command, or other marker makes it intentionally fixed rather than stale by default?
-- What is the smallest change that improves the module relationship: leave unchanged, rename, split, merge, move, add an index, extract a shared primitive, invert a dependency, or document a boundary?
-- What risk would the proposed change introduce for references, imports, tests, published APIs, data consistency, deployment, or reader expectations?
+- What is the next credible addition or change, and would its owner and
+  integration path be evident in the proposed structure?
+- Would another similar item fit the current boundary, or expose duplication,
+  scattered exceptions, or pressure for a different grouping?
+- Does a proposed abstraction answer observed growth evidence, or only
+  hypothetical scale?
 
-## Handoff Questions
+## Structural Choice Questions
 
-- What module shape was found or chosen, and what supports that reading?
-- Which boundaries, placement choices, growth expectations, dependencies, disclosure choices, transitive coupling, or cycles deserve action?
-- What change is recommended or implemented, and why is it better than only making the tree look tidier?
-- What was treated as the authoritative source of mutable data, and how was duplication or stale documentation avoided?
-- What justified leaving something alone because it was a visible local convention with no material structural cost, harmless redundancy, obvious placement, or outside the user's scope?
-- What validation was performed: static file review, reference search, dependency inspection, tests, build checks, or only conceptual review?
+- Which evidence-backed options would materially change placement, ownership,
+  dependency direction, disclosure, or migration work?
+- What benefit, coupling, disclosure effect, and migration cost does each actual
+  candidate introduce?
+- What scope of change would make the structure honest and complete, and is
+  leaving it unchanged also a valid candidate?
+- Which option best supports the requested work and credible growth without
+  unjustified migration or ceremony?
+- If implementation is requested, which files, responsibilities, integration
+  points, compatibility measures, and migration steps must change together?
+- If review is requested, which findings materially affect use, change,
+  dependency, disclosure, or growth, and which are only stylistic cleanup?
+
+## Validation And Result
+
+When implementing, change the owning units and affected integration points
+together. Validate relevant structural surfaces, such as references,
+imports and exports, entrypoints, manifests, generated views, links, existing
+tests, builds, and public contracts. Report only checks that ran; distinguish
+enforced relationships from inferred conventions when the result is conceptual
+or static.
+
+Lead with the chosen placement, shape, or structural judgment and the work it
+improves. State the decisive evidence, required integration points, and material
+migration or compatibility cost.

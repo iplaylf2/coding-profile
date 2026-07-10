@@ -1,65 +1,104 @@
 ---
 name: pull-request-authoring
-description: "Use when the user asks to draft, refine, choose, or review pull request or merge request text, including title, body, summary, description, or complete PR/MR content, based on a diff, branch, issue, commit list, existing draft, review context, or described code change, or when a broader PR/MR workflow needs PR/MR wording. Do not use for code review, PR creation, or PR metadata changes that do not require drafting or evaluating PR/MR text."
+description: "Use when the user asks to draft, refine, choose, or review pull request or merge request text, including a title, body, summary, description, complete draft, or a substantive wording decision within a broader task. Do not use for code review or PR/MR operations and metadata changes that do not require drafting or evaluating the text."
 ---
 
 # Pull Request Authoring
 
+## Text Boundary
+
+Produce or evaluate reviewer-facing text for one defined proposed change. The
+result may be a title, body, complete draft, summary, revision, options, or a
+review verdict.
+
 ## Intent Questions
 
-- What PR artifact did the user ask for: title, body, complete PR/MR text, options, refinement, or review of an existing draft?
-- What expression constraint matters: local format, required references or sections, validation detail, length, language, tone, title style, reviewer role, or exact terms from the user, issue, branch, or review?
-- Who is the likely reader: immediate reviewer, owning maintainer, cross-team reviewer, release-oriented reader, external contributor, or future maintainer?
-- Which missing details can be inferred from repository context, diff, branch name, commits, linked issues, or the existing draft instead of asking the user?
+- What PR/MR text did the user request, and are they asking for generation,
+  refinement, options, or review of an existing draft?
+- Who is the immediate reviewer, what context can they assume, and what should a
+  future reader still understand?
+- What language, tone, length, title style, required sections, references, or
+  exact terms constrain the result?
+- Which missing detail can be inferred from the repository and proposed change,
+  and which would materially change the text enough to require clarification?
 
-## Change Source Questions
+## Change Evidence Questions
 
-- What change is being proposed? Treat the user-provided diff, branch comparison, PR patch, staged changes, unstaged changes, commit range, or prose description as the source of truth.
-- What context explains the change? Use linked issues, branch names, commits, reviews, or product notes as intent hints, preserving exact terms only for required labels, product or API names, user-facing copy, or local convention.
-- What repository is this? Inspect the README, project metadata, nearby files, and ownership boundaries only as much as needed to understand the product or domain, local vocabulary, and likely reviewer expectations.
-- What local PR expression already exists? When available, inspect visible templates and a small sample of recent, relevant, representative PR/MR titles or bodies to infer title grammar, body length, section names, audience assumptions, and validation detail.
-- What visible template or formatting requirement exists? Respect it when it is supplied or discoverable, but do not investigate hosting platform details merely to guess where the PR/MR will be published.
-- Which changed details are obvious from the diff view, and which consequences are not visible from file names or hunks alone?
+- Which task-selected PR/MR patch, base-to-head comparison, diff, commit range,
+  or prose scope defines the proposed change, and what base and head belong to
+  that source?
+- Which issues, branch names, commits, reviews, or product notes explain intent
+  without expanding the selected proposal?
+- When candidate sources disagree, which one did the user or task select, and
+  would the difference materially affect the draft?
+- For a wording-only review without a change source, what can be evaluated from
+  the supplied text, and which factual claims remain unverified?
 
-## Title Responsibilities
+Once the proposed-change source is selected, do not add ambient index, worktree,
+untracked, or unrelated commit content unless the user includes it in scope.
 
-- Make the title answer what changed and where it matters, not which files were edited.
-- Prefer the repository's PR title convention. If none is visible, use a concise imperative or noun phrase that a reviewer can scan in a PR list.
-- Include an issue or ticket identifier only when the user, branch, template, or local convention supports it.
-- Use a specific change verb or noun phrase; when repository style requires a broad verb, make the rest of the title carry review value.
-- Do not force commit-message grammar into the PR title unless local PRs consistently use it.
+## Expression Questions
 
-## Body Responsibilities
+- Which current template, contribution rule, automation check, title rule, or
+  reference format governs the text?
+- Which product, API, issue, or user-facing terms must remain exact?
+- Which recent, relevant PRs/MRs provide stable expression evidence rather than
+  incidental historical style?
+- When no local expression convention exists, what concise portable Markdown
+  structure best serves the reviewer?
 
-- The PR body should orient a reviewer, not duplicate the diff.
-- Write for the likely reviewer first and the future reader second.
-- Put the reader-facing reason early: problem, intent, user-visible behavior, operational need, or maintenance outcome.
-- Summarize the meaningful change at the level a reviewer needs to evaluate scope, risk, and correctness.
-- Call out non-obvious design choices, compatibility concerns, migrations, configuration changes, data effects, security or privacy implications, performance impact, and follow-up work only when supported by the change, linked context, or known validation.
-- Include validation that was run or should be run only when known from the user, logs, local commands, CI, or repository convention.
-- Scale detail with review risk: small obvious changes can be short; risky behavior, migration, compatibility, data, security, or operational changes need clearer context and validation.
-- Preserve required template sections when a template is visible. If no template is available, use portable Markdown with simple headings and bullets.
-- Keep the body limited to reviewer-facing prose, required template content, and supported validation or risk context.
+Current normative requirements govern structure and validation; historical
+examples only inform choices those requirements leave open.
 
-## Diff Duplication Boundary
+## Title Questions
 
-- Do not repeat diff-view facts that are self-evident: file lists, renamed files, one bullet per touched module, or line-by-line implementation narration.
-- Repeat a visible change only when it explains review intent, risk, migration, behavior, or a decision the diff cannot make obvious on its own.
-- Prefer grouping related edits by outcome over listing every changed file.
-- Mention implementation details when they are the review surface, not merely because they appear in the diff.
-- If the body would only restate the title and file list, keep it short and focus on motivation plus validation.
+- What outcome and affected area must a reviewer recognize while scanning a PR
+  or MR list?
+- Which repository title rule, required identifier, or prefix applies?
+- What scope, user impact, compatibility effect, or completion claim is
+  supported, and what would overstate the proposed change?
+- Which implementation detail would distract from the review-level result?
+- If no local title rule exists, what concise outcome-and-area phrase will scan
+  well without automatically importing commit-message grammar?
+- For a title review, what concrete accuracy, convention, or reviewer-navigation
+  issue determines the verdict?
 
-## Review Questions
+## Body Questions
 
-- Does the title identify the change without leaking implementation trivia or overstating scope?
-- Does the body explain why the change exists, what matters for review, and how it was validated?
-- Did repository vocabulary, audience expectations, template conventions, and recent similar PRs shape the draft without adding unsupported claims?
-- Did the draft translate source phrasing into reviewer-facing repository language grounded in the change source, template, and local conventions?
-- Are obvious diff details omitted unless they carry consequence, risk, or reviewer guidance?
-- Would a reviewer know where to focus after reading the body?
+The body should orient the reviewer rather than narrate the patch. Repeat a
+visible change only when it explains motivation, consequence, risk, migration,
+review focus, or a decision that the diff does not make clear.
 
-## Handoff Questions
+- Why does the proposal exist, and what should the immediate reviewer understand
+  or examine before reading individual hunks?
+- Which related edits should be grouped by reviewer-relevant outcome rather than
+  listed by file or module?
+- Which non-obvious design choice, compatibility or migration concern,
+  configuration or data effect, security or privacy implication, performance or
+  operational impact, or follow-up is supported and relevant to review?
+- Which patch facts are self-evident, and which need explanation because they
+  change review focus or interpretation?
+- How should the amount and structure of prose scale with review risk while
+  satisfying required template sections?
+- For a body review, which claim, omission, structure, or emphasis materially
+  affects correctness or reviewer usefulness rather than stylistic preference?
 
-- What exact title and body should the user be able to paste directly?
-- If multiple options are proposed, what emphasis or convention distinguishes each one?
-- What uncertainty remains because the change source, template, validation, or linked context was unavailable?
+## Validation Questions
+
+- Which validation information belongs in the text because a template, user
+  requirement, or review risk makes it relevant?
+- For each claimed check, was it performed locally, observed in CI, planned or
+  recommended, not run, or left unknown?
+- Which checks validate the PR/MR text or references, and which provide evidence
+  about the code or behavior?
+- When missing or unavailable validation is relevant, how should it be expressed?
+
+Do not present a planned check, inference, or text-format check as completed code
+validation.
+
+## Result
+
+Return the requested result first. For drafting or revision, put paste-ready
+PR/MR text first. Make alternatives genuinely distinct, disclose only
+uncertainty that affects accurate use, and do not imply that a platform
+operation was performed.

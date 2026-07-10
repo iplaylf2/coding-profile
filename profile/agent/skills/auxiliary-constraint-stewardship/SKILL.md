@@ -1,93 +1,108 @@
 ---
 name: auxiliary-constraint-stewardship
-description: "Use when the user asks to review, revise, refactor, or diagnose whether supporting constraints in a code or prose artifact still serve its primary path. Do not use for ordinary protective or recovery work unless the user's concern is the constraint's role or placement."
+description: "Use when the user needs to decide or change how a supporting constraint in code or prose should serve an artifact's primary responsibility, including whether it is needed, what invariant or audience need it protects, its disposition, or its owning boundary. Do not use to implement an already-decided protection or to make a purely structural placement decision after responsibilities are settled."
 ---
 
 # Auxiliary Constraint Stewardship
 
-Treat an auxiliary constraint as any supporting condition, exception path, qualification, fallback, recovery rule, or caveat that modifies the primary path in response to a boundary, exception, tradeoff, or failure mode. Its form matters less than its relationship to the artifact's main responsibility.
+## Constraint Boundary
 
-Do not treat defensive completeness as a default goal. When a constraint is under review, first decide whether it protects a real boundary or compensates for missing ownership; preserve or clarify the former, and prefer deletion, narrowing, or moving ownership for the latter.
+This skill determines a constraint's validity, protected invariant or audience
+need, disposition, and the responsibility its owning or target boundary must
+satisfy. For prose, it also determines what claim the qualification limits,
+where the reader needs it, and what consequence it expresses while preserving
+required terminology.
 
-Treat defensive wrappers around behavior owned outside this artifact as provisional unless they attach to a stable local contract. If a constraint shadows another owner, identify the owning boundary, source of truth, and drift signal before keeping it; otherwise prefer surfacing, delegating, or moving the contract over adding local acceptance, rejection, or fallback logic.
+## Context And Evidence Questions
 
-Use examples and lists only as prompts for finding local evidence. Do not let them become closed taxonomies.
+Use authoritative contracts, observed behavior, tests, schemas, requirements,
+and local conventions as evidence. Distinguish them from copied assumptions and
+defensive habit.
 
-## Intent Questions
+- When evidence conflicts, which source governs the constraint, and what makes
+  it authoritative for this boundary?
+- What primary path does the artifact serve, how does the constraint modify it,
+  and does that modification govern code behavior, prose expression, or both?
+- Which constraint and outcome did the user put in question, and which validity,
+  protected invariant or audience need, disposition, or boundary-responsibility
+  decision must the result resolve?
+- What invariant, contract, or audience need is claimed to justify the
+  constraint, and which boundary owns it?
+- Does this artifact have an independent obligation or observable failure mode,
+  such as validating a trust boundary, containing a failure, or preserving a
+  local invariant, even when another layer checks the same condition?
+- Does the local rule instead mirror mutable behavior owned elsewhere without a
+  stable contract or drift signal, and should it follow that owner or preserve a
+  narrower local contract?
+- What can be inferred from the evidence, and which remaining answer would
+  materially change validity, disposition, boundary responsibility, scope, or
+  risk enough to require user clarification?
 
-- What should the artifact help its intended consumer do?
-- What is the primary path before auxiliary constraints qualify it?
-- Which constraint is under question, and what decision, failure path, tradeoff, or wording requirement does it affect?
-- Which local facts or invariants must be preserved?
-- What value is the constraint meant to add beyond the primary path?
-- Which missing answers can be inferred from nearby evidence instead of asking the user?
-- Which missing answer would materially change the target, risk, or edit scope enough to require user clarification?
+## Disposition Questions
 
-## Scope Questions
+- Which disposition—keep, clarify or narrow, move, remove, or add—best follows
+  from the evidence?
+- When both forms are available, should the responsibility be enforced through
+  behavior, expressed as a prose qualification, or carried by both?
+- Is the defended case reachable and consequential enough to justify its
+  complexity or attention cost?
+- Does the constraint surface failure and uncertainty honestly, or turn an
+  unknown, partial, or unsupported state into apparent success?
+- Does the responsibility belong at the current boundary, and if so are its
+  trigger, behavior, wording, and scope precise; if not, what must the target
+  boundary satisfy?
+- Does the constraint protect a stable boundary or carry a temporary transition,
+  and what observable exit condition should end that responsibility?
+- What material protection would removal lose, what existing failure or
+  uncertainty would it expose, and what duplicated or shadow behavior would it
+  eliminate?
+- Is any real invariant, trust boundary, failure-containment duty, or audience
+  need currently unprotected?
+- Which current or proposed branches, wrappers, caveats, or validation paths
+  carry a distinct boundary responsibility, and which, if any, can be removed,
+  inlined, or rewritten without losing it?
 
-- Is this skill the center of the request, or only supplying a constraint judgment for another task-family skill?
-- If another task is primary, what is the smallest constraint judgment needed before that work can proceed?
+## Code Constraint Questions
 
-## Boundary Ownership Questions
+- Which input, state, timing window, dependency failure, or trust transition
+  triggers the constraint?
+- Should the result reject, recover, degrade, retry, delegate, or surface the
+  failure, and can callers distinguish those states?
+- Does a fallback preserve valid work or silently broaden what counts as success?
+- If the defended case changes, would the constraint fail open, fail closed, or
+  silently misclassify a state, and would it broaden the time or state window
+  treated as valid?
+- Within the settled owning boundary, can an existing model, type, or contract
+  express the rule without duplicated state or shadow logic?
 
-- What boundary naturally owns the issue, such as this artifact, its caller or reader, an adjacent system, source data, documentation, or the existing failure surface?
-- Is the constraint enforcing a local invariant, or shadowing a contract owned outside this artifact that may change independently?
-- If that owner changed behavior, should this artifact follow automatically or preserve a narrower local contract?
-- Would the existing boundary surface the issue honestly enough without a new constraint?
-- Would documenting the tradeoff serve the consumer better than changing the artifact's behavior or structure?
-- What responsibility would move into or out of this artifact if the constraint were added, removed, or rewritten?
+Run applicable existing checks for the primary path, constraint trigger, and
+resulting failure or recovery behavior. Add or adjust a focused check only when
+the requested implementation changes an otherwise uncovered contract.
 
-## Justification Questions
+## Prose Constraint Questions
 
-- What local evidence explains the constraint, including whether wording is a stable contract, local convention, domain term, or session example?
-- Is the defended-against case reachable and likely enough to matter?
-- Is the constraint duplicating an existing guarantee, compensating for an absent contract, or masking an unresolved ownership boundary?
-- Is the source of truth authoritative, or is the constraint copied from stale knowledge, defensive habit, or earlier patching?
-- What signal, test, schema, version, or owner would reveal that the defended behavior has drifted from its source of truth?
-- If the defended-against case changes shape, would the constraint fail closed, fail open, or silently misclassify supported or unsupported states?
-- Does the constraint have observable behavior that can be tested, reviewed, or explained without relying on intention alone?
-- Does the constraint reduce, preserve, or expand the time or state window in which ambiguous or unsupported conditions can be treated as valid?
-- For code artifacts, which guards, fallbacks, nullable states, error paths, or duplicated state representations express real boundary decisions rather than incidental defensive structure?
+- What reader decision or action changes because of the qualification?
+- Which supplied wording or terminology is an exact requirement, and which is
+  evidence of the intended boundary or consequence to express in local prose?
+- Is the caveat attached to the statement it limits and visible before the reader
+  can act on a false generalization?
+- Can the primary responsibility or positive rule carry the meaning more
+  directly, leaving only the genuine exception?
+- Does the wording state the owning boundary and consequence without narrating
+  speculative defenses?
+- What reader-relevant qualification would removal lose, and what repetition or
+  unsupported caution would it eliminate?
 
-## Value Questions
+Validate prose by rereading the primary path with and without the constraint,
+checking terminology and nearby claims for contradiction, and using existing
+documentation checks when they cover the affected text.
 
-- What cost does the constraint impose in complexity, wording, concepts, dependencies, maintenance, or user attention?
-- What material loss would removing it cause?
-- Does the constraint reveal a non-obvious boundary, exception, decision, or invariant, or only restate a convention the intended consumer or surrounding system should already follow?
-- Does it create surface completeness while suppressing a more important error, missing contract, unresolved decision, or ownership gap?
-- Does it let vague, stale, partial, or misleading output look successful?
-- Does it reduce risk, or only replace explicit source uncertainty with a brittle local approximation?
-- Is a temporary or transitional path being promoted into a durable design concern without enough evidence?
-- Is the benefit proportionate to the cost?
+## Result
 
-## Revision Questions
+Lead with the disposition: keep, clarify or narrow, move, remove, or add. State
+the protected invariant or audience need, effect on the primary path, owning or
+required target-boundary responsibility, and decisive evidence.
 
-- Does the existing structure already express the right relationship between the constraint and the primary path?
-- Can the constraint, including wording requirements, be replaced by or subordinated to a positive responsibility, invariant, precondition, audience effect, or decision boundary?
-- For prose artifacts, would rewriting around the primary responsibility make negative or exception-heavy wording smaller or unnecessary?
-- Can the same user value be achieved by removing, narrowing, delegating, or rewriting the constraint as a smaller expression of the same responsibility?
-- What is the smallest change that restores the right relationship without stripping legitimate protection?
-- Can an internal invariant or defended case be expressed through the owning model or boundary instead of carried as an auxiliary exception?
-- Can the owning boundary, contract surface, or caller responsibility absorb the defense instead of this artifact carrying a shadow rule?
-- When keeping a constraint, can its trigger, owner, behavior, and validation be named without making prose or names narrate the defensive mechanism?
-- Would a broader rewrite or boundary change make the artifact read as originally designed rather than incrementally patched?
-- What legitimate constraint must remain because it protects a real boundary or documented contract?
-
-## Proportionality Audit Questions
-
-- Which new supporting structures did the edit add, such as branches, helpers, paragraphs, caveats, wrappers, examples, messages, or validation paths?
-- Does each new structure carry a stable boundary decision, or does it substitute defensive narration or redundant restatement for one?
-- Did the edit add a wrapper whose validity depends on source behavior that the artifact cannot observe or control?
-- Did the edit make failure, choice, or explanation more honest, or did it make a failed, unknown, or unsupported state look successful?
-- Did the edit reduce defensive surface where the primary path was already honest enough?
-- Can any supporting structure be removed, inlined, or delegated while keeping the primary path centered?
-
-## Handoff Questions
-
-- What intent translation should be reported to the user, and what edit level was used?
-- Which constraints were changed, validated, removed, or intentionally left unchanged?
-- Why is the result better than merely making the artifact shorter, stricter, more complete-looking, or more cautious?
-- Which boundary owns the remaining failure, tradeoff, or exception?
-- When a defensive wrapper remains, which owning boundary, source of truth, and drift signal justified keeping it?
-- What evidence shaped the judgment, and what was intentionally preserved?
-- What validation was performed, and what residual risk remains?
+Report the exact validation performed and its result. Distinguish static or
+conceptual review from executed checks, and identify residual risk only when
+evidence, authority, or an external contract remains uncertain.

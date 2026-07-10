@@ -1,66 +1,109 @@
 ---
 name: commit-authoring
-description: "Use when the user asks to generate, refine, choose, or review a Git commit message based on a diff, staged changes, branch, pull request, or described code change, including semantic or Conventional Commit styles, or when a broader commit workflow needs commit-message wording. Do not use for Git operations that do not require drafting or evaluating commit text."
+description: "Use when the user asks to draft, refine, choose, or review Git commit-message text, including a substantive message decision within a broader commit task. Do not use for Git commit operations that do not require drafting or evaluating the message."
 ---
 
 # Commit Authoring
 
-## Intent Questions
+## Message Boundary
 
-- What output constraints did the user specify: strict header, local variant, body, language, exact wording, number of options, or review criteria?
-- Which missing details can be inferred from the diff, repository context, branch, and local conventions instead of asking the user?
+Produce paste-ready history text for one selected change source. That source
+defines the change being described; supported user and repository context may
+explain its intent without expanding the change. Repository convention and user
+constraints define how the message should be expressed.
 
 ## Change Source Questions
 
-- What repository is this? Inspect the README, project metadata, nearby configuration, and recent commits only as much as needed to understand the domain, vocabulary, ownership boundaries, and commit style.
-- What branch is active? Read `git branch --show-current` or PR head/base refs when available. Use branch names as intent hints, not as proof of what changed.
-- What exact change is being committed? Treat the diff or supplied description as the source of truth, and distinguish required wording from intent to translate into repository vocabulary.
-- Which change source controls this request: user-provided diff, staged changes, unstaged changes, branch comparison, PR patch, or prose description?
-- Is the commit target staged? In a local repository, inspect `git status --short`; prefer `git diff --cached --stat`, `git diff --cached --name-status`, and targeted cached diffs when staged changes exist.
-- If nothing is staged, read unstaged status and diffs before drafting, and make clear that the message is based on unstaged changes.
-- What local grammar already exists? Read recent subjects with `git log -n 20 --pretty=format:%s` to infer type set, scope style, subject style, language, capitalization, and body usage.
-- Do the changes belong together? When changes appear unrelated, propose separate commit messages instead of forcing them into one vague subject.
+- What exact diff, commit, range, description, or other change target did the
+  user select?
+- When the message belongs to a broader commit task, what target does that task
+  define, such as the index for a new commit or a selected commit for rewording?
+- When the user refers generally to "these changes," which plausible targets
+  does repository status reveal, and would they produce materially different
+  messages?
+- Which branch, issue, PR, or repository context explains intent without
+  expanding the selected change source?
+- Does the selected source contain changes that do not form one defensible
+  history entry, and would separate messages represent them more accurately?
+- For a wording-only review without change evidence, what can be judged from the
+  supplied message, and which factual coverage remains unverified?
+- Which unresolved source choice would materially change the message enough to
+  require clarification?
 
-## Header Shape
+Treat the index, worktree, untracked files, branch comparison, commit range, and
+PR patch as distinct sources. Combine them only when the user or defined task
+selects that combination. Staged content is authoritative only when the request
+or commit task makes it the target.
 
-- Use the user's requested format first; otherwise follow the repository's recent commit grammar when it is consistent enough to infer.
-- When local grammar is absent or compatible with semantic style, prefer a first line shaped as `<type>(<scope>): <subject>`.
-- Use lowercase `type`, an honest parenthesized `scope`, a colon followed by one space, and a concise `subject` when using semantic header grammar.
-- Omit the scope when no non-speculative scope exists, the repository's local style consistently omits it, or the inferred local grammar does not use scopes.
-- Keep the first line to one change summary. Put motivation, migration notes, or consequences in a body after a blank line only when the subject cannot carry them.
+## Convention And Evidence Questions
 
-## Element Responsibilities
+- What output shape, language, exact wording, issue reference, or message format
+  did the user require?
+- Which documented or enforced repository rules govern the message, including a
+  template, commit-message linter, hook, or contribution policy?
+- Which facts and repository vocabulary from the selected change should appear
+  in the message?
+- Which patterns in recent, relevant complete commit messages are stable enough
+  to count as an unstated local convention?
+- Which supplied words are binding terms, and which communicate intent to
+  translate into repository vocabulary?
+- When an explicit request conflicts with an enforced rule, what conflict must
+  be surfaced and which valid choices remain?
 
-- `type` answers what kind of change this is, not where it happened. Use the repository's type set first; otherwise prefer the small semantic set: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, or `chore`.
-- `scope` answers where the change belongs: subsystem, package, command, profile, feature area, or other local ownership boundary. It should not repeat the type or summarize the outcome.
-- `subject` answers what changed in that scope. It should not restate the type or scope, list filenames, or describe the editing action instead of the result.
-- `body` answers why the change was made, what consequences matter, or what migration detail cannot fit in the subject. It should not compensate for a vague header.
-- When a change seems to fit multiple types, choose by effect: behavior addition is `feat`, behavior correction is `fix`, docs-only is `docs`, formatting-only is `style`, internal restructuring without behavior change is `refactor`, tests-only is `test`, and maintenance without production behavior is `chore`.
-- Match explicit user-requested language or format first; otherwise match the repository's recent commit style without forcing semantic header shape when local grammar clearly differs.
-- Keep the subject concise enough for commit history scanning, usually under 72 characters unless local style is longer.
+When body convention matters, inspect complete messages rather than subjects
+alone; a bounded sample such as `git log -n 20 --format='%B%x00'` preserves body
+structure.
 
-## Context Responsibilities
+## Message Questions
 
-- Repository context supplies vocabulary, valid scopes, and house style.
-- Branch context supplies intent hints and possible issue or feature context.
-- Change facts supply what the message must accurately describe.
-- Include issue references, breaking-change markers, validation notes, performance impact, or user-facing impact only when supported by change facts, user context, or local convention.
-- When these sources disagree, prefer change facts over branch names and prefer repository conventions over generic commit-message advice.
+- What outcome should the selected change preserve in history?
+- Which elements does the governing grammar require, and what separate
+  information should each carry?
+- What wording describes the change's effect without reducing it to files,
+  editing activity, or every implementation step?
+- What motivation, constraint, decision, compatibility effect, or consequence
+  will remain useful after the diff is no longer at hand?
+- Would a body preserve that durable, non-obvious information, or merely narrate
+  the diff, list files, add boilerplate, or compensate for a vague subject?
+- Does every factual claim, issue reference, and breaking-change marker have
+  support in the selected change, reliable context, an explicit requirement, or
+  a governing rule?
+- If multiple candidates are requested, what semantic emphasis, information
+  tradeoff, or valid grammar makes each option genuinely distinct?
+- For a review request, what concrete inaccuracy, convention failure, or loss of
+  historical value determines the verdict rather than stylistic taste?
 
-## Review Questions
+## Fallback Grammar
 
-- Does the first line satisfy the explicit user format, inferred local grammar, or an intentionally justified semantic fallback?
-- When using semantic header grammar, do `type`, `scope`, and `subject` each carry separate information without overlap?
-- Does the message reflect the repository background and vocabulary without making unsupported claims?
-- Did branch context inform the draft without overriding the diff?
-- Did the message translate user, branch, and issue phrasing into an accurate change summary grounded in change facts and repository vocabulary?
-- Does the message cover the actual committed change rather than listing files or implementation trivia?
-- Would a future maintainer understand why the change belongs together?
-- Are unrelated changes being hidden behind a broad verb such as "update" or "fix"?
+Use these rules only when no repository message grammar controls the decision:
 
-## Handoff Questions
+- Use `<type>(<scope>): <subject>`, with a lowercase type and an optional,
+  evidence-backed scope.
+- Let `type` classify the change effect, `scope` identify a stable local area,
+  and `subject` state the outcome without repeating the other elements.
+- Choose an honest type from a small set such as `feat`, `fix`, `docs`, `style`,
+  `refactor`, `test`, or `chore`.
+- Separate a body from the subject with a blank line. Use it for durable,
+  non-obvious motivation, constraints, decisions, or consequences, not to repair
+  a vague header.
+- When a supported breaking change requires a marker, place `!` before the colon
+  as in `<type>(<scope>)!: <subject>`, add a `BREAKING CHANGE:` footer after a
+  blank line following the subject or body, or use both when the chosen grammar
+  permits it.
+- Keep the subject concise enough to scan; remove vague or repetitive wording
+  before sacrificing meaningful information to an arbitrary limit.
 
-- What exact commit message should the user be able to use directly, preferably shown before supporting notes?
-- If multiple messages are proposed, what distinction makes each option useful?
-- What uncertainty remains because the repository background, branch, diff, staging state, or project convention was incomplete?
-- Should the user be told whether the message was based on staged changes, unstaged changes, a branch comparison, PR patch, or supplied text?
+## Validate The Text
+
+Check required grammar, issue syntax, line limits, and breaking-change syntax
+against the governing repository policy, explicit requirement, or fallback
+grammar. Run a repository-provided commit-message linter when it is available
+and applicable to the exact draft. These checks validate message text, not the
+implementation or its tests.
+
+## Result
+
+Return the requested subject, complete message, distinct options, review verdict,
+or revision with paste-ready text first. State the selected change source only
+when it prevents ambiguity, report message validation according to what was
+actually checked, and do not imply that a Git operation was performed.

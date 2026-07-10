@@ -1,43 +1,55 @@
 ---
 name: editorial-practice
-description: "Use when the user asks to draft, revise, rewrite, restructure, copy edit, or review prose documents or documentation. Do not use for source code changes unless the task is primarily about surrounding prose."
+description: "Use when the user needs to draft, revise, rewrite, restructure, copy edit, or review prose or documentation, or when a broader task leaves a substantive reader-path, structure, or cohesion decision unresolved. Do not use merely because a specialized artifact contains prose or when its governing artifact rules already resolve the requested wording decision."
 ---
 
 # Editorial Practice
 
-## Intent Translation Questions
+## Editorial Boundary
 
-- What should the document accomplish after this edit?
-- Which parts of the user request are instructions to the agent and should not appear in the document?
-- Which parts are source facts, constraints, required wording, or required content that should be integrated?
-- What would this intent sound like if it had been written directly for this document?
-- Who is the document speaking to, and what should that reader be able to do after reading?
-- What local language, tone, vocabulary, and structure should the edit blend into?
-- Which user-provided wording should be preserved, translated, or avoided for accuracy, local fit, and coherence?
-- What facts, exact terms, constraints, or voice must be preserved?
-- Which missing answers can be inferred from the document, surrounding files, or request instead of asking the user?
-- Which missing answer would materially change the edit and therefore requires user clarification?
+For general prose, this skill owns the reader-facing draft, edit, or review. For
+a specialized prose artifact, make only the requested editorial decisions while
+preserving its established factual scope, required terminology, normative
+format, and validation claims.
 
-## Rewrite Questions
+## Context Questions
 
-- Does the existing structure already carry the intended meaning, or would a local edit leave patch marks?
-- Would added wording create duplication, awkward transitions, tone drift, or visible patching?
-- Should a paragraph or section be rewritten so the new intent reads as originally authored?
-- Does the user's current intent require changing the order, framing, emphasis, or reader path enough to restructure instead of patch locally?
-- Is the structure sound enough for copy editing, or would polishing sentences preserve a flawed shape?
+Use the request to determine purpose, audience, scope, required content, and
+voice; authoritative sources and explicit artifact requirements to determine
+factual claims and required terms; and the target and nearby documents for local
+terminology and form where those inputs do not govern.
 
-## Cohesion Questions
+- What artifact or destination, source material, and requested result define the
+  work?
+- What should the intended reader understand, decide, or do after reading?
+- Which parts of the request are agent instructions, and which facts,
+  constraints, or wording belong in the document?
+- Which facts, terms, or text must remain exact, and which supplied wording
+  communicates intent to translate into the document's own voice?
+- What can be inferred from the request, sources, and local conventions, and
+  which unresolved answer would materially change factual accuracy, scope, or
+  audience fit?
 
-- Does the result read like one coherent document rather than a sequence of additions?
-- Are headings, transitions, terminology, level of detail, and supporting concerns aligned with the document's center of gravity?
-- Did any agent-facing phrase leak into the document, such as "as requested", "this adds", or "the user wants"?
-- Did a user-provided phrase get repeated or avoided visibly enough to make the edit read as shaped by the prompt rather than the document?
-- Are there repeated explanations, leftover caveats, or contradictions caused by incremental edits?
-- Would a broader rewrite reduce reader effort without changing the supported facts?
+## Editorial Questions
 
-## Handoff Questions
+- Would a local edit preserve a sound structure, or should a paragraph, section,
+  or reader path be rewritten to remove duplication, awkward transitions, tone
+  drift, or visible patching?
+- Are headings, transitions, terminology, emphasis, and level of detail aligned
+  with the intended reader path and the document's center of gravity?
+- If non-required request wording were translated into the document's own voice,
+  terminology, and reader perspective, would any agent-facing narration,
+  prompt-shaped repetition, or visible avoidance remain?
+- Is a proposed change necessary for correctness or reader success, or is it only
+  a defensible stylistic preference?
 
-- What intent translation should be reported to the user?
-- What edit level should be named: local edit, paragraph rewrite, section rewrite, or restructure?
-- What was intentionally preserved so the result still belongs to the original document?
-- What unsupported facts, unresolved choices, or authorial decisions should be called out?
+## Validation And Result
+
+Read the final prose continuously for reader path, transitions, terminology,
+duplication, contradictions, and unsupported claims. Trace changed factual claims
+and exact terms to the selected sources. Use repository-provided formatting,
+linting, preview, or documentation checks when they cover the artifact.
+
+Lead with the requested draft, edit, or review findings. Report material
+editorial choices, unresolved factual or authorial decisions, and validation
+actually performed.

@@ -11,9 +11,11 @@ oneshot
 oxfmt
 oxlint
 pkgs
+symref
 tamasfe
 taskfile
 treefmt
 venv
+worktree
 zipfs
 zread
