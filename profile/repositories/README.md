@@ -4,12 +4,13 @@ Repository-scoped workspace assets for source checkouts.
 
 ## Purpose
 
-This profile stores workspace assets that belong to individual repositories
-instead of the machine, WSL system, or agent profile.
+This profile is the source of truth for repository-specific workspace assets
+that are synchronized into individual source checkouts. It does not own
+machine- or environment-wide configuration.
 
-Each child directory is one repository profile. Set `SRC_PATH` to the checkout
-that should receive or supply the synced files. Sync rules live in each child's
-`content-hub.yaml`.
+Each child directory holds the assets and `content-hub.yaml` rules for one source
+repository. Set `SRC_PATH` to the checkout that should receive or supply the
+synchronized files.
 
 ## Operations
 
@@ -20,12 +21,12 @@ Deploy assets into the target checkout:
 
 ```bash
 cd <repo>
-SRC_PATH=/src/<repo> uv run contentctl deploy src
+SRC_PATH=/path/to/<repo> uv run contentctl deploy src
 ```
 
 Adopt changes from the target checkout:
 
 ```bash
 cd <repo>
-SRC_PATH=/src/<repo> uv run contentctl adopt src
+SRC_PATH=/path/to/<repo> uv run contentctl adopt src
 ```

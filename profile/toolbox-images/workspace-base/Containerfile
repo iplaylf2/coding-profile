@@ -1,0 +1,37 @@
+FROM ghcr.io/astral-sh/uv:latest AS uv
+
+FROM registry.fedoraproject.org/fedora-toolbox:latest
+
+LABEL com.github.containers.toolbox="true"
+
+# pnpm's standalone executable requires libatomic on Fedora. Include jq and
+# ripgrep as general-purpose tools for structured-data inspection and search.
+RUN dnf --assumeyes \
+        --setopt=install_weak_deps=False \
+        install \
+        jq \
+        libatomic \
+        ripgrep \
+    && dnf clean all
+
+# Bootstrap pnpm without relying on preinstalled Node.js. Keep pnpm and the
+# Node.js versions it manages in an image-owned, system-wide location.
+ENV PNPM_HOME=/opt/pnpm
+ENV PATH="${PNPM_HOME}/bin:/usr/local/bin:${PATH}"
+
+RUN curl --fail --silent --show-error --location \
+        https://get.pnpm.io/install.sh \
+        --output /tmp/install-pnpm.sh \
+    && SHELL=/bin/bash sh /tmp/install-pnpm.sh \
+    && rm /tmp/install-pnpm.sh
+
+# Install Node.js before copying uv so a uv image update does not invalidate
+# this layer and trigger another Node.js download.
+RUN pnpm runtime set node lts --global
+
+# Install uv and its managed Python in image-owned, system-wide locations.
+COPY --from=uv /uv /uvx /usr/local/bin/
+
+RUN UV_PYTHON_INSTALL_DIR=/opt/uv/python \
+    UV_PYTHON_BIN_DIR=/usr/local/bin \
+    uv python install --default
