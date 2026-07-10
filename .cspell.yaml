@@ -16,3 +16,4 @@ enableGlobDot: true
 ignorePaths:
   - /.cspell
   - /.git
+  - /.dev/aqua-checksums.json

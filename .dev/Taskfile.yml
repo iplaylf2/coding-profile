@@ -1,0 +1,23 @@
+version: "3"
+
+env:
+  AQUA_CONFIG: "{{.ROOT_DIR}}/aqua.yaml"
+
+tasks:
+  init:
+    desc: Install tools pinned by aqua
+    cmds:
+      - aqua install
+
+  check:
+    desc: Run all repository checks
+    dir: ..
+    cmds:
+      - aqua exec -- oxfmt --check .
+      - aqua exec -- npx --yes cspell@10.0.1 lint .
+
+  format:
+    desc: Format supported repository files
+    dir: ..
+    cmds:
+      - aqua exec -- oxfmt --write .

@@ -1,0 +1,94 @@
+{
+  "checksums": [
+    {
+      "id": "github_release/github.com/go-task/task/v3.52.0/task_darwin_amd64.tar.gz",
+      "checksum": "416348147BC2F1C729417249D932ADD7894FB01A126128778195942C249D7C0B",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/go-task/task/v3.52.0/task_darwin_arm64.tar.gz",
+      "checksum": "DEBFA9A3BC06FCB5D5550B44725ECD22BB305499CE057BD6D7A774DB5CDAA7B8",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/go-task/task/v3.52.0/task_linux_amd64.tar.gz",
+      "checksum": "02C679FFAE53DCA791804847D78B31731615894E292948397C971C87AC9E95BD",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/go-task/task/v3.52.0/task_linux_arm64.tar.gz",
+      "checksum": "7E0044108830CEC0534577B289564E3B7C83E6DF276FEB631A1EDC63D04E4EBE",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/go-task/task/v3.52.0/task_windows_amd64.zip",
+      "checksum": "E3BD4439B445F4F135758A2666EC8B33CCDE789F7F615309C58F116B0E566E79",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/go-task/task/v3.52.0/task_windows_arm64.zip",
+      "checksum": "3F3B5BBF23D10C73F8F11BC4A47D1465F3A61A30FA231FDDF0A87EDC52937237",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/oxc-project/oxc/apps_v1.73.0/oxfmt-aarch64-apple-darwin.tar.gz",
+      "checksum": "9F1EF964C66C0788555B2B3C587458188142D7A3E6B8E500C6B588BAB144303D",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/oxc-project/oxc/apps_v1.73.0/oxfmt-aarch64-pc-windows-msvc.zip",
+      "checksum": "6CD886B27936D1DA7ACAC71C2DDC27B4D6118E031491D1E21AEC0A9A1E0DE4AD",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/oxc-project/oxc/apps_v1.73.0/oxfmt-aarch64-unknown-linux-musl.tar.gz",
+      "checksum": "9F797674F9F2F6A6B3DF1EDD1A93BAC6C89F522C5400F9D2A3DCD482F042DD3C",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/oxc-project/oxc/apps_v1.73.0/oxfmt-x86_64-apple-darwin.tar.gz",
+      "checksum": "4F38FBB8BF53EC834F92C64AF8AAFA21943F13AE0CDCA0B69713D271EEDB8B64",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/oxc-project/oxc/apps_v1.73.0/oxfmt-x86_64-pc-windows-msvc.zip",
+      "checksum": "8F7EAB6B9E9C05706B8C4634421A7677D56734091FB0F925E583955C0ACD72C5",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/oxc-project/oxc/apps_v1.73.0/oxfmt-x86_64-unknown-linux-musl.tar.gz",
+      "checksum": "AB9DE7D87B1B76DE275B3C7C8E976F70D787EFFA5EA96F05ABE389A506C9974E",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v26.5.0/node-v26.5.0-darwin-arm64.tar.gz",
+      "checksum": "EE920559AAA2391569CFF4D737E3B83963430E3A14DEDD91BFE0FF53171B5AF9",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v26.5.0/node-v26.5.0-darwin-x64.tar.gz",
+      "checksum": "98293394C945A24E64E00B4177BF075EC963EA70B34D1D2E24BD4A71716D334F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v26.5.0/node-v26.5.0-linux-arm64.tar.gz",
+      "checksum": "308E5FE89A82461BA5A6CF15FF5221B2CDBD7AE87600AA72BB3C3FBDC66412D1",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v26.5.0/node-v26.5.0-linux-x64.tar.gz",
+      "checksum": "22B5F47AD6AE78837E4C2B846019965CE1A06BA143DE176102294A1BF44FC677",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v26.5.0/node-v26.5.0-win-x64.zip",
+      "checksum": "D3B2277DBCCCFDF24EF6302928F64F484CFF1D77A6D3CAA3A28F4D20CE9158F6",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.534.0/registry.yaml",
+      "checksum": "A09B1A70F0B4AE01A1DBC95602BFD56E34A09EFA858FD30217494CA5A65FE4C9",
+      "algorithm": "sha256"
+    }
+  ]
+}

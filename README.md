@@ -18,7 +18,8 @@ defines the exact sync rules.
 
 ## Setup
 
-Install the project tooling:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then
+synchronize the project environment:
 
 ```bash
 uv sync
@@ -29,6 +30,8 @@ uv sync
 Use a profile README for commands and required context, such as environment
 variables, elevated privileges, or follow-up commands. Use `content-hub.yaml`
 when changing synced paths, targets, or exclusions.
+
+Repository maintenance tooling and commands are documented in `.dev/README.md`.
 
 ## Notes
 

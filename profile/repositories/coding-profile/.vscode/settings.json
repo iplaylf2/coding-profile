@@ -3,6 +3,5 @@
     "source.sort.json": "explicit"
   },
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnSave": true,
-  "oxc.path.oxfmt": ".dev/tools/bin/oxfmt"
+  "editor.formatOnSave": true
 }

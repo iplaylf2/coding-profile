@@ -1,4 +1,5 @@
 arcanis
+aquaproj
 charliermarsh
 committerdate
 contentctl
@@ -11,6 +12,7 @@ oxfmt
 oxlint
 pkgs
 tamasfe
+taskfile
 treefmt
 venv
 zipfs
