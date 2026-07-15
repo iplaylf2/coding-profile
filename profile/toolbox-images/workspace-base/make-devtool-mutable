@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+if [ "$#" -eq 0 ]; then
+    echo "usage: make-devtool-mutable DIRECTORY..." >&2
+    exit 2
+fi
+
+for directory do
+    chgrp --recursive wheel "${directory}"
+    chmod --recursive g+rwX "${directory}"
+done

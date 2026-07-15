@@ -1,5 +1,3 @@
-FROM ghcr.io/astral-sh/uv:latest AS uv
-
 FROM registry.fedoraproject.org/fedora-toolbox:latest
 
 LABEL com.github.containers.toolbox="true"
@@ -14,24 +12,39 @@ RUN dnf --assumeyes \
         ripgrep \
     && dnf clean all
 
-# Bootstrap pnpm without relying on preinstalled Node.js. Keep pnpm and the
-# Node.js versions it manages in an image-owned, system-wide location.
-ENV PNPM_HOME=/opt/pnpm
-ENV PATH="${PNPM_HOME}/bin:/usr/local/bin:${PATH}"
+COPY --chmod=0755 make-devtool-mutable /usr/local/bin/
 
-RUN curl --fail --silent --show-error --location \
+ENV DEVTOOLS_HOME=/opt/devtools
+ENV PNPM_HOME=${DEVTOOLS_HOME}/pnpm
+ENV PATH="${PNPM_HOME}/bin:${PATH}"
+
+RUN install --directory --group=wheel --mode=0775 "${DEVTOOLS_HOME}"
+
+RUN --mount=type=tmpfs,target=/tmp \
+    mkdir /tmp/pnpm-home \
+    && curl --fail --silent --show-error --location \
         https://get.pnpm.io/install.sh \
         --output /tmp/install-pnpm.sh \
-    && SHELL=/bin/bash sh /tmp/install-pnpm.sh \
-    && rm /tmp/install-pnpm.sh
+    && HOME=/tmp/pnpm-home SHELL=/bin/bash sh /tmp/install-pnpm.sh \
+    && pnpm runtime set node latest --global \
+    && make-devtool-mutable "${PNPM_HOME}"
 
-# Install Node.js before copying uv so a uv image update does not invalidate
-# this layer and trigger another Node.js download.
-RUN pnpm runtime set node lts --global
+ENV UV_HOME=${DEVTOOLS_HOME}/uv
+ENV UV_INSTALL_DIR=${UV_HOME}/libexec
+ENV UV_PYTHON_INSTALL_DIR=${UV_HOME}/python
+ENV UV_PYTHON_BIN_DIR=${UV_HOME}/bin
+ENV PATH="${UV_HOME}/bin:${PATH}"
 
-# Install uv and its managed Python in image-owned, system-wide locations.
-COPY --from=uv /uv /uvx /usr/local/bin/
-
-RUN UV_PYTHON_INSTALL_DIR=/opt/uv/python \
-    UV_PYTHON_BIN_DIR=/usr/local/bin \
-    uv python install --default
+RUN --mount=type=tmpfs,target=/tmp \
+    --mount=type=bind,source=uv-launcher,target=/tmp/uv-launcher,ro \
+    curl --fail --silent --show-error --location \
+        https://astral.sh/uv/install.sh \
+        --output /tmp/install-uv.sh \
+    && XDG_CONFIG_HOME="${UV_HOME}/config" \
+        UV_NO_MODIFY_PATH=1 \
+        sh /tmp/install-uv.sh \
+    && mkdir "${UV_HOME}/bin" \
+    && install /tmp/uv-launcher "${UV_HOME}/bin/uv" \
+    && ln --symbolic ../libexec/uvx "${UV_HOME}/bin/uvx" \
+    && UV_CACHE_DIR=/tmp/uv-cache uv python install --default \
+    && make-devtool-mutable "${UV_HOME}"

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+# The standalone installer records update metadata below XDG_CONFIG_HOME. Use
+# the image-level location only for self-update, not for normal user commands.
+if [ "${1-}" = self ] && [ "${2-}" = update ]; then
+    export XDG_CONFIG_HOME="${UV_HOME}/config"
+fi
+
+exec "${UV_INSTALL_DIR}/uv" "$@"

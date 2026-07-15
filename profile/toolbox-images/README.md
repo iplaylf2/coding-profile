@@ -13,7 +13,7 @@ synchronized to another workspace, so this profile does not use
 - `workspace-base`: baseline command-line tools and language runtimes for general
   coding work.
 
-## Operations
+## Build
 
 Run these commands from the repository root on the Fedora WSL host, outside any
 Toolbx container. Run Podman and Toolbx as the same non-root user; do not use
@@ -35,6 +35,8 @@ podman build \
   profile/toolbox-images/workspace-base
 ```
 
+## Create a Container
+
 Create and enter a Toolbx container from the image:
 
 ```bash
@@ -42,19 +44,56 @@ toolbox create --image localhost/workspace-base:latest <container-name>
 toolbox enter <container-name>
 ```
 
-Rebuilding the image does not update existing containers. Test the rebuilt image
-under a new container name. To reuse an existing name, first preserve any
-container-local state and exit the container, then replace it:
+### Replace an Existing Container
+
+Rebuilding the image does not update existing containers. Test a rebuilt image
+under a new container name. To reuse an existing name, preserve any
+container-local state, exit the container, and then replace it:
 
 ```bash
 toolbox rm <container-name>
 toolbox create --image localhost/workspace-base:latest <container-name>
 ```
 
+## Upgrade Development Tools
+
+Development tools intended for in-place upgrades live under
+`/opt/devtools/<tool>` in the container root filesystem, not in the home
+directory shared by Toolbx containers. The Toolbx user can therefore update
+them without `sudo`; an update affects only the current container.
+
+For example:
+
+```bash
+pnpm self-update
+pnpm runtime set node latest --global
+uv self update
+```
+
+These updates do not change the source image. Rebuild the image when the updated
+versions should become defaults for newly created containers.
+
+## Extend the Image
+
+Install each upgradable SDK or tool in its own `/opt/devtools/<tool>` directory,
+expose its commands through `PATH`, and finish its installation layer with:
+
+```dockerfile
+RUN install-sdk ... \
+    && make-devtool-mutable /opt/devtools/<tool>
+```
+
+`make-devtool-mutable` grants the `wheel` group recursive write access without
+assuming a user ID. It is the shared integration point for future SDK layers;
+tool-specific installation and update behavior stays in the tool's build layer
+or adapter. The `uv-launcher` script is one such adapter: it supplies uv's
+image-level installer metadata only to `uv self update`, leaving normal user
+configuration unchanged.
+
 ## Version Policy
 
-The current definition uses floating inputs: `uv:latest`,
-`fedora-toolbox:latest`, Node.js `lts`, and an unversioned uv-managed Python.
-A full refresh can therefore change versions without a profile edit, and the
-image's Fedora release can differ from the Fedora WSL host. Validate a new
-container before replacing an existing one.
+The current definition uses floating inputs: `fedora-toolbox:latest`, the latest
+uv and pnpm standalone installers, Node.js `latest`, and an unversioned
+uv-managed Python. A full refresh can therefore change versions without a
+profile edit, and the image's Fedora release can differ from the Fedora WSL
+host. Validate a new container before replacing an existing one.
