@@ -1,108 +1,149 @@
 ---
 name: constraint-review
-description: "Use when the user needs to decide or change how a supporting constraint in code or prose should serve an artifact's primary responsibility, including whether it is needed, what invariant or audience need it protects, its disposition, or its owning boundary. Do not use to implement an already-decided protection or to make a purely structural placement decision after responsibilities are settled."
+description: "Use when the user needs to evaluate, decide, or change how a supporting constraint or defensive measure in code or prose serves an artifact's primary responsibility, including its validity, scope, disposition, or owning boundary. Do not use when the relevant constraint decisions—including validity, scope, behavior, disposition, required outcome or reader effect, and owning boundary—are settled and the request only implements or edits the constraint, or when the request only makes a structural placement decision after responsibilities are settled."
 ---
 
 # Constraint Review
 
-## Constraint Boundary
+## Review Boundary
 
-This skill determines a constraint's validity, protected invariant or audience
-need, disposition, and the responsibility its owning or target boundary must
-satisfy. For prose, it also determines what claim the qualification limits,
-where the reader needs it, and what consequence it expresses while preserving
-required terminology.
+This skill determines whether and how an in-scope constraint should serve an
+artifact's primary responsibility and which boundary should own the
+responsibility for the required outcome.
 
-## Context And Evidence Questions
+Treat decisions settled by authoritative requirements or contracts as inputs;
+evaluate only the validity, scope, behavior, disposition, and ownership left
+open.
 
-Use authoritative contracts, observed behavior, tests, schemas, requirements,
-and local conventions as evidence. Distinguish them from copied assumptions and
-defensive habit.
+For prose, treat qualifications, caveats, exceptions, and warnings as
+constraints on what the reader may infer or do.
 
-- When evidence conflicts, which source governs the constraint, and what makes
-  it authoritative for this boundary?
-- What primary path does the artifact serve, how does the constraint modify it,
-  and does that modification govern code behavior, prose expression, or both?
-- Which constraint and outcome did the user put in question, and which validity,
-  protected invariant or audience need, disposition, or boundary-responsibility
-  decision must the result resolve?
-- What invariant, contract, or audience need is claimed to justify the
-  constraint, and which boundary owns it?
-- Does this artifact have an independent obligation or observable failure mode,
-  such as validating a trust boundary, containing a failure, or preserving a
-  local invariant, even when another layer checks the same condition?
-- Does the local rule instead mirror mutable behavior owned elsewhere without a
-  stable contract or drift signal, and should it follow that owner or preserve a
-  narrower local contract?
-- What can be inferred from the evidence, and which remaining answer would
-  materially change validity, disposition, boundary responsibility, scope, or
-  risk enough to require user clarification?
+## Context And Responsibility Questions
+
+Use requirements, schemas, public contracts, threat models, observed behavior,
+tests, and local conventions as evidence. Distinguish a governing contract from
+a current observation or copied assumption.
+
+- What primary result does the artifact owe, to whom, and through what primary
+  path?
+- Which exact constraint and named scope are under review?
+- Which request inputs are binding requirements, which are goals, preferences,
+  rationales, or candidates, and which validity, scope, behavior, disposition,
+  or ownership decisions remain open?
+- Which evidence governs the open decisions, how authoritative and stable is it,
+  and how confidently does it support the claimed responsibility?
+- What material invariant, trust boundary, failure-containment duty, resource
+  need, or audience need establishes a responsibility, which boundary owns it,
+  and what outcome must that boundary provide?
+- What trigger makes that responsibility relevant, and what structural,
+  contractual, observed, or adversarial evidence establishes its reachability
+  and material consequence?
+- What observable outcome, reader conclusion, valid behavior, and cost follow
+  with and without the constraint?
+- Which responsibility does another mechanism already fulfill, and what outcome
+  does it provide? What independent obligation remains at this boundary, and
+  what local outcome does it require?
+- Does the constraint fit the responsibility in trigger, behavior, scope,
+  wording, duration, and cost? If the responsibility is transitional, what
+  observable exit or reevaluation condition applies?
+- What unresolved input or missing authority could materially change an open
+  decision or risk, and can it be inferred or obtained before asking a focused
+  question?
+
+## Code Questions
+
+- Which input, state, timing window, dependency failure, or trust transition
+  triggers the responsibility, and what success, failure, recovery, or
+  uncertainty outcome does the boundary owe?
+- Which response strategy—for example, rejection, recovery, degradation, retry,
+  delegation, or surfacing failure or uncertainty—produces that outcome, and
+  which resulting states must callers distinguish?
+- When behavior is controlled or enforced at multiple boundaries, what
+  independent obligation does each boundary own, and what local outcome does
+  that obligation require from the enforcement?
+- When a local rule mirrors behavior owned elsewhere, should it follow that
+  owner or preserve a distinct local contract? What governs that relationship,
+  and how would drift become observable?
+- Would a fallback, retry, or degradation preserve valid work, keep success
+  within its governing contract, and preserve each required failure, recovery,
+  or uncertainty distinction?
+- As assumptions, resources, or timing change, would the rule fail open or
+  closed, misclassify a state, or change the valid state or time window, and
+  what capacity or lifecycle does that behavior protect?
+- Can the existing model, type, contract, or source of truth express the
+  responsibility and its distinct outcomes without duplicated state or logic?
+
+## Prose Questions
+
+- Which claim does the qualification limit, and what reader inference,
+  decision, or action changes with and without it?
+- Where must the qualification appear so it shapes the reader's understanding
+  before a decision or action relies on the claim?
+- Which supplied wording or terminology is an exact requirement, and which
+  instead indicates the intended boundary or consequence to express in local
+  prose?
+- Can the primary rule express the responsibility more directly while keeping
+  the owning boundary and concrete consequence clear?
 
 ## Disposition Questions
 
-- Which disposition—keep, clarify or narrow, move, remove, or add—best follows
-  from the evidence?
-- When both forms are available, should the responsibility be enforced through
-  behavior, expressed as a prose qualification, or carried by both?
-- Is the defended case reachable and consequential enough to justify its
-  complexity or attention cost?
-- Does the constraint surface failure and uncertainty honestly, or turn an
-  unknown, partial, or unsupported state into apparent success?
-- Does the responsibility belong at the current boundary, and if so are its
-  trigger, behavior, wording, and scope precise; if not, what must the target
-  boundary satisfy?
-- Does the constraint protect a stable boundary or carry a temporary transition,
-  and what observable exit condition should end that responsibility?
-- What material protection would removal lose, what existing failure or
-  uncertainty would it expose, and what duplicated or shadow behavior would it
-  eliminate?
-- Is any real invariant, trust boundary, failure-containment duty, or audience
-  need currently unprotected?
-- Which current or proposed branches, wrappers, caveats, or validation paths
-  carry a distinct boundary responsibility, and which, if any, can be removed,
-  inlined, or rewritten without losing it?
+Use the relationship among evidence, responsibility, owner, required outcome,
+and constraint expression to consider:
 
-## Code Constraint Questions
+- **Keep** when the current constraint, responsibility, and owner fit.
+- **Clarify** when the responsibility and owner fit but the expression is
+  imprecise.
+- **Narrow** when the constraint exceeds the responsibility.
+- **Move** when the responsibility is valid but another boundary owns the
+  responsibility for the required outcome.
+- **Remove** when no independent obligation at the current boundary requires the
+  constraint's local outcome, or when the constraint is disproportionate to
+  that obligation and outcome.
+- **Add** when governing evidence establishes an unprotected, in-scope
+  responsibility at a boundary that can produce the required outcome.
 
-- Which input, state, timing window, dependency failure, or trust transition
-  triggers the constraint?
-- Should the result reject, recover, degrade, retry, delegate, or surface the
-  failure, and can callers distinguish those states?
-- Does a fallback preserve valid work or silently broaden what counts as success?
-- If the defended case changes, would the constraint fail open, fail closed, or
-  silently misclassify a state, and would it broaden the time or state window
-  treated as valid?
-- Within the settled owning boundary, can an existing model, type, or contract
-  express the rule without duplicated state or shadow logic?
+Then decide:
+
+- Which disposition or combination most directly and proportionately satisfies
+  the evidenced responsibility?
+- Should the responsibility be carried by behavior, a prose qualification, or
+  both?
+- Which candidates satisfy the governing inputs and responsibilities? If none
+  do, which conflict must be resolved before implementation?
+- Among valid candidates, how should stated goals and preferences determine the
+  choice?
+
+## Implementation And Validation
+
+When implementation is requested, make the coherent code, prose, and test
+changes implied by the settled disposition. Within the owning boundary, prefer
+one explicit source of truth; retain enforcement at multiple boundaries only
+when each boundary owns an independent obligation that requires a local outcome
+from that enforcement.
 
 Run applicable existing checks for the primary path, constraint trigger, and
-resulting failure or recovery behavior. Add or adjust a focused check only when
-the requested implementation changes an otherwise uncovered contract.
+required outcome or reader effect. Test observable contracts rather than the
+mere presence of a branch or phrase. Add or adjust a focused check only when the
+implementation changes an otherwise uncovered contract.
 
-## Prose Constraint Questions
-
-- What reader decision or action changes because of the qualification?
-- Which supplied wording or terminology is an exact requirement, and which is
-  evidence of the intended boundary or consequence to express in local prose?
-- Is the caveat attached to the statement it limits and visible before the reader
-  can act on a false generalization?
-- Can the primary responsibility or positive rule carry the meaning more
-  directly, leaving only the genuine exception?
-- Does the wording state the owning boundary and consequence without narrating
-  speculative defenses?
-- What reader-relevant qualification would removal lose, and what repetition or
-  unsupported caution would it eliminate?
-
-Validate prose by rereading the primary path with and without the constraint,
-checking terminology and nearby claims for contradiction, and using existing
+For prose, reread the primary path with and without the constraint, check
+required terminology and nearby claims for contradiction, and run existing
 documentation checks when they cover the affected text.
+
+Confirm that each retained or introduced constraint maps to an evidenced
+responsibility, and each added validation maps to a changed or otherwise
+uncovered contract.
 
 ## Result
 
-Lead with the disposition: keep, clarify or narrow, move, remove, or add. State
-the protected invariant or audience need, effect on the primary path, owning or
-required target-boundary responsibility, and decisive evidence.
+Lead with the disposition and decisive evidence. If no valid disposition is
+available, lead instead with the governing conflict and the decision needed
+before implementation. State how the constraint fits the evidenced
+responsibility, the material outcome or reader conclusion with and without it,
+and which current or target boundary owns the responsibility and must produce
+the required outcome. Identify the governing requirement or responsibility that
+controlled any material tradeoff.
 
-Report the exact validation performed and its result. Distinguish static or
-conceptual review from executed checks, and identify residual risk only when
-evidence, authority, or an external contract remains uncertain.
+Report any implementation, the exact validation performed, and its result.
+Distinguish executed checks from conceptual review, and report residual
+uncertainty only when it still affects the decision or risk.
