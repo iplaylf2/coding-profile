@@ -8,8 +8,8 @@ description: "Use when the user asks to draft, refine, choose, or review pull re
 ## Text Boundary
 
 Produce or evaluate reviewer-facing text for one defined proposed change. The
-result may be a title, body, complete draft, summary, revision, options, or a
-review verdict.
+selected change source sets its factual scope; supported context may explain
+intent without expanding that scope.
 
 ## Intent Questions
 
@@ -17,16 +17,16 @@ review verdict.
   refinement, options, or review of an existing draft?
 - Who is the immediate reviewer, what context can they assume, and what should a
   future reader still understand?
-- What language, tone, length, title style, required sections, references, or
-  exact terms constrain the result?
+- What language, tone, length, title style, output shape, references, or exact
+  wording did the user require?
 - Which missing detail can be inferred from the repository and proposed change,
   and which would materially change the text enough to require clarification?
 
 ## Change Evidence Questions
 
 - Which task-selected PR/MR patch, base-to-head comparison, diff, commit range,
-  or prose scope defines the proposed change, and what base and head belong to
-  that source?
+  or prose scope defines the proposed change, and when the source is
+  comparison-based, what are its base and head?
 - Which issues, branch names, commits, reviews, or product notes explain intent
   without expanding the selected proposal?
 - When candidate sources disagree, which one did the user or task select, and
@@ -39,16 +39,18 @@ untracked, or unrelated commit content unless the user includes it in scope.
 
 ## Expression Questions
 
-- Which current template, contribution rule, automation check, title rule, or
-  reference format governs the text?
+- Which current template, contribution rule, automated text check, or reference
+  format governs the text?
 - Which product, API, issue, or user-facing terms must remain exact?
+- When an explicit user request conflicts with a governing requirement, what
+  conflict must be surfaced and which valid choices remain?
 - Which recent, relevant PRs/MRs provide stable expression evidence rather than
   incidental historical style?
 - When no local expression convention exists, what concise portable Markdown
   structure best serves the reviewer?
 
-Current normative requirements govern structure and validation; historical
-examples only inform choices those requirements leave open.
+Current requirements govern structure and content; historical examples inform
+only choices those requirements leave open.
 
 ## Title Questions
 
@@ -82,23 +84,31 @@ review focus, or a decision that the diff does not make clear.
   satisfying required template sections?
 - For a body review, which claim, omission, structure, or emphasis materially
   affects correctness or reviewer usefulness rather than stylistic preference?
+- For a complete draft, do the title and body present the same proposal without
+  contradiction, misleading emphasis, or unnecessary repetition?
 
-## Validation Questions
+## Validation Boundary
 
-- Which validation information belongs in the text because a template, user
-  requirement, or review risk makes it relevant?
-- For each claimed check, was it performed locally, observed in CI, planned or
-  recommended, not run, or left unknown?
-- Which checks validate the PR/MR text or references, and which provide evidence
-  about the code or behavior?
-- When missing or unavailable validation is relevant, how should it be expressed?
+Routine automated validation and its results belong in CI by default rather than
+being repeated in PR/MR text.
 
-Do not present a planned check, inference, or text-format check as completed code
-validation.
+- Does a governing repository requirement or explicit user request require
+  validation text, and what minimum accurate content does it require?
+- Which change-specific validation evidence or coverage limitation would
+  materially affect review but is not adequately represented by CI results?
+
+When either exception applies, state only the required or reviewer-relevant
+outcome, coverage, or limitation. Include commands or job names only when
+required or when they materially aid review. Describe any included result
+according to available evidence; do not present planned or otherwise unobserved
+validation as completed. Keep checks of the authored PR/MR text outside the
+paste-ready draft; they do not validate the implementation.
 
 ## Result
 
-Return the requested result first. For drafting or revision, put paste-ready
-PR/MR text first. Make alternatives genuinely distinct, disclose only
-uncertainty that affects accurate use, and do not imply that a platform
-operation was performed.
+Return the requested result first. Make any authored or revised PR/MR text
+paste-ready. When authoring supports a broader task, preserve the selected text
+as that task's PR/MR input without displacing its primary result. Make
+alternatives genuinely distinct, disclose only uncertainty that affects
+accurate use, and do not claim that a platform operation was performed without
+evidence.
