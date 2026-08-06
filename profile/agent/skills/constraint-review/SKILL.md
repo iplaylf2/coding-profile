@@ -1,149 +1,159 @@
 ---
 name: constraint-review
-description: "Use when the user needs to evaluate, decide, or change how a supporting constraint or defensive measure in code or prose serves an artifact's primary responsibility, including its validity, scope, disposition, or owning boundary. Do not use when the relevant constraint decisions—including validity, scope, behavior, disposition, required outcome or reader effect, and owning boundary—are settled and the request only implements or edits the constraint, or when the request only makes a structural placement decision after responsibilities are settled."
+description: "Use when the user needs to evaluate or change the justification, scope, behavior, disposition, or ownership of a supporting constraint or defensive measure in code, tests, or prose as it serves an artifact's primary responsibility. Do not use when those decisions are settled and the request only implements or edits the constraint or chooses its structural placement."
 ---
 
 # Constraint Review
 
 ## Review Boundary
 
-This skill determines whether and how an in-scope constraint should serve an
-artifact's primary responsibility and which boundary should own the
-responsibility for the required outcome.
+Decide whether and how an in-scope constraint in code, tests, or prose should
+serve the artifact's primary responsibility. Identify the obligation, owning
+boundary and lifecycle phase, disposition, and appropriate validation.
 
-Treat decisions settled by authoritative requirements or contracts as inputs;
-evaluate only the validity, scope, behavior, disposition, and ownership left
-open.
+Treat settled requirements and contracts as inputs and review only decisions
+left open. Use **contract** for a governing source, **obligation** for the outcome
+a boundary owes, **guarantee** for assurance actually established, and
+**constraint** for the supporting measure under review.
 
-For prose, treat qualifications, caveats, exceptions, and warnings as
-constraints on what the reader may infer or do.
+Do not default to retaining or removing a constraint. Its existence, past value,
+low cost, apparent duplication, or promise of extra safety does not settle the
+decision.
 
-## Context And Responsibility Questions
+## Evidence Rules
 
-Use requirements, schemas, public contracts, threat models, observed behavior,
-tests, and local conventions as evidence. Distinguish a governing contract from
-a current observation or copied assumption.
+Start from the current obligation and supported path. A constraint and its
+branch, test, comment, rationale, or history are not self-authenticating
+authority and cannot justify one another in a circle.
 
-- What primary result does the artifact owe, to whom, and through what primary
-  path?
-- Which exact constraint and named scope are under review?
-- Which request inputs are binding requirements, which are goals, preferences,
-  rationales, or candidates, and which validity, scope, behavior, disposition,
-  or ownership decisions remain open?
-- Which evidence governs the open decisions, how authoritative and stable is it,
-  and how confidently does it support the claimed responsibility?
-- What material invariant, trust boundary, failure-containment duty, resource
-  need, or audience need establishes a responsibility, which boundary owns it,
-  and what outcome must that boundary provide?
-- What trigger makes that responsibility relevant, and what structural,
-  contractual, observed, or adversarial evidence establishes its reachability
-  and material consequence?
-- What observable outcome, reader conclusion, valid behavior, and cost follow
-  with and without the constraint?
-- Which responsibility does another mechanism already fulfill, and what outcome
-  does it provide? What independent obligation remains at this boundary, and
-  what local outcome does it require?
-- Does the constraint fit the responsibility in trigger, behavior, scope,
-  wording, duration, and cost? If the responsibility is transitional, what
-  observable exit or reevaluation condition applies?
-- What unresolved input or missing authority could materially change an open
-  decision or risk, and can it be inferred or obtained before asking a focused
-  question?
+Classify evidence by its role rather than its artifact type:
 
-## Code Questions
+- Use governing requirements, policies, contracts, protocols, schemas, and
+  established threat models to establish obligations and ownership.
+- Use current control, data, state, trust, and reader paths, actual failures, and
+  faithful reproductions to establish reachability and material consequences.
+- Count a mechanism as a guarantee only where it is actually enforced. Inspect
+  its covered domain, configuration, bypasses, lifecycle phase, and expiry.
+- Use comments, conventions, and history to locate intent or compatibility
+  needs, then re-establish their authority and current applicability.
 
-- Which input, state, timing window, dependency failure, or trust transition
-  triggers the responsibility, and what success, failure, recovery, or
-  uncertainty outcome does the boundary owe?
-- Which response strategy—for example, rejection, recovery, degradation, retry,
-  delegation, or surfacing failure or uncertainty—produces that outcome, and
-  which resulting states must callers distinguish?
-- When behavior is controlled or enforced at multiple boundaries, what
-  independent obligation does each boundary own, and what local outcome does
-  that obligation require from the enforcement?
-- When a local rule mirrors behavior owned elsewhere, should it follow that
-  owner or preserve a distinct local contract? What governs that relationship,
-  and how would drift become observable?
-- Would a fallback, retry, or degradation preserve valid work, keep success
-  within its governing contract, and preserve each required failure, recovery,
-  or uncertainty distinction?
-- As assumptions, resources, or timing change, would the rule fail open or
-  closed, misclassify a state, or change the valid state or time window, and
-  what capacity or lifecycle does that behavior protect?
-- Can the existing model, type, contract, or source of truth express the
-  responsibility and its distinct outcomes without duplicated state or logic?
+A test may demonstrate an execution path or provide evidence about a guarantee,
+and it may gate a build or release when the project gives it that role. Its
+existence alone does not establish a production obligation, boundary, or
+reachable state.
 
-## Prose Questions
+Check evidence against the current version, input domain, boundary, lifecycle,
+and time window. If missing authority or material uncertainty prevents a safe
+disposition, ask a focused question when the user can resolve it; otherwise
+report the governing conflict.
 
-- Which claim does the qualification limit, and what reader inference,
-  decision, or action changes with and without it?
-- Where must the qualification appear so it shapes the reader's understanding
-  before a decision or action relies on the claim?
-- Which supplied wording or terminology is an exact requirement, and which
-  instead indicates the intended boundary or consequence to express in local
-  prose?
-- Can the primary rule express the responsibility more directly while keeping
-  the owning boundary and concrete consequence clear?
+## Decision Procedure
 
-## Disposition Questions
+Follow all six steps in order. Before step 4 establishes an obligation and owner,
+create only focused investigative checks. Do not prescribe lasting code or prose
+behavior or durable validation until steps 5–6 falsify the rationales and choose
+a disposition.
 
-Use the relationship among evidence, responsibility, owner, required outcome,
-and constraint expression to consider:
+1. **Define the primary contract.** Name the result or reader effect owed, its
+   consumer, the supported path or claim, the exact constraint, and the open
+   decisions. Separate binding outcomes from candidate mechanisms and stated
+   preferences.
+2. **Establish the trigger.** Trace a supported input, reader inference, or
+   established fault or threat to the constrained state and material
+   consequence. A state manufactured only through a test escape, impossible
+   mock, or disabled enforcement does not establish production reachability
+   unless an equivalent in-scope path exists. For time-sensitive facts, identify
+   the authority, observation time, invalidating events, and action time.
+3. **Map the guarantee chain.** For each guarantee, record its source,
+   covered domain, lifecycle phase, outcome, bypasses, and expiry. For prose, map
+   the primary claim, qualification, and reader inference each controls. When a
+   local rule mirrors an external owner, ask which stable local contract permits
+   the mirror and how drift would be detected or managed.
+4. **Locate the uncovered obligation and owner.** Name what the current
+   guarantees do not cover, which boundary and phase have enough authority and
+   information to cover each gap, and the local outcome or reader effect owed
+   there. Multiple layers are justified when they cover an independent guarantee
+   domain, failure-containment duty, or observable outcome. A repeated condition
+   alone proves neither independence nor redundancy.
+5. **Falsify the competing rationales.** Ask:
+   - Would governing evidence establish the obligation, and would current paths,
+     an actual failure, or a faithful reproduction establish its trigger and
+     consequence, without relying on the constraint's own branch, comment, or
+     self-referential test?
+   - If the constraint were removed, which evidenced outcome would be lost, and
+     does another guarantee cover the same domain, phase, and failure path?
+   - Does a proposed test exercise a supported or explicitly adversarial path,
+     or manufacture the state only to justify a branch?
+   - Would runtime handling weaken a stronger static or build-time failure? Would
+     a static declaration leave an untrusted runtime boundary uncovered?
+   - Does a negative example prove only one sample while claiming to exclude an
+     open set that should be closed by construction, an allowlist, a schema, or
+     a type?
+   - What complexity, drift, attention, performance, or false-confidence cost
+     follows with and without the constraint?
 
-- **Keep** when the current constraint, responsibility, and owner fit.
-- **Clarify** when the responsibility and owner fit but the expression is
-  imprecise.
-- **Narrow** when the constraint exceeds the responsibility.
-- **Move** when the responsibility is valid but another boundary owns the
-  responsibility for the required outcome.
-- **Remove** when no independent obligation at the current boundary requires the
-  constraint's local outcome, or when the constraint is disproportionate to
-  that obligation and outcome.
-- **Add** when governing evidence establishes an unprotected, in-scope
-  responsibility at a boundary that can produce the required outcome.
+   Reject only the rationale a question disproves. Do not infer the opposite
+   disposition without its own evidence; unresolved material evidence still
+   requires a conflict or focused question.
+6. **Choose the disposition and mechanism.** Keep, clarify, narrow, move,
+   replace, consolidate, remove, decline to add, or add according to the
+   evidenced obligation. A retained or introduced constraint must materially
+   serve that obligation. For every disposition, evaluate the resulting coverage
+   and behavior; if an obligation remains uncovered, address it at the owning
+   boundary when authorized or report the gap. Among valid candidates, use
+   stated goals and preferences to choose proportionately.
 
-Then decide:
-
-- Which disposition or combination most directly and proportionately satisfies
-  the evidenced responsibility?
-- Should the responsibility be carried by behavior, a prose qualification, or
-  both?
-- Which candidates satisfy the governing inputs and responsibilities? If none
-  do, which conflict must be resolved before implementation?
-- Among valid candidates, how should stated goals and preferences determine the
-  choice?
+   Place a retained or introduced constraint at the owning phase. Within a
+   controlled domain, prefer representations that prevent invalid construction;
+   validate external or dynamic values where they enter that domain; enforce
+   time-sensitive state where observation and action can be authoritative.
+   Downstream code may rely on an established guarantee only within its covered
+   domain. Give a transitional constraint an observable exit condition.
 
 ## Implementation And Validation
 
 When implementation is requested, make the coherent code, prose, and test
-changes implied by the settled disposition. Within the owning boundary, prefer
-one explicit source of truth; retain enforcement at multiple boundaries only
-when each boundary owns an independent obligation that requires a local outcome
-from that enforcement.
+changes implied by the disposition.
 
-Run applicable existing checks for the primary path, constraint trigger, and
-required outcome or reader effect. Test observable contracts rather than the
-mere presence of a branch or phrase. Add or adjust a focused check only when the
-implementation changes an otherwise uncovered contract.
+For runtime behavior, choose rejecting input, recovery, degradation, retry,
+delegation, or surfaced failure or uncertainty according to the governing
+contract. Preserve caller-visible failure and recovery distinctions; do not let
+a fallback broaden success or hide an invariant violation.
 
-For prose, reread the primary path with and without the constraint, check
-required terminology and nearby claims for contradiction, and run existing
-documentation checks when they cover the affected text.
+Derive validation from the governing contract and the lifecycle phase where
+each guarantee operates, covering the supported path or claim, established
+trigger, and owner-level outcome or reader effect:
+
+- Validate each guarantee where it operates. Use the applicable checker,
+  compiler, or contract fixture for static or build gates; exercise runtime
+  boundaries with inputs they can receive; test state or concurrency guarantees
+  where observation and action are authoritative.
+- Test owner-level outcomes rather than branch presence or an implementation
+  snapshot. Treat a test-only escape as relevant only when it represents an
+  established in-scope fault or threat. When moving or removing a constraint,
+  preserve tests of the affected contract and remove or migrate tests that pin
+  only the obsolete mechanism.
+- Add or adjust a focused test when needed to validate an affected owner-level
+  outcome or close an evidenced validation gap. Do not modify production
+  behavior solely to give a test something to assert.
+
+For prose, identify the claim a qualification limits and the reader inference,
+decision, or action it changes. An unsupported warning can manufacture the
+ambiguity it appears to clarify. Place a necessary qualification before the
+reader relies on the claim, preserve required terminology, and prefer a direct
+primary rule so only a genuine exception remains.
 
 Confirm that each retained or introduced constraint maps to an evidenced
-responsibility, and each added validation maps to a changed or otherwise
-uncovered contract.
+obligation.
 
 ## Result
 
-Lead with the disposition and decisive evidence. If no valid disposition is
-available, lead instead with the governing conflict and the decision needed
-before implementation. State how the constraint fits the evidenced
-responsibility, the material outcome or reader conclusion with and without it,
-and which current or target boundary owns the responsibility and must produce
-the required outcome. Identify the governing requirement or responsibility that
-controlled any material tradeoff.
+Lead with the disposition and decisive current evidence, or with the governing
+conflict when no valid disposition is available. Explain the supported trigger,
+uncovered gap, owning boundary and phase, and before-and-after outcome or reader
+effect only when they materially justify the decision. Identify stale or
+circular evidence only when it affected the disposition.
 
-Report any implementation, the exact validation performed, and its result.
-Distinguish executed checks from conceptual review, and report residual
-uncertainty only when it still affects the decision or risk.
+Report implementation and exact validation performed. Distinguish executed
+checks from static reasoning, and report only residual uncertainty that still
+affects the decision or risk.
