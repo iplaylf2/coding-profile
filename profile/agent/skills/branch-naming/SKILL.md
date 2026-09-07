@@ -87,4 +87,4 @@ depends on current publication or tracking availability.
 
 Return the best name first, distinct alternatives when requested, or a concise
 review verdict. Report syntax and collision results according to what was
-actually checked, and do not imply that a branch operation was performed.
+actually checked. Base any claim about branch operations on execution evidence.

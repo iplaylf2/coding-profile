@@ -10,8 +10,7 @@ description: "Use when the user asks to generate, choose, revise, or review a na
 This skill produces a complete naming decision: an exact name, a keep/change
 judgment, or a naming-system rule, together with the semantic contrast and
 constraints needed to use it. Treat artifact grammar, placement context, and
-compatibility requirements as inputs when relevant. Applying the chosen name
-across surrounding artifacts is outside the naming result.
+compatibility requirements as inputs when relevant.
 
 ## Naming Goal Questions
 

@@ -9,9 +9,10 @@ The requested new or existing skill target is an input supplied by the user or
 an already-established task decision. This skill designs, creates, reviews, or
 changes that target; it does not decide whether creation is warranted.
 
-Drive context-dependent work with questions. Answer them first from the request,
-target artifacts, surrounding conventions, and available evidence. Ask the user
-only when an unresolved answer would materially change the requested design.
+Use questions that can change the current design decision or review conclusion.
+Answer them first from the request, target artifacts, surrounding conventions,
+and available evidence. Ask the user only when an unresolved answer would
+materially change the requested result.
 
 ## Positioning Questions
 
@@ -20,13 +21,15 @@ local schemas, templates, validators, and repository conventions that govern the
 artifact.
 
 Use the current request for desired behavior, runtime and schema requirements
-for validity, and current repository conventions for integration. Consult
-history only when current evidence cannot explain a compatibility requirement.
+for validity, and current repository conventions for integration. When current
+evidence leaves a material design question unresolved, use relevant history to
+inform that decision within current requirements.
 
-When available, use adjacent task guidance only to detect routing or
-responsibility overlap. Keep the finished skill independently usable after
-activation: express boundaries as domain inputs, outputs, and out-of-scope
-decisions without naming, invoking, or requiring another skill or shared context.
+When related task guidance can clarify the target's contribution, compare the
+inputs each requires, the judgments it guides, and the results it produces.
+Keep the finished skill independently usable after activation: express
+boundaries as domain inputs, outputs, and out-of-scope decisions without naming,
+invoking, or requiring another skill or shared context.
 
 - In concrete situations, what is the user trying to accomplish and what would a
   successful result look like?
@@ -35,8 +38,8 @@ decisions without naming, invoking, or requiring another skill or shared context
 - What stable semantic task family appears across the relevant situations?
 - What context is already available at activation, and what judgments, workflow,
   or result must the target skill contribute?
-- Which responsibilities already belong to baseline agent behavior, project
-  guidance, or adjacent task families?
+- What relevant behavior is already supplied by baseline agent behavior or
+  project guidance, and what does the target add or refine for its domain?
 
 ## Front Matter Questions
 
@@ -45,7 +48,8 @@ schema and keep execution guidance in the body.
 
 - What minimum semantic context is needed to decide whether to load the target
   skill?
-- What user intent should activate it, and which adjacent intent should not?
+- Which user intents benefit from the target's contribution, and which fall
+  outside its declared domain?
 - Would paraphrase, translation, or implication preserve the same activation
   decision?
 - Is the description expressing a task family and user intent rather than an
@@ -85,6 +89,9 @@ or decision prompts.
   and resource set follow from its positioning and repository contract?
 - For an existing target, in which situations is the current design effective,
   and where does its routing or execution diverge?
+- Compared with leaving the target unchanged, what would a proposed change
+  improve, and would that gain justify its context, coupling, and maintenance
+  costs?
 - When refactoring without preserving the current section or patch shape, what
   coherent structure would retain valid external behavior and current contracts?
 - When optimizing for a supplied goal, which elements affect that goal and which
@@ -96,8 +103,8 @@ Use existing validation facilities. Report exact checks and distinguish static
 reasoning from runtime evaluation.
 
 - What behavior or contract changed, and which existing check or affected task
-  boundary can reveal an overlap, gap, duplicated source of truth, or broken use
-  path?
+  boundary can reveal conflicting guidance, missing coverage, unnecessary
+  repeated work, duplicated sources of truth, or a broken use path?
 - Are the target's declared inputs sufficient to produce its complete result in
   representative activation and execution situations?
 - What was actually checked, what remains a static inference, and what has not

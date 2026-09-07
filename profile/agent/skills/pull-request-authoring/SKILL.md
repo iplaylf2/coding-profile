@@ -24,9 +24,10 @@ intent without expanding that scope.
 
 ## Change Evidence Questions
 
-- Which task-selected PR/MR patch, base-to-head comparison, diff, commit range,
-  or prose scope defines the proposed change, and when the source is
-  comparison-based, what are its base and head?
+- Which task-selected PR/MR patch, branch comparison, diff, commit range, or
+  prose scope defines the proposed change?
+- For a branch comparison, what are its base and head, and should it describe
+  the head's changes since the merge base or differences between their tips?
 - Which issues, branch names, commits, reviews, or product notes explain intent
   without expanding the selected proposal?
 - When candidate sources disagree, which one did the user or task select, and

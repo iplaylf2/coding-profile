@@ -105,5 +105,5 @@ implementation or its tests.
 
 Return the requested subject, complete message, distinct options, review verdict,
 or revision with paste-ready text first. State the selected change source only
-when it prevents ambiguity, report message validation according to what was
-actually checked, and do not imply that a Git operation was performed.
+when it prevents ambiguity, and report message validation according to what was
+actually checked. Base any claim about Git operations on execution evidence.

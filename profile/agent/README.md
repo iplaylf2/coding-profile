@@ -18,11 +18,11 @@ Repository source for reusable agent skills and their synchronization rules.
 Treat the decision to create a skill as an input supplied by the user or an
 established task decision. For a new or existing skill, use representative usage
 scenarios to establish and validate its positioning, activation boundary,
-post-activation responsibilities, and distinction from adjacent task families.
+post-activation responsibilities, and relationship to adjacent task families.
 
 - Use front matter only for stable identity and activation routing: `name`
-  identifies the skill, while `description` states the user intent that should
-  activate it and adjacent intents that should not.
+  identifies the skill, while `description` states the user intents that benefit
+  from its contribution and the boundaries of its domain.
 - Give each skill a concise, idiomatic domain name or task phrase. Every word,
   including a shared suffix, must contribute stable meaning, useful sibling
   contrast, standalone clarity, search value, or format compliance.

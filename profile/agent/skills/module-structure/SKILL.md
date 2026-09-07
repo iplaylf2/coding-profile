@@ -81,8 +81,8 @@ identify the ownership or relationship that the name must represent.
 
 - What must each public surface expose for discovery, use, selection, or
   extension, and what should remain internal?
-- Can an entrypoint or overview guide consumers without copying implementation
-  detail or a mutable inventory?
+- Which details or inventories are needed at an entrypoint or overview, and how
+  will they remain accurate as the implementation changes?
 - Would an internal change force unrelated callers, readers, or parent modules
   to change, and what stable surface or derivation would prevent that leakage?
 
