@@ -48,3 +48,15 @@ RUN --mount=type=tmpfs,target=/tmp \
     && ln --symbolic ../libexec/uvx "${UV_HOME}/bin/uvx" \
     && UV_CACHE_DIR=/tmp/uv-cache uv python install --default \
     && make-devtool-mutable "${UV_HOME}"
+
+# Give each Toolbx container its own VS Code Server directory.
+ARG DEV_HOME
+ARG DEV_UID
+ARG DEV_GID
+
+RUN install --directory --mode=0700 \
+        --owner="${DEV_UID}" \
+        --group="${DEV_GID}" \
+        "${DEV_HOME:?DEV_HOME must be set}/.vscode-server"
+
+VOLUME ["${DEV_HOME}/.vscode-server"]

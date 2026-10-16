@@ -1,0 +1,8 @@
+ARG BASE_IMAGE=quay.io/podman/machine-os:6.1
+FROM ${BASE_IMAGE}
+
+RUN dnf --assumeyes \
+        --setopt=install_weak_deps=False \
+        install toolbox \
+    && dnf clean all \
+    && bootc container lint
