@@ -1,15 +1,17 @@
 # VS Code Base Image
 
-The [Containerfile](Containerfile) provides command-line tools, pnpm-managed
-Node.js, uv-managed Python, and a per-container VS Code Server volume.
+The [Containerfile](Containerfile) defines the Toolbx development image for the
+[development container profile](../README.md), with command-line tools,
+pnpm-managed Node.js, and uv-managed Python.
 
-Prepare Podman and Toolbx using the [setup instructions](../README.md).
+Development tools live under `/opt/devtools` and support updates by the Toolbx
+user. Each container receives its own VS Code Server volume at
+`${DEV_HOME}/.vscode-server`.
 
 ## Build
 
-For Podman Machine, connect from the client with `podman machine ssh toolbx-host`.
-Make this repository's checkout available on the Linux execution host and run
-from its root, outside Toolbx. Use the same non-root user for Podman and Toolbx.
+Use the profile's [build context](../README.md#build-context). The build arguments
+set the VS Code Server directory's path and initial ownership for that host user:
 
 ```bash
 podman build \
@@ -22,16 +24,16 @@ podman build \
 
 Add `--pull=always --no-cache` to refresh the base image and installed tools.
 
-## Create a Container
+## Container
 
-Create and enter a Toolbx container from the image:
+Create the container and enter it once to initialize the Toolbx user:
 
 ```bash
 toolbox create --image localhost/vscode-base:latest <container-name>
 toolbox enter <container-name>
 ```
 
-## Connect with VS Code
+## VS Code Connection
 
 Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 on the client and set the Podman CLI in VS Code user settings:
@@ -42,19 +44,17 @@ on the client and set the Podman CLI in VS Code user settings:
 }
 ```
 
-On the client, select the VM user's Podman connection when using Podman Machine:
+For Podman Machine, the client's default Podman connection must target the same
+non-root VM user used for the build:
 
 ```text
 podman system connection list
 podman system connection default <connection-name>
 ```
 
-Confirm that `podman ps` lists the Toolbx container in VS Code's terminal.
-
-After entering the Toolbx container at least once, run **Dev Containers: Attach
-to Running Container...** in VS Code and select it. Then run **Dev Containers:
-Open Container Configuration File** and set `remoteUser` to the execution
-host's username (`id -un` on that host):
+Attach with **Dev Containers: Attach to Running Container...**. In
+**Dev Containers: Open Container Configuration File**, set `remoteUser` to the
+execution host's username (`id -un` on that host):
 
 ```json
 {
@@ -62,12 +62,10 @@ host's username (`id -un` on that host):
 }
 ```
 
-Save the configuration, disconnect, and attach again. Open the project directory
-in the shared Linux home.
+Reconnect after changing `remoteUser`. Project files live in the shared Linux
+home.
 
-## Maintain
-
-### Update Development Tools
+## Tool Maintenance
 
 Update the development tools installed under `/opt/devtools/<tool>` from inside
 the container, without `sudo`:
@@ -78,14 +76,6 @@ pnpm runtime set node latest --global
 uv self update
 ```
 
-Rebuild the image to refresh the tools installed in new containers.
-
-### Extend the Image
-
-Install each upgradable SDK or tool in its own `/opt/devtools/<tool>` directory,
-expose its commands through `PATH`, and finish its installation layer with:
-
-```dockerfile
-RUN install-sdk ... \
-    && make-devtool-mutable /opt/devtools/<tool>
-```
+Image rebuilds refresh the tools installed in new containers. Additional tools
+belong in `/opt/devtools/<tool>`, exposed through `PATH` and made writable with
+[make-devtool-mutable](make-devtool-mutable).

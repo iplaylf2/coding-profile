@@ -15,8 +15,8 @@ from this checkout.
 - [`profile/agent`](profile/agent/README.md): agent skills and configuration.
 - [`profile/repositories`](profile/repositories/README.md): repository-scoped
   editor and workspace assets.
-- [`profile/dev-container`](profile/dev-container/README.md): Podman Machine
-  and Toolbx setup, with a VS Code development container base image.
+- [`profile/dev-container`](profile/dev-container/README.md): Podman Machine OS
+  and Toolbx development images for VS Code.
 
 ## Setup
 

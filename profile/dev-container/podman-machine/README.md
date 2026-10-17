@@ -1,14 +1,28 @@
 # Podman Machine Image
 
-The [Containerfile](Containerfile) adds Toolbx to the official
-`quay.io/podman/machine-os` image for a bootc-compatible Podman Machine.
-Create the VM using the [setup instructions](../README.md#podman-machine).
+The [Containerfile](Containerfile) extends `quay.io/podman/machine-os` with Toolbx,
+compressed swap, and systemd-oomd for the
+[development container profile](../README.md).
+
+## Memory Policy
+
+- [zram-generator.conf](zram-generator.conf) enables compressed swap with the
+  generator's default sizing and the kernel's default compression algorithm.
+- [50-oomd.conf](user.slice.d/50-oomd.conf) enables systemd-oomd memory-pressure
+  actions on each user manager's `user.slice`, using systemd's default thresholds.
+  Sustained pressure can cause workload termination.
+
+The oomd policy covers containers and other processes beneath that slice.
+Rootful containers and workloads in other slices fall outside its coverage.
+
+The image owns these defaults under `/usr/lib/systemd`; machine-local `/etc`
+configuration and user-local systemd overrides remain independent of image
+updates.
 
 ## Build
 
-From the client, connect with `podman machine ssh toolbx-host`. Make a checkout
-of this repository available in the VM, then run from its root as a non-root
-user, outside a container.
+Build inside the Machine VM using the profile's
+[build context](../README.md#build-context):
 
 ```bash
 machine_image="localhost/podman-machine-toolbox:$(date +%Y%m%d-%H%M%S)"
@@ -26,8 +40,7 @@ Save the printed image URI for deployment.
 
 ## Deploy
 
-Return to the client machine. Replace `<printed-image-uri>` with the URI from
-the build and use your Machine's name if it differs from `toolbx-host`:
+On the client, apply the printed image URI:
 
 ```bash
 podman machine os apply --restart '<printed-image-uri>' toolbx-host
@@ -39,11 +52,11 @@ After startup, inspect the deployment and Toolbx:
 podman machine ssh toolbx-host 'sudo bootc status; toolbox --version'
 ```
 
-## Update and Roll Back
+Rebuild and deploy to update the Machine OS, Toolbx, and profile defaults.
 
-Rebuild and deploy the image to update the Machine OS and Toolbx.
+## Roll Back
 
-To stage the previous system deployment, run from the client:
+From the client, stage the previous system deployment and restart the VM:
 
 ```bash
 podman machine ssh toolbx-host 'sudo bootc rollback'

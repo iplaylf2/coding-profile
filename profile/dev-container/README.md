@@ -1,78 +1,42 @@
 # Development Container Profile
 
-Podman and Toolbx setup with a Fedora-based development image for VS Code.
+Image definitions for a Podman and Toolbx development environment with VS Code.
 
-## Prepare the Linux Execution Host
+## Components
 
-### Native Linux
+- [Podman Machine image](podman-machine/README.md): a bootc-compatible Machine
+  OS with Toolbx, compressed swap, and systemd-oomd.
+- [VS Code base image](vscode-base/README.md): a Fedora-based Toolbx image with
+  development tools and a per-container VS Code Server volume.
 
-Install Podman and [Toolbx](https://containertoolbx.org/install/) using the
-distribution's packages. On Fedora:
+## Execution Hosts
 
-```bash
-sudo dnf install podman toolbox
-```
+The Linux execution host runs Podman and Toolbx. VS Code runs on the client and
+attaches to a Toolbx container on that host.
 
-### Podman Machine
+| Execution host | Profile integration |
+| --- | --- |
+| Native Linux | Podman and Toolbx from distribution packages; VS Code base image. |
+| Podman Machine on macOS, Linux, or Windows Hyper-V | Machine OS image, then VS Code base image. |
+| Existing WSL distribution | Podman and Toolbx from distribution packages; VS Code base image through a VS Code WSL window. |
+| Podman Machine with the WSL provider | Toolbx from distribution packages inside the Machine; VS Code base image. |
 
-Use this path on macOS, Linux, or Windows with Hyper-V. Install
-[Podman](https://podman.io/docs/installation/) on the client and create a
-Machine named `toolbx-host`:
+Podman Machine OS deployment uses
+[`podman machine os apply`](https://docs.podman.io/en/latest/markdown/podman-machine-os-apply.1.html),
+which supports CoreOS-based Machines. WSL-based Machines use distribution
+packages instead of this profile's Machine OS image.
 
-```text
-podman machine init toolbx-host
-```
+Host prerequisites are covered by the upstream
+[Podman](https://podman.io/docs/installation/),
+[Toolbx](https://containertoolbx.org/install/), and
+[VS Code WSL](https://code.visualstudio.com/docs/remote/wsl) documentation.
 
-On Windows, use this initialization command to select Hyper-V:
+## Build Context
 
-```text
-podman machine init --provider hyperv toolbx-host
-```
+Image builds run from this repository's root on the Linux execution host,
+outside containers, as the non-root user who runs Podman and Toolbx. The checkout
+must be available on that host.
 
-Start the Machine:
-
-```text
-podman machine start toolbx-host
-```
-
-For an existing Machine, skip initialization and use its name throughout.
-Build and deploy the [Podman Machine image](podman-machine/README.md) to install
-Toolbx.
-
-### WSL
-
-#### Existing WSL Distribution
-
-Open a shell in the distribution and install Podman and Toolbx using its
-packages. On Fedora WSL:
-
-```bash
-sudo dnf install podman toolbox
-```
-
-Open the project through VS Code's [WSL extension](https://code.visualstudio.com/docs/remote/wsl)
-before attaching to the Toolbx container.
-
-#### Podman Machine with the WSL Provider
-
-Install [Podman](https://podman.io/docs/installation/) on Windows, then create
-and enter a WSL-backed Machine:
-
-```text
-podman machine init --provider wsl toolbx-host
-podman machine start toolbx-host
-podman machine ssh toolbx-host
-```
-
-For an existing Machine, connect using its name. Inside the VM, install Toolbx
-and return to the client:
-
-```bash
-sudo dnf install toolbox
-exit
-```
-
-## Create the VS Code Container
-
-Follow the [VS Code base image instructions](vscode-base/README.md) to build
-the image, create a Toolbx container, and attach VS Code.
+Machine commands use `toolbx-host` as the VM name; substitute an existing
+Machine's name where appropriate. From the client, its host shell is available
+with `podman machine ssh toolbx-host`.

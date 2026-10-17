@@ -11,6 +11,7 @@ fedoraproject
 hyperv
 libatomic
 nixfmt
+oomd
 oxfmt
 oxlint
 realpath
@@ -24,3 +25,4 @@ venv
 worktree
 zipfs
 zread
+zram
