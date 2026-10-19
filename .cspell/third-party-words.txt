@@ -26,3 +26,10 @@ worktree
 zipfs
 zread
 zram
+asif
+cirruslabs
+fcos
+ipsw
+pkrvars
+suspendable
+zincati

@@ -15,8 +15,10 @@ from this checkout.
 - [`profile/agent`](profile/agent/README.md): agent skills and configuration.
 - [`profile/repositories`](profile/repositories/README.md): repository-scoped
   editor and workspace assets.
-- [`profile/dev-container`](profile/dev-container/README.md): Podman Machine OS
-  and Toolbx development images for VS Code.
+- [`profile/dev-container`](profile/dev-container/README.md): Linux container
+  host configuration and a Toolbx development image for VS Code.
+- [`profile/macos`](profile/macos/README.md): macOS development configuration,
+  including Tart guest builds and launch agents.
 
 ## Setup
 

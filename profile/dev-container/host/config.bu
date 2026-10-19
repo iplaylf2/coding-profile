@@ -1,0 +1,16 @@
+variant: fcos
+version: 1.7.0
+storage:
+  files:
+    - path: /etc/systemd/zram-generator.conf
+      mode: 0644
+      contents:
+        local: zram-generator.conf
+    - path: /etc/systemd/user/user.slice.d/50-oomd.conf
+      mode: 0644
+      contents:
+        local: user.slice.d/50-oomd.conf
+systemd:
+  units:
+    - name: systemd-oomd.service
+      enabled: true

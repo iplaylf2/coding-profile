@@ -36,34 +36,38 @@ toolbox enter <container-name>
 ## VS Code Connection
 
 Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-on the client and set the Podman CLI in VS Code user settings:
+on the client and set `dev.containers.dockerPath` to `podman` in VS Code user
+settings.
+
+For a remote execution host, configure the client's default Podman connection
+through `podman system connection` over SSH to the host user's
+[rootless socket](../host/README.md#remote-podman-access). On Linux clients, set
+[`CONTAINER_CONNECTION`](https://docs.podman.io/en/latest/markdown/podman.1.html#container-connection)
+to that connection's name in the client VS Code process's environment to enable
+remote mode.
+
+Attach with **Dev Containers: Attach to Running Container...**, then open
+**Dev Containers: Open Container Configuration File**. Set `remoteUser` to the
+execution host's username and use `hybrid` port discovery:
 
 ```json
 {
-  "dev.containers.dockerPath": "podman"
+  "remoteUser": "<execution-host-username>",
+  "settings": {
+    "remote.autoForwardPortsSource": "hybrid"
+  }
 }
 ```
 
-For Podman Machine, the client's default Podman connection must target the same
-non-root VM user used for the build:
+[Toolbx shares the host's network and process namespaces](https://github.com/containers/toolbox/blob/main/src/cmd/create.go#L421).
+The [`hybrid` setting](https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/remote/common/remote.contribution.ts)
+discovers ports from terminal and debug output, then stops forwarding when the
+listening processes exit. This reduces automatic forwarding of unrelated host
+services. Services without matching output may need manual forwarding in the
+Ports view.
 
-```text
-podman system connection list
-podman system connection default <connection-name>
-```
-
-Attach with **Dev Containers: Attach to Running Container...**. In
-**Dev Containers: Open Container Configuration File**, set `remoteUser` to the
-execution host's username (`id -un` on that host):
-
-```json
-{
-  "remoteUser": "<execution-host-username>"
-}
-```
-
-Reconnect after changing `remoteUser`. Project files live in the shared Linux
-home.
+Reconnect after changing `remoteUser`. Project files live in the execution
+host's home directory, which Toolbx shares with the container.
 
 ## Tool Maintenance
 
