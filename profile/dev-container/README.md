@@ -17,7 +17,7 @@ client and attaches to a Toolbx container. The host configuration targets Fedora
 CoreOS; an existing Linux or WSL host with Podman and Toolbx can also run the
 development image.
 
-For Tart guest builds and launch agents on Apple Silicon, see the
+For Tart launch agents on Apple Silicon, see the
 [macOS profile](../macos/README.md).
 
 ## Build Context

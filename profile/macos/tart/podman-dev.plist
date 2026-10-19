@@ -11,9 +11,5 @@
 		<string>podman-dev</string>
 		<string>--no-graphics</string>
 	</array>
-	<key>RunAtLoad</key>
-	<false/>
-	<key>KeepAlive</key>
-	<false/>
 </dict>
 </plist>

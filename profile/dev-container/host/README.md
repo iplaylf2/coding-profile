@@ -51,8 +51,7 @@ attach to a container.
 
 ## Maintenance
 
-Keep FCOS on its upstream
-[automatic update mechanism](https://docs.fedoraproject.org/en-US/fedora-coreos/auto-updates/).
-Zincati manages OS updates and reboots. Ignition applies the compiled
-configuration at first boot; later source changes require provisioning a new
-host or updating the corresponding files on the existing host.
+[Zincati](https://docs.fedoraproject.org/en-US/fedora-coreos/auto-updates/)
+manages OS updates and reboots. Ignition applies the compiled configuration at
+first boot; later source changes require provisioning a new host or updating
+the corresponding files on the existing host.

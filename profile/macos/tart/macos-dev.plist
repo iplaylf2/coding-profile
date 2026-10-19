@@ -11,9 +11,5 @@
 		<string>macos-dev</string>
 		<string>--suspendable</string>
 	</array>
-	<key>RunAtLoad</key>
-	<false/>
-	<key>KeepAlive</key>
-	<false/>
 </dict>
 </plist>
