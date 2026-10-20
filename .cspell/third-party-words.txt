@@ -1,6 +1,5 @@
 arcanis
 aquaproj
-bootc
 assumeyes
 charliermarsh
 committerdate
@@ -28,8 +27,12 @@ zread
 zram
 asif
 cirruslabs
-fcos
 ipsw
 pkrvars
 suspendable
-zincati
+cdrtools
+cidata
+mdns
+mkisofs
+qcow
+volid

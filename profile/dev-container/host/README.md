@@ -1,57 +1,45 @@
 # Container Host
 
-Fedora CoreOS `stable` configuration for the Linux execution host in the
-[development container profile](../README.md). The upstream OS supplies Podman,
-Toolbx, zram-generator, and systemd-oomd.
+Shared configuration for the Fedora Linux execution hosts in the
+[development container profile](../README.md).
 
 ## Configuration
 
-[config.bu](config.bu) defines the memory policy installed under `/etc/systemd`:
-
-- [zram-generator.conf](zram-generator.conf) enables compressed swap with the
-  generator's default sizing and the kernel's default compression algorithm.
-- [50-oomd.conf](user.slice.d/50-oomd.conf) enables systemd-oomd memory-pressure
-  actions on each user manager's `user.slice`, using systemd's default thresholds.
-  Sustained pressure can terminate containers and other workloads beneath that
-  slice. Rootful containers and workloads in other slices fall outside its
-  coverage.
-
-The system-level `systemd-oomd.service` is enabled explicitly. These choices
-extend the [upstream FCOS swap configuration](https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-configure-swaponzram/).
-
-## Provisioning
-
-Compile the memory policy with Butane from the repository root:
+Run [playbook.yml](playbook.yml) inside the execution host, outside development
+containers, as the non-root user who owns the development containers and has
+sudo access. From the repository root:
 
 ```bash
-butane --strict --pretty \
-  --files-dir profile/dev-container/host \
-  profile/dev-container/host/config.bu > /path/to/memory-policy.ign
+sudo dnf install ansible-core
+ansible-playbook --connection=local --inventory localhost, \
+  profile/dev-container/host/playbook.yml
 ```
 
-Include the generated Ignition configuration in the host's provisioning
-configuration alongside its account and SSH access settings.
+Add `--ask-become-pass` when sudo requires a password. Reapply the playbook after
+configuration changes. Restart the host after the first application or changes
+to the memory policy.
 
 ## Remote Podman Access
 
-Remote clients connect over SSH to the execution host user's rootless Podman
-socket. Enable the socket and keep the user manager running after logout by
-running these commands on the host as the non-root user who owns the
-development containers:
+Configure SSH access for the container user and run `id -u` on the execution
+host to obtain that user's UID. Add the connection on the client using the
+reachable SSH endpoint:
 
-```bash
-systemctl --user enable --now podman.socket
-sudo loginctl enable-linger "$(id -un)"
+```text
+podman system connection add --default fedora "ssh://<user>@<ssh-endpoint>/run/user/<uid>/podman/podman.sock"
 ```
 
-The client's Podman connection targets `/run/user/<uid>/podman/podman.sock`,
-using `id -u` on that host to obtain the UID. Continue with the
-[VS Code connection settings](../vscode-base/README.md#vs-code-connection) to
-attach to a container.
+Continue with the [VS Code connection settings](../vscode-base/README.md#vs-code-connection)
+to attach to a container.
 
 ## Maintenance
 
-[Zincati](https://docs.fedoraproject.org/en-US/fedora-coreos/auto-updates/)
-manages OS updates and reboots. Ignition applies the compiled configuration at
-first boot; later source changes require provisioning a new host or updating
-the corresponding files on the existing host.
+Update the installed system in place on both platforms:
+
+```bash
+sudo dnf upgrade --refresh
+```
+
+Restart the execution host when required by updated system components. Use
+Fedora's [release upgrade procedure](https://docs.fedoraproject.org/en-US/quick-docs/upgrading-fedora-offline/)
+for Fedora release upgrades.

@@ -8,7 +8,7 @@ packer {
 }
 
 variable "bootstrap_password" {
-  description = "Password for the macOS admin account and Packer's SSH connection."
+  description = "macOS admin account password, retained after the build and used by Packer for SSH."
   type        = string
   sensitive   = true
 
@@ -30,7 +30,7 @@ source "tart-cli" "macos" {
   ssh_password       = var.bootstrap_password
 
   run_extra_args = [
-    "--provisioning-opts=fullName=Developer,username=admin,password=${var.bootstrap_password},logsInAutomatically=false,enablesRemoteLogin=true"
+    "--provisioning-opts=fullName=Developer,username=admin,password=${var.bootstrap_password},enablesRemoteLogin=true"
   ]
 }
 

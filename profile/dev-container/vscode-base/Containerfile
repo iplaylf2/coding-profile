@@ -1,7 +1,5 @@
 FROM quay.io/fedora/fedora-toolbox:latest
 
-LABEL com.github.containers.toolbox="true"
-
 # pnpm's standalone executable requires libatomic on Fedora. Include jq and
 # ripgrep as general-purpose tools for structured-data inspection and search.
 RUN dnf --assumeyes \

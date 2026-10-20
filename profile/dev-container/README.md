@@ -1,24 +1,24 @@
 # Development Container Profile
 
-Host configuration and a Toolbx development image for rootless Podman and
+A Fedora container host and a Toolbx development image for rootless Podman and
 VS Code.
 
 ## Components
 
-- [Container host](host/README.md): memory policy and remote Podman access for
-  the Linux execution host.
-- [VS Code base image](vscode-base/README.md): a Fedora-based Toolbx image with
-  development tools and a per-container VS Code Server volume.
+- [Container host](host/README.md): provisioning and maintenance for the Fedora
+  execution hosts.
+- [VS Code base image](vscode-base/README.md): a mutable Toolbx development
+  environment for VS Code.
 
 ## Execution Hosts
 
-The Linux execution host runs rootless Podman and Toolbx. VS Code runs on the
-client and attaches to a Toolbx container. The host configuration targets Fedora
-CoreOS; an existing Linux or WSL host with Podman and Toolbx can also run the
-development image.
+Use the same stable Fedora release on both platforms:
 
-For Tart launch agents on Apple Silicon, see the
-[macOS profile](../macos/README.md).
+- [macOS](../macos/README.md): Fedora Cloud Base in Tart.
+- [Windows](../windows/README.md): the official Fedora WSL distribution.
+
+Both hosts use the same Ansible configuration and DNF maintenance. VS Code runs
+on the client and attaches to a Toolbx container through remote Podman.
 
 ## Build Context
 

@@ -1,0 +1,73 @@
+- name: Configure the Fedora container host
+  hosts: all
+  tasks:
+    - name: Require a Fedora host and a non-root container user
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.distribution == "Fedora"
+          - ansible_facts.user_uid != 0
+        fail_msg: Run this playbook on Fedora as the non-root container user.
+
+    - name: Configure system packages and services
+      become: true
+      block:
+        - name: Install container host packages
+          ansible.builtin.dnf:
+            name:
+              - toolbox
+              - openssh-server
+              - systemd-udev
+
+        - name: Create the user slice configuration directory
+          ansible.builtin.file:
+            path: /etc/systemd/user/user.slice.d
+            state: directory
+            mode: "0755"
+
+        - name: Configure memory pressure handling
+          ansible.builtin.copy:
+            src: user.slice.d/50-oomd.conf
+            dest: /etc/systemd/user/user.slice.d/50-oomd.conf
+            mode: "0644"
+
+        - name: Start host services
+          ansible.builtin.systemd_service:
+            name: "{{ item }}"
+            enabled: true
+            state: started
+          loop:
+            - sshd.service
+            - systemd-oomd.service
+
+        - name: Keep the container user's manager running after logout
+          ansible.builtin.command:
+            argv:
+              - loginctl
+              - enable-linger
+              - "{{ ansible_facts.user_id }}"
+            creates: "/var/lib/systemd/linger/{{ ansible_facts.user_id }}"
+
+    - name: Configure compressed swap on full VMs
+      become: true
+      # Windows manages WSL swap.
+      when: "'microsoft' not in (ansible_facts.kernel | lower)"
+      block:
+        - name: Install the zram generator
+          ansible.builtin.dnf:
+            name: zram-generator
+
+        - name: Configure compressed swap
+          ansible.builtin.copy:
+            src: zram-generator.conf
+            dest: /etc/systemd/zram-generator.conf
+            mode: "0644"
+
+    - name: Enable the rootless Podman socket
+      ansible.builtin.systemd_service:
+        name: podman.socket
+        scope: user
+        daemon_reload: true
+        enabled: true
+        state: started
+      environment:
+        XDG_RUNTIME_DIR: "/run/user/{{ ansible_facts.user_uid }}"

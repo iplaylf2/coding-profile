@@ -1,17 +1,15 @@
 # VS Code Base Image
 
 The [Containerfile](Containerfile) defines the Toolbx development image for the
-[development container profile](../README.md), with command-line tools,
-pnpm-managed Node.js, and uv-managed Python.
+[development container profile](../README.md).
 
-Development tools live under `/opt/devtools` and support updates by the Toolbx
-user. Each container receives its own VS Code Server volume at
-`${DEV_HOME}/.vscode-server`.
+Project files live in the execution host's shared home directory. Development
+tools remain writable by the container user, and each container keeps its own
+VS Code Server data.
 
 ## Build
 
-Use the profile's [build context](../README.md#build-context). The build arguments
-set the VS Code Server directory's path and initial ownership for that host user:
+Use the profile's [build context](../README.md#build-context):
 
 ```bash
 podman build \
@@ -61,13 +59,10 @@ execution host's username and use `hybrid` port discovery:
 
 [Toolbx shares the host's network and process namespaces](https://github.com/containers/toolbox/blob/main/src/cmd/create.go#L421).
 The [`hybrid` setting](https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/remote/common/remote.contribution.ts)
-discovers ports from terminal and debug output, then stops forwarding when the
-listening processes exit. This reduces automatic forwarding of unrelated host
-services. Services without matching output may need manual forwarding in the
-Ports view.
+reduces automatic forwarding of unrelated host services. Services without
+matching terminal or debug output may need manual forwarding in the Ports view.
 
-Reconnect after changing `remoteUser`. Project files live in the execution
-host's home directory, which Toolbx shares with the container.
+Reconnect after changing `remoteUser`.
 
 ## Tool Maintenance
 
