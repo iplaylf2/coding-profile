@@ -33,16 +33,15 @@ ENV UV_PYTHON_INSTALL_DIR=${UV_HOME}/python
 ENV UV_PYTHON_BIN_DIR=${UV_HOME}/bin
 ENV PATH="${UV_HOME}/bin:${PATH}"
 
+COPY --chmod=0755 uv-launcher ${UV_HOME}/bin/uv
+
 RUN --mount=type=tmpfs,target=/tmp \
-    --mount=type=bind,source=uv-launcher,target=/tmp/uv-launcher,ro \
     curl --fail --silent --show-error --location \
         https://astral.sh/uv/install.sh \
         --output /tmp/install-uv.sh \
     && XDG_CONFIG_HOME="${UV_HOME}/config" \
         UV_NO_MODIFY_PATH=1 \
         sh /tmp/install-uv.sh \
-    && mkdir "${UV_HOME}/bin" \
-    && install /tmp/uv-launcher "${UV_HOME}/bin/uv" \
     && ln --symbolic ../libexec/uvx "${UV_HOME}/bin/uvx" \
     && UV_CACHE_DIR=/tmp/uv-cache uv python install --default \
     && make-devtool-mutable "${UV_HOME}"
