@@ -36,4 +36,18 @@ source "tart-cli" "macos" {
 
 build {
   sources = ["source.tart-cli.macos"]
+
+  provisioner "shell" {
+    inline = [
+      "/usr/bin/defaults -currentHost write com.apple.screensaver idleTime -int 0",
+    ]
+  }
+
+  provisioner "shell" {
+    execute_command = "printf '%s\\n' '${var.bootstrap_password}' | sudo -S -p '' /bin/sh -e '{{ .Path }}'"
+    inline = [
+      "/usr/bin/mdutil -a -i off",
+      "/usr/bin/pmset -a sleep 0 displaysleep 0",
+    ]
+  }
 }
