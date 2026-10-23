@@ -1,0 +1,6 @@
+{
+  "conversation_url_template": "vscode://openai.chatgpt/local/{session_id}",
+  "feishu": {
+    "webhook_url": "https://example.invalid/webhook"
+  }
+}

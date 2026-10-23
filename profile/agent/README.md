@@ -9,7 +9,7 @@ Repository source for reusable agent skills and their synchronization rules.
   identical, render that name in title form as the H1, and keep any bundled
   resources within the skill directory.
 - `content-hub.yaml` is the authoritative mapping for synchronized paths,
-  exclusions, and workspace targets.
+  exclusions, and workspace targets for reusable skills.
 - `README.md` is the maintainer-facing design contract and synchronization entry
   point; it is not runtime guidance for deployed skills.
 
@@ -52,13 +52,16 @@ post-activation responsibilities, and relationship to adjacent task families.
 
 Run these commands from `profile/agent`.
 
-Deploy all synchronized content to every configured workspace:
+The `agents` workspace synchronizes `skills/**` to `${HOME}/.agents`.
+
+Preview and deploy skills:
 
 ```bash
-uv run contentctl deploy --all-workspaces
+uv run contentctl --dry-run deploy agents
+uv run contentctl deploy agents
 ```
 
-Adopt synchronized content from the `agents` workspace:
+Adopt skills from the host workspace:
 
 ```bash
 uv run contentctl adopt agents

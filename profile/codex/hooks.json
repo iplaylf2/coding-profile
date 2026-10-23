@@ -1,0 +1,18 @@
+{
+  "description": "Deliver Codex reply notifications.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CODEX_HOME:-$HOME/.codex}/hooks/notify.py\"",
+            "async": true,
+            "timeout": 20,
+            "statusMessage": "发送答复通知"
+          }
+        ]
+      }
+    ]
+  }
+}

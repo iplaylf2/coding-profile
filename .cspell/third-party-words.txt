@@ -36,3 +36,12 @@ mdns
 mkisofs
 qcow
 volid
+charrefs
+creat
+feishu
+softbreak
+wronly
+pycache
+displaysleep
+mdutil
+pmset

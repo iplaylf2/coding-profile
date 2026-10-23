@@ -12,7 +12,9 @@ from this checkout.
 
 ## Profiles
 
-- [`profile/agent`](profile/agent/README.md): agent skills and configuration.
+- [`profile/agent`](profile/agent/README.md): reusable agent skills.
+- [`profile/codex`](profile/codex/README.md): Codex configuration and reply
+  notifications.
 - [`profile/repositories`](profile/repositories/README.md): repository-scoped
   editor and workspace assets.
 - [`profile/dev-container`](profile/dev-container/README.md): shared Fedora
