@@ -15,38 +15,26 @@ Repository source for reusable agent skills and their synchronization rules.
 
 ## Skill Design Contract
 
-Treat the decision to create a skill as an input supplied by the user or an
-established task decision. For a new or existing skill, use representative usage
-scenarios to establish and validate its positioning, activation boundary,
-post-activation responsibilities, and relationship to adjacent task families.
+Each skill contributes domain knowledge or records how this profile chooses
+among reasonable alternatives. Keep a preference with the decision it settles.
+When a task depends on a fact maintained elsewhere, use its authoritative
+source. General collaboration, compatibility review, and migration planning
+belong to the surrounding task.
 
-- Use front matter only for stable identity and activation routing: `name`
-  identifies the skill, while `description` states the user intents that benefit
-  from its contribution and the boundaries of its domain.
-- Give each skill a concise, idiomatic domain name or task phrase. Every word,
-  including a shared suffix, must contribute stable meaning, useful sibling
-  contrast, standalone clarity, search value, or format compliance.
-- Put post-activation evidence sources, decision questions, fixed execution
-  rules or procedures, resource-use guidance, and validation in the body.
-- Keep each skill independently usable after activation and able to produce a
-  complete result for its declared domain. Express its boundary through inputs,
-  outputs, and out-of-scope decisions. Do not name, invoke, or require another
-  skill, or assume another skill is present.
-- Treat explicit decisions outside the declared domain as inputs; do not reopen
-  them or prescribe decisions outside the skill's result.
-- Determine which explicit user requirements, normative project policies, and
-  tool-enforced contracts govern the remaining choices. Use observed history
-  only for choices those authorities leave open.
-- Classify supplied inputs by role, such as binding constraints, authoritative
-  terms, candidates, preferences, rejections, or semantic examples. Preserve,
-  evaluate, exclude, or translate them according to that role.
-- Drive context-dependent work with questions. Answer them first from the
-  request, target artifact, and selected evidence; ask the user only when an
-  unresolved answer would materially change the result.
-- State direct rules only for explicit constraints, fixed invariants, and
-  fragile, ordered, or tool-dependent procedures.
-- Lead with the requested result, distinguish performed validation from
-  recommended work, and disclose only uncertainty that materially affects use.
+- Ground the design in representative requests. When a judgment recurs across
+  different artifacts, describe what makes it the same decision and what
+  evidence it needs in each setting.
+- Reserve front matter for identity and discovery. Use a concise, idiomatic
+  task or domain name. The description should let the agent recognize when the
+  skill adds value, including within a larger task.
+- Keep each skill independently usable with its declared inputs and bundled
+  resources. Describe the boundary with neighboring work in domain terms.
+- State a chosen default and when it applies. Use open questions for choices
+  whose answers depend on the evidence. Give exact instructions where a tool
+  or format requires them.
+- Check the part of the design that changed. Skill selection can be exercised
+  with names and descriptions alone. An execution check needs the body, a
+  representative task, and an observable result.
 
 ## Synchronization
 
