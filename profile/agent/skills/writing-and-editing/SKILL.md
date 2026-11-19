@@ -7,10 +7,10 @@ description: "Use when drafting, revising, or reviewing prose calls for a choice
 
 ## Reader and Source
 
-- What does the reader need to understand or do, and what will they already
-  know when they reach the passage?
-- Which parts of the brief give directions to the writer? Which details belong
-  in the text for someone who has never seen the brief?
+- Where will the reader encounter the text? What will they need to understand,
+  decide, or do there, and what will they already know or have at hand?
+- Which parts of the brief and conversation guide the writing? Which facts,
+  reasons, or decisions from them belong in the text?
 - Which terms carry an exact meaning here? Where would the author's intent
   come through more clearly in the document's own vocabulary and voice?
 
@@ -26,8 +26,15 @@ description: "Use when drafting, revising, or reviewing prose calls for a choice
   wording convey how certain the finding is and how broadly it applies?
 - In a wording-only edit, preserve the meaning and force of the original.
   Would the revision change a claim's certainty or turn a permission into a
-  requirement? A discrepancy with a source can be raised separately.
+  requirement? Flag missing context or source discrepancies separately when
+  fixing them would require a substantive change.
 
-Read the result in sequence. Do the transitions, voice, and emphasis make
-the material read as one account? Could someone encountering it for the
-first time follow the reasoning at each point?
+## Reading the Result
+
+Read the result in sequence from the reader's entry point, with the material
+available there. For text used outside the conversation, set aside the
+drafting exchange and the reply that delivers it. Can the reader state the
+main point and explain what the conclusions or next steps depend on? Identify
+where any missing context first matters. Shared details and evidence can stay
+in sources the reader can find and use. Check that the transitions, voice,
+and emphasis make the text read as one account.
