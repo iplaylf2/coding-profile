@@ -5,36 +5,42 @@ description: "Use when drafting, revising, or reviewing prose calls for a choice
 
 # Writing and Editing
 
-## Reader and Source
+## Purpose and Reader
 
-- Where will the reader encounter the text? What will they need to understand,
-  decide, or do there, and what will they already know or have at hand?
-- Which parts of the brief and conversation guide the writing? Which facts,
-  reasons, or decisions from them belong in the text?
-- Which terms carry an exact meaning here? Where would the author's intent
-  come through more clearly in the document's own vocabulary and voice?
+What brings the reader to this piece, and what does the author want them
+to understand, decide, or do? Consider the title, where the text will
+appear, and the knowledge and materials the reader will have there. Which
+parts of the brief guide the writer's choices? Which facts or reasons does
+the reader need in the text itself, and which supporting details can stay
+in sources they can find and use?
 
-## Shaping the Text
+## Order and Emphasis
 
-- What deserves the reader's attention across the whole document? Where does
-  a central point need more explanation, and where has a side issue acquired
-  more space than its importance warrants?
-- When new information qualifies an earlier claim, where does the reader
-  first need the complete account? Would rewriting the paragraph or section
-  there resolve repetition or a break in the argument?
-- Which claim do the sources support, and under what conditions? Does the
-  wording convey how certain the finding is and how broadly it applies?
-- In a wording-only edit, preserve the meaning and force of the original.
-  Would the revision change a claim's certainty or turn a permission into a
-  requirement? Flag missing context or source discrepancies separately when
-  fixing them would require a substantive change.
+Arrange the material so each passage builds on what the reader knows.
+If they need background to see why a change matters, describe the part
+of current practice that explains the problem. A reader who already
+understands the issue may be ready for the answer in the first line.
 
-## Reading the Result
+Introduce a distinction where it changes how the reader would understand
+what follows. Use examples where they make an idea concrete and evidence
+where the reader needs to assess a claim. Give each point the space its
+importance and difficulty warrant. If a later qualification changes how
+an earlier claim should be read, work it into that passage.
 
-Read the result in sequence from the reader's entry point, with the material
-available there. For text used outside the conversation, set aside the
-drafting exchange and the reply that delivers it. Can the reader state the
-main point and explain what the conclusions or next steps depend on? Identify
-where any missing context first matters. Shared details and evidence can stay
-in sources the reader can find and use. Check that the transitions, voice,
-and emphasis make the text read as one account.
+## Meaning and Voice
+
+Choose wording that conveys the author's meaning in a voice suited to the
+occasion. Which terms have a precise meaning in this document? Does each
+claim convey the scope and certainty its evidence supports?
+
+In a wording-only edit, preserve the meaning and force of the original.
+Would a revision turn an option into an obligation, or a tentative
+finding into a conclusion? Flag gaps or discrepancies separately when
+resolving them would require a substantive change.
+
+## Read the Whole Piece
+
+Read in sequence with only the context the reader will have at hand. If
+the opening sets an expectation the body does not meet, use the author's
+purpose to decide which passage to revise. By the end, can the reader
+state the main point and see what a conclusion or next step depends on?
