@@ -8,11 +8,9 @@ description: "Use when drafting, revising, or reviewing prose calls for a choice
 ## Purpose and Reader
 
 What brings the reader to this piece, and what does the author want them
-to understand, decide, or do? Consider the title, where the text will
-appear, and the knowledge and materials the reader will have there. Which
-parts of the brief guide the writer's choices? Which facts or reasons does
-the reader need in the text itself, and which supporting details can stay
-in sources they can find and use?
+to understand, decide, or do? Which parts of the brief guide the writer's
+choices? Consider the title, where the text will appear, and what readers
+will already know or have at hand. What must the piece supply for them?
 
 ## Order and Emphasis
 
@@ -22,16 +20,20 @@ of current practice that explains the problem. A reader who already
 understands the issue may be ready for the answer in the first line.
 
 Introduce a distinction where it changes how the reader would understand
-what follows. Use examples where they make an idea concrete and evidence
-where the reader needs to assess a claim. Give each point the space its
-importance and difficulty warrant. If a later qualification changes how
-an earlier claim should be read, work it into that passage.
+what follows. Use examples where they make an idea concrete. Give each
+point the space its importance and difficulty warrant. Work a qualification
+into the passage it changes. Include the explanation readers need to
+understand or act. If a fuller account would help them pursue a related
+question, point to it where that question arises.
 
 ## Meaning and Voice
 
 Choose wording that conveys the author's meaning in a voice suited to the
-occasion. Which terms have a precise meaning in this document? Does each
-claim convey the scope and certainty its evidence supports?
+occasion. Which terms have a precise meaning in this document? For a
+claim readers may need to verify, point to the source that supports it.
+When drawing a conclusion from evidence, show how it follows and match
+its scope and certainty to that evidence. When moving or cutting text,
+keep each source with the claim it still supports.
 
 In a wording-only edit, preserve the meaning and force of the original.
 Would a revision turn an option into an obligation, or a tentative

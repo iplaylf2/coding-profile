@@ -31,9 +31,10 @@ description? Which details first become useful after selection?
 - For a closed set, which source defines membership? When examples illustrate
   an open set, what would help the agent recognize an unlisted case? Which
   incidental detail might the examples accidentally teach as a requirement?
-- Which source defines a fact the skill depends on? What would the agent
-  decide differently if the skill stated it here? What can the agent
-  readily look up at the point of use?
+- What action depends on a fact maintained elsewhere? Would stating it in
+  the skill help the agent decide, or can it consult the definition at the
+  point of use? Keep sources that explain why the author chose the guidance
+  with the design rationale for maintainers.
 - If the skill is installed on its own, what belongs in the body at every
   activation? Which details warrant a bundled resource?
 
@@ -48,6 +49,8 @@ and repository conventions. Behavioral checks depend on what the design claims.
 - After activation, what observable feature of the result would show the
   guidance worked? Use the task's normal inputs. To assess what a change adds,
   compare the same task with the previous version or with the skill absent.
-- When the judgment is meant to transfer, does it still hold if the artifact
-  changes and the underlying decision stays the same? Does a revision still
-  handle the cases that made the earlier guidance valuable?
+- For a judgment that should transfer, try a different setting where the
+  deciding conditions still hold. In a familiar task, vary a fact that
+  should change the action. Does the guidance lead to an appropriate choice
+  in each case? On a revision, also check a use the previous version served
+  well.

@@ -1,6 +1,6 @@
 ---
 name: project-structure
-description: "Use when organizing project materials into units by responsibility or reviewing where a unit belongs, what it exposes, and how readers or callers reach it."
+description: "Use when organizing project materials by responsibility, deciding where a shared fact is maintained, or reviewing what a unit exposes and how readers or callers reach it."
 ---
 
 # Project Structure
