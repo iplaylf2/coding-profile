@@ -47,6 +47,22 @@ draws on [Google's guidance on audience](https://developers.google.com/tech-writ
 Its advice to link to a fuller explanation at the point of need draws on
 [the guidance on background material in how-to guides](https://diataxis.fr/how-to-guides/#key-principles).
 
+[Iterative Enhancement](skills/iterative-enhancement/SKILL.md) adopts the
+practice of extending and revising a working skeleton from
+[_Iterative Enhancement: A Practical Technique for Software Development_](https://www.cs.umd.edu/users/basili/publications/journals/J04.pdf).
+Looking across the capabilities in scope draws on [Jeff Patton's practice
+of mapping the main user activities before detailing any one](https://www.jpattonassociates.com/wp-content/uploads/2015/01/patton_story_mapping_bettersw_1109.pdf).
+Deferring lower-level decisions and revisiting earlier ones when an
+implementation reveals more comes from [stepwise refinement](https://doi.org/10.1145/362575.362577).
+
+The skill examines a handoff from both sides, drawing on [Fowler's example
+of an activity acting as a predecessor or a successor](https://martinfowler.com/bliki/RoleInterface.html).
+Its question about what callers need to see draws on [WebAssembly's
+validator and matcher](https://component-model.bytecodealliance.org/composing-and-distributing/composing.html#what-is-composition).
+Connecting the validator's import to the matcher's export gives the
+combined component a public validation interface while keeping matching
+internal.
+
 ## Synchronization
 
 Run these commands from `profile/agent`.
